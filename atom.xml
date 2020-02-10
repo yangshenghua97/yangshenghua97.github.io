@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-10T12:15:15.089Z</updated>
+  <updated>2020-02-10T13:32:11.077Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>安装Git并关联GitHub</title>
+    <link href="http://yoursite.com/2020/02/10/git/%E5%AE%89%E8%A3%85Git/"/>
+    <id>http://yoursite.com/2020/02/10/git/%E5%AE%89%E8%A3%85Git/</id>
+    <published>2020-02-10T12:57:46.000Z</published>
+    <updated>2020-02-10T13:32:11.077Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装git的版本优Linux,Mac,Windows<br>在这只介绍在Windows上安装git，在Windows系统上安装msysGit其实很容易，因为该安装包已包括他所有的依赖关系。msysGit能很好地与Windows风格的原生应用程序(如Windows资源管理器shell)集成。例如像这样</p><ul><li><p>1 首先打开链接:<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p><p><img src="git.png" alt="git"></p><p>好了废话不多说，下面开始介绍如何安装git</p><p><img src="git2.png" alt="git2"></p><p>下载完成并安装后，</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装git的版本优Linux,Mac,Windows&lt;br&gt;在这只介绍在Windows上安装git，在Windows系统上安装msysGit其实很容易，因为该安装包已包括他所有的依赖关系。msysGit能很好地与Windows风格的原生应用程序(如Windows资源管理器s
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git基本命令</title>
     <link href="http://yoursite.com/2020/02/10/git/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2020/02/10/git/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</id>
-    <published>2020-02-10T12:15:15.089Z</published>
-    <updated>2020-02-10T12:15:15.089Z</updated>
+    <published>2020-02-10T12:22:20.000Z</published>
+    <updated>2020-02-10T12:25:14.976Z</updated>
     
     <summary type="html">
     
@@ -30,6 +56,8 @@
     
       <category term="git" scheme="http://yoursite.com/categories/git/"/>
     
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
