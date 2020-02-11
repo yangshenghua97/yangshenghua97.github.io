@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-11T08:48:09.614Z</updated>
+  <updated>2020-02-10T14:00:58.326Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>练习</title>
-    <link href="http://yoursite.com/2020/02/11/%E7%BB%83%E4%B9%A0/"/>
-    <id>http://yoursite.com/2020/02/11/%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-02-11T07:57:19.000Z</published>
-    <updated>2020-02-11T08:48:09.614Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/avatar.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangshenghua97/Image/master/avatar.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>git基本命令</title>
