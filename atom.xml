@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-13T13:17:37.170Z</updated>
+  <updated>2020-03-08T08:36:07.686Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,175 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>里氏替换原则</title>
+    <link href="http://yoursite.com/2020/03/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/"/>
+    <id>http://yoursite.com/2020/03/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/</id>
+    <published>2020-03-08T07:04:15.000Z</published>
+    <updated>2020-03-08T08:36:07.686Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是里氏替换原则"><a href="#什么是里氏替换原则" class="headerlink" title="什么是里氏替换原则"></a>什么是里氏替换原则</h2><p>在《大话设计模式》中：</p><blockquote><p><strong>里氏替换原则（LSP）：子类型必须能够替换掉他们的父类型</strong></p></blockquote><ul><li><strong>一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且他察觉不出父类对象和子类对象的区别，那就是说，在软件里面，把父类都替换成它的子类，程序的行为没有变化</strong></li></ul><p><strong>只有当子类可以替换掉父类，软件单位的功能不受影响时，父类才能真正被复用，而子类也能够在父类的基础上增加新的行为</strong></p><p>比方说，猫是继承动物类的，以动物的身份拥有吃喝跑叫等行为，如果需要扩展狗牛羊也拥有类似的行为，由于都是继承自动物类，所以除了更改实例化的地方，程序其他处无需改变</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/Lishitihuan.jpg" alt=""></p><p>伪代码:</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">动物 animal = <span class="keyword">new</span> 猫();</span><br><span class="line">animal.吃();</span><br><span class="line">animal.喝();</span><br><span class="line">animal.跑();</span><br><span class="line">animal.叫();</span><br></pre></td></tr></table></figure><p><strong>由于子类型的可替换性才使得使用父类类型的模块在无需修改的情况下就可以扩展。</strong></p><p>在《设计模式之禅》中是这样描述的：</p><ul><li><p><strong>如果对每种类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所有的对象o1都代换o2时，</strong></p><p><strong>程序P的行为没有发生变化，那么类型S是类型T的子类型。</strong></p></li><li><p><strong>所有引用基类的地方必须能透明地使用其子类的对象。</strong></p></li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href=""></a></li><li><a href=""></a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;什么是里氏替换原则&quot;&gt;&lt;a href=&quot;#什么是里氏替换原则&quot; class=&quot;headerlink&quot; title=&quot;什么是里氏替换原则&quot;&gt;&lt;/a&gt;什么是里氏替换原则&lt;/h2&gt;&lt;p&gt;在《大话设计模式》中：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;里氏
+      
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式原则" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础</title>
+    <link href="http://yoursite.com/2020/03/07/Linux/Linux%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2020/03/07/Linux/Linux%E5%9F%BA%E7%A1%80/</id>
+    <published>2020-03-07T14:20:39.000Z</published>
+    <updated>2020-03-07T14:23:47.447Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>6大设计原则-单一职责原则</title>
+    <link href="http://yoursite.com/2020/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/"/>
+    <id>http://yoursite.com/2020/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/</id>
+    <published>2020-03-07T12:37:04.000Z</published>
+    <updated>2020-03-08T07:01:18.055Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a><strong>单一职责原则</strong></h1><ul><li><p>单一职责(SRP)的定义：</p><blockquote><p><strong>就一个类而言，应该仅有一个引起它变化的原因。</strong></p></blockquote></li></ul><p>在编程的时候，会不知不觉的给一个类添加各种各样的功能、算法等等，这就意味着这个类维护麻烦，复用不可能，高耦合性，缺乏灵活。</p><p><strong>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受意想不到破坏。软件设计真正的要做的许多内容，就是发现职责就是并把那些职责相互分离。</strong></p><p><strong>其实要去判断是否应该分离出类来，并不难，如果能够想到多于一个的动机去改变一个类，那么这个类就具有多一个职责，那么就应该考虑类的职责分离</strong></p><ul><li><p>案例</p><p>许多项目，都会接触到用户，机构，角色管理这类模块，基本上都是使用<strong><code>RBAC</code></strong>模型(Role-Based Access Control)，其实要讲的例子如下面的类图</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/IUserInfo.jpg" alt=""></p><p>通过这个类图一眼就能看出接口设计得有问题。</p><p>下面我们拆分成两个接口。</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/UserInfo.jpg" alt=""></p><p>现在面对接口编程，所以产生这个UserInfo对象之后，当然可以把它当作IUserBO接口使用，也可以当作IUserBiz接口使用。要获得用户信息，就当是IUserBO的实现类；要是希望维护用户的信息，就把它当作IUserBiz的实现类就可以。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.....</span><br><span class="line">IUserInfo userInfo = <span class="keyword">new</span> UserInfo();</span><br><span class="line"><span class="comment">//给BO赋值可以认为它是一个单纯的BO</span></span><br><span class="line">IUserBO userBO = (IUserBO)userInfo();</span><br><span class="line">userBO.setPassWord(<span class="string">"abc"</span>);</span><br><span class="line"><span class="comment">//执行动作，可以认为是一个业务逻辑类</span></span><br><span class="line">IUserBiz userBiz = (IUserBiz)userInfo();</span><br><span class="line">userBiz.deleUser();</span><br><span class="line">·····</span><br></pre></td></tr></table></figure><h5 id="单一职责原则的好处"><a href="#单一职责原则的好处" class="headerlink" title="单一职责原则的好处"></a>单一职责原则的好处</h5><ul><li>类的复杂性降低，实现什么职责都有清晰明确的定义</li><li>可读性提高，复杂性降低，那就当然可读性提高</li><li>可维护性提高，可读性提高，那就当然更容易维护</li><li>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个接口修改只对相应的实现类有影响，对其他的接口无影响，这对系统的扩展性，维护性都有非常大帮助。</li></ul></li></ul><p>对于接口，我们在设计的时候一定要做到单一，但是对于实现类的需要多方面思考，硬套单一职责原则会引起类的剧增，给维护带来很多的麻烦，而且过分细分类的职责也会人为地增加系统的复杂性。</p><p>单一职责适用于接口、类、方法。一个方法尽可能做一件事，每个方法的职责非常清晰明确，开发简单，维护也方便。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><strong>参考资料</strong></h2><blockquote><p><strong>《设计模式之禅》作者：秦小波</strong>     机械工业出版社</p><p><strong>《大话设计模式》作者：程杰</strong>         清华大学出版社</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;单一职责原则&quot;&gt;&lt;a href=&quot;#单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;单一职责原则&quot;&gt;&lt;/a&gt;&lt;strong&gt;单一职责原则&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;单一职责(SRP)的定义：&lt;/p&gt;
+&lt;blockquot
+      
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式原则" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法概述</title>
+    <link href="http://yoursite.com/2020/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/"/>
+    <id>http://yoursite.com/2020/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/</id>
+    <published>2020-02-20T04:54:01.000Z</published>
+    <updated>2020-02-20T04:59:17.058Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayList的简介与实现</title>
+    <link href="http://yoursite.com/2020/02/18/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/List/ArrayList%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://yoursite.com/2020/02/18/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/List/ArrayList%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/</id>
+    <published>2020-02-18T11:56:08.000Z</published>
+    <updated>2020-02-19T11:01:36.306Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="集合源码简单分析与实现" scheme="http://yoursite.com/categories/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
+    
+    
+      <category term="集合源码简单分析与实现" scheme="http://yoursite.com/tags/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git快速入门</title>
+    <link href="http://yoursite.com/2020/02/15/git/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2020/02/15/git/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</id>
+    <published>2020-02-15T09:56:07.000Z</published>
+    <updated>2020-02-15T09:33:10.140Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>Git安装(Windowns系统为例)</p><ul><li><p>下载Git软件:</p><p>点击链接:<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/gi.jpg" alt=""></p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/git1.png" alt=""></p><p>双击！</p><p>一路Next！</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/git2.jpg" alt=""></p><p>最后怎么与Github关联将在其他篇章讲述</p></li></ul></li><li><h2 id="1-Git命令行"><a href="#1-Git命令行" class="headerlink" title="1 Git命令行"></a>1 Git命令行</h2><p>git简单易用，只要在终端输入$ <code>Git</code>，Git就会不带任何参数输出它的选项和常用的子命令。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ git</span><br><span class="line"><span class="comment">#输入git后会输出一下选项，如果要得到一个完整的git子命令列表，可以输入 git help --all</span></span><br><span class="line">usage: git [--version] [--<span class="built_in">help</span>] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]</span><br><span class="line">           [--<span class="built_in">exec</span>-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span><br><span class="line">           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]</span><br><span class="line">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]</span><br><span class="line">           &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br><span class="line">These are common Git commands used <span class="keyword">in</span> various situations:</span><br><span class="line">start a working area (see also: git <span class="built_in">help</span> tutorial)</span><br><span class="line">   <span class="built_in">clone</span>      Clone a repository into a new directory</span><br><span class="line">   init       Create an empty Git repository or reinitialize an existing one</span><br><span class="line">work on the current change (see also: git <span class="built_in">help</span> everyday)</span><br><span class="line">   add        Add file contents to the index</span><br><span class="line">   mv         Move or rename a file, a directory, or a symlink</span><br><span class="line">   reset      Reset current HEAD to the specified state</span><br><span class="line">   rm         Remove files from the working tree and from the index</span><br><span class="line">examine the <span class="built_in">history</span> and state (see also: git <span class="built_in">help</span> revisions)</span><br><span class="line">   bisect     Use binary search to find the commit that introduced a bug</span><br><span class="line">   grep       Print lines matching a pattern</span><br><span class="line">   <span class="built_in">log</span>        Show commit logs</span><br><span class="line">   show       Show various types of objects</span><br><span class="line">   status     Show the working tree status</span><br><span class="line">grow, mark and tweak your common <span class="built_in">history</span></span><br><span class="line">   branch     List, create, or delete branches</span><br><span class="line">   checkout   Switch branches or restore working tree files</span><br><span class="line">   commit     Record changes to the repository</span><br><span class="line">   diff       Show changes between commits, commit and working tree, etc</span><br><span class="line">   merge      Join two or more development histories together</span><br><span class="line">collaborate (see also: git <span class="built_in">help</span> workflows)</span><br><span class="line">   fetch      Download objects and refs from another repository</span><br><span class="line">   pull       Fetch from and integrate with another repository or a <span class="built_in">local</span> branch</span><br><span class="line">   push       Update remote refs along with associated objects .....</span><br></pre></td></tr></table></figure><ul><li><h2 id="2-Git使用快速入门"><a href="#2-Git使用快速入门" class="headerlink" title="2 Git使用快速入门"></a>2 Git使用快速入门</h2><ul><li><h4 id="2-1创建初始版本库"><a href="#2-1创建初始版本库" class="headerlink" title="2.1创建初始版本库"></a>2.1创建初始版本库</h4><p>首先在git终端下创建一个空文件夹:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建空文件夹 test/</span></span><br><span class="line">$ mkdir -p <span class="built_in">test</span>/</span><br><span class="line"><span class="comment">#进入到test文件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="built_in">test</span>/</span><br><span class="line"><span class="comment">#执行git init命令</span></span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /root/<span class="built_in">test</span>/.git/</span><br></pre></td></tr></table></figure><p>Git不会关心文件夹里是否为空，执行<code>git init</code> 命令创建了一个隐藏目录，在项目目录的顶层有个名为 <code>.git</code>文件夹，Git把所有修订的信息都放在这唯一的顶层目录里</p></li><li><h4 id="2-2-将文件添加到版本库中"><a href="#2-2-将文件添加到版本库中" class="headerlink" title="2.2 将文件添加到版本库中"></a>2.2 将文件添加到版本库中</h4><p>执行 git init 命令时，Git版本库都是空的，为了管理内容，需要明确的把内容放入版本库中。</p><p>使用 <code>git add file</code>[^1] 将file添加到版本库中。</p><p>例如:</p><p>在 <code>test</code>目录中创建一个文件<code>index.html</code>并把该文件添加到版本库中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="built_in">test</span>/</span><br><span class="line">$ touch index.html</span><br><span class="line">$ git add index.html</span><br></pre></td></tr></table></figure><p>[^1 ]: 如果目录中已经有很多的文件，使用<code>git add .</code>命令让Git把当前的目录及子目录中的文件都添加到版本库中</p><p>运行<code>git status</code> 命令显示中间状态的<code>index.html</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"><span class="comment"># 这个命令显示新文件index.html将在下次提交时添加到版本库中</span></span><br></pre></td></tr></table></figure></li><li><h4 id="2-3-版本库内文件的删除和重命名"><a href="#2-3-版本库内文件的删除和重命名" class="headerlink" title="2.3 版本库内文件的删除和重命名"></a>2.3 版本库内文件的删除和重命名</h4><ul><li><h5 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h5><p>执行命令 <code>git rm</code>可以删除版本库里不需要的文件</p><p>操作如下:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看版本库中的文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行git rm index.html即可删除版本库中的index.html文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rm index.html</span></span><br></pre></td></tr></table></figure><ul><li><h5 id="文件重命名"><a href="#文件重命名" class="headerlink" title="文件重命名"></a>文件重命名</h5><p>在终端执行<code>git mv srcfile targetfile</code>即可以完成文件的重命名</p><p>例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 先查看版本库中的文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行git mv index.html foo.html 将index.html修改为foo.html</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git mv index.html foo.html</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看版本库文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">foo.html</span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Git安装(Windowns系统为例)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下载Git软件:&lt;/p&gt;
+&lt;p&gt;点击链接:&lt;a href=&quot;https://git-scm.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://g
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git提交</title>
+    <link href="http://yoursite.com/2020/02/15/git/Git%E6%8F%90%E4%BA%A4/"/>
+    <id>http://yoursite.com/2020/02/15/git/Git%E6%8F%90%E4%BA%A4/</id>
+    <published>2020-02-15T08:54:50.000Z</published>
+    <updated>2020-02-15T13:12:57.785Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="吧啦吧啦乱七八遭的东西"><a href="#吧啦吧啦乱七八遭的东西" class="headerlink" title="吧啦吧啦乱七八遭的东西"></a>吧啦吧啦乱七八遭的东西</h2><p>在Git中，提交（commit）是用来记录版本库的变更的。当提交时，Git记录索引的快照并把快照放进对象库（简单的介绍）。提交的快照是串联在一起的，每张新的快照指向它的先驱。随着时间的推移，一系列的变更就表示一系列的提交。</p><p>Git提供一种机制来确定相对于另一个引用的提交，通常是分支的头。</p><p>在某些Git应用场景中，可能见过诸如这样的提交形式 master^ 。</p><p>在同一代提交中，插入符号 ^ 是用来选择不同的父提交。给定一个提交C，C^1 是其第一个父提交，C^2 是其第二个父提交，等等，如图:</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/commit.jpg" alt=""></p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/commit1.jpg" alt=""></p><p>通过把引用与^ 和 ~ 组合，就可从引用的提交历史图中选出任意提交</p><h2 id="提交历史记录"><a href="#提交历史记录" class="headerlink" title="提交历史记录"></a>提交历史记录</h2><ul><li><p><strong>查看旧提交</strong> </p><p>显示提交历史记录的主要命令是 <strong><code>git log</code></strong>,在参数形式上，<strong><code>git log</code></strong>跟<strong><code>git log HEAD</code></strong>是一样的，输出每一个可从HEAD找到的历史记录中的提交日志信息。变更从HEAD提交开始显示，并从提交图中回溯。如果使用<strong><code>git log</code></strong></p><p>时提供一个提交名，那么这个日志将从该提交开始回溯输出。例如:<strong><code>git log master</code></strong></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;吧啦吧啦乱七八遭的东西&quot;&gt;&lt;a href=&quot;#吧啦吧啦乱七八遭的东西&quot; class=&quot;headerlink&quot; title=&quot;吧啦吧啦乱七八遭的东西&quot;&gt;&lt;/a&gt;吧啦吧啦乱七八遭的东西&lt;/h2&gt;&lt;p&gt;在Git中，提交（commit）是用来记录版本库的变更的。当提交时，
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Git文件管理</title>
@@ -31,33 +200,6 @@
       
         &lt;h3 id=&quot;git中的文件分类&quot;&gt;&lt;a href=&quot;#git中的文件分类&quot; class=&quot;headerlink&quot; title=&quot;git中的文件分类&quot;&gt;&lt;/a&gt;git中的文件分类&lt;/h3&gt;&lt;p&gt;​    Git将所有文件分为3类：已追踪的、被忽略的以及未追踪的&lt;/p&gt;
 &lt;ul&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://yoursite.com/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git快速入门</title>
-    <link href="http://yoursite.com/2020/02/11/git/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
-    <id>http://yoursite.com/2020/02/11/git/Git%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</id>
-    <published>2020-02-11T09:56:07.000Z</published>
-    <updated>2020-02-12T11:48:16.646Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><h2 id="1-Git命令行"><a href="#1-Git命令行" class="headerlink" title="1 Git命令行"></a>1 Git命令行</h2><p>git简单易用，只要在终端输入$ <code>Git</code>，Git就会不带任何参数输出它的选项和常用的子命令。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ git</span><br><span class="line"><span class="comment">#输入git后会输出一下选项，如果要得到一个完整的git子命令列表，可以输入 git help --all</span></span><br><span class="line">usage: git [--version] [--<span class="built_in">help</span>] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]</span><br><span class="line">           [--<span class="built_in">exec</span>-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span><br><span class="line">           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]</span><br><span class="line">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]</span><br><span class="line">           &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br><span class="line">These are common Git commands used <span class="keyword">in</span> various situations:</span><br><span class="line">start a working area (see also: git <span class="built_in">help</span> tutorial)</span><br><span class="line">   <span class="built_in">clone</span>      Clone a repository into a new directory</span><br><span class="line">   init       Create an empty Git repository or reinitialize an existing one</span><br><span class="line">work on the current change (see also: git <span class="built_in">help</span> everyday)</span><br><span class="line">   add        Add file contents to the index</span><br><span class="line">   mv         Move or rename a file, a directory, or a symlink</span><br><span class="line">   reset      Reset current HEAD to the specified state</span><br><span class="line">   rm         Remove files from the working tree and from the index</span><br><span class="line">examine the <span class="built_in">history</span> and state (see also: git <span class="built_in">help</span> revisions)</span><br><span class="line">   bisect     Use binary search to find the commit that introduced a bug</span><br><span class="line">   grep       Print lines matching a pattern</span><br><span class="line">   <span class="built_in">log</span>        Show commit logs</span><br><span class="line">   show       Show various types of objects</span><br><span class="line">   status     Show the working tree status</span><br><span class="line">grow, mark and tweak your common <span class="built_in">history</span></span><br><span class="line">   branch     List, create, or delete branches</span><br><span class="line">   checkout   Switch branches or restore working tree files</span><br><span class="line">   commit     Record changes to the repository</span><br><span class="line">   diff       Show changes between commits, commit and working tree, etc</span><br><span class="line">   merge      Join two or more development histories together</span><br><span class="line">collaborate (see also: git <span class="built_in">help</span> workflows)</span><br><span class="line">   fetch      Download objects and refs from another repository</span><br><span class="line">   pull       Fetch from and integrate with another repository or a <span class="built_in">local</span> branch</span><br><span class="line">   push       Update remote refs along with associated objects .....</span><br></pre></td></tr></table></figure><ul><li><h2 id="2-Git使用快速入门"><a href="#2-Git使用快速入门" class="headerlink" title="2 Git使用快速入门"></a>2 Git使用快速入门</h2><ul><li><h4 id="2-1创建初始版本库"><a href="#2-1创建初始版本库" class="headerlink" title="2.1创建初始版本库"></a>2.1创建初始版本库</h4><p>首先在git终端下创建一个空文件夹:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建空文件夹 test/</span></span><br><span class="line">$ mkdir -p <span class="built_in">test</span>/</span><br><span class="line"><span class="comment">#进入到test文件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="built_in">test</span>/</span><br><span class="line"><span class="comment">#执行git init命令</span></span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /root/<span class="built_in">test</span>/.git/</span><br></pre></td></tr></table></figure><p>Git不会关心文件夹里是否为空，执行<code>git init</code> 命令创建了一个隐藏目录，在项目目录的顶层有个名为 <code>.git</code>文件夹，Git把所有修订的信息都放在这唯一的顶层目录里</p></li><li><h4 id="2-2-将文件添加到版本库中"><a href="#2-2-将文件添加到版本库中" class="headerlink" title="2.2 将文件添加到版本库中"></a>2.2 将文件添加到版本库中</h4><p>执行 git init 命令时，Git版本库都是空的，为了管理内容，需要明确的把内容放入版本库中。</p><p>使用 <code>git add file</code>[^1] 将file添加到版本库中。</p><p>例如:</p><p>在 <code>test</code>目录中创建一个文件<code>index.html</code>并把该文件添加到版本库中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="built_in">test</span>/</span><br><span class="line">$ touch index.html</span><br><span class="line">$ git add index.html</span><br></pre></td></tr></table></figure><p>[^1 ]: 如果目录中已经有很多的文件，使用<code>git add .</code>命令让Git把当前的目录及子目录中的文件都添加到版本库中</p><p>运行<code>git status</code> 命令显示中间状态的<code>index.html</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"><span class="comment"># 这个命令显示新文件index.html将在下次提交时添加到版本库中</span></span><br></pre></td></tr></table></figure></li><li><h4 id="2-3-版本库内文件的删除和重命名"><a href="#2-3-版本库内文件的删除和重命名" class="headerlink" title="2.3 版本库内文件的删除和重命名"></a>2.3 版本库内文件的删除和重命名</h4><ul><li><h5 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h5><p>执行命令 <code>git rm</code>可以删除版本库里不需要的文件</p><p>操作如下:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看版本库中的文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行git rm index.html即可删除版本库中的index.html文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rm index.html</span></span><br></pre></td></tr></table></figure><ul><li><h5 id="文件重命名"><a href="#文件重命名" class="headerlink" title="文件重命名"></a>文件重命名</h5><p>在终端执行<code>git mv srcfile targetfile</code>即可以完成文件的重命名</p><p>例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 先查看版本库中的文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行git mv index.html foo.html 将index.html修改为foo.html</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git mv index.html foo.html</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看版本库文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">foo.html</span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;1-Git命令行&quot;&gt;&lt;a href=&quot;#1-Git命令行&quot; class=&quot;headerlink&quot; title=&quot;1 Git命令行&quot;&gt;&lt;/a&gt;1 Git命令行&lt;/h2&gt;&lt;p&gt;git简单易用，只要在终端输入$ &lt;code&gt;Git&lt;/code&gt;，Git
       
     
     </summary>
