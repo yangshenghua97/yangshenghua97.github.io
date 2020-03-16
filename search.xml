@@ -166,9 +166,68 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux基础</title>
+    <title>初识Linux</title>
     <url>/2020/03/07/Linux/Linux%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h3 id="什么是Linux"><a href="#什么是Linux" class="headerlink" title="什么是Linux?"></a>什么是Linux?</h3><p>Linux就是一个操作系统(手动狗头)</p>
+<h3 id="操作Linux系统几个重要的热键"><a href="#操作Linux系统几个重要的热键" class="headerlink" title="操作Linux系统几个重要的热键"></a>操作Linux系统几个重要的热键</h3><ul>
+<li><h4 id="Tab-按键"><a href="#Tab-按键" class="headerlink" title="[Tab]按键"></a>[Tab]按键</h4><p><strong><code>[Tab]</code></strong>按键就是在切换大小写按键<strong><code>[Casp Lock]</code></strong>上面的那个按键，它具有命令补全与文件补齐的功能。关键是可以避免打错命令或文件名。</p>
+<p>这里总结一下</p>
+<p><strong>[Tab]接在一串命令的第一个字段后面，则为【命令补全】</strong></p>
+<p><strong>[Tab]接在一串命令的第二个字段后面，则为【文件补全】</strong></p>
+</li>
+<li><h4 id="Ctrl-c-按键"><a href="#Ctrl-c-按键" class="headerlink" title="[Ctrl+c]按键"></a>[Ctrl+c]按键</h4><p>有时候某些命令或程序在系统上一直“跑个不停”，想让命令或程序“停掉”时，可以用这个按键。输入:<strong><code>[Ctrl+c]</code></strong>按键，可以中断目前程序或命令。</p>
+</li>
+<li><h4 id="Ctrl-d"><a href="#Ctrl-d" class="headerlink" title="[Ctrl+d]"></a>[Ctrl+d]</h4><p>如果想要直接离开命令行模式，可以直接按下<strong><code>[Ctrl+d]</code></strong>就能直接离开（相当于输入exit）</p>
+</li>
+<li><h4 id="Shift-Page-Up-、-Shift-Page-Down-按键"><a href="#Shift-Page-Up-、-Shift-Page-Down-按键" class="headerlink" title="[Shift]+{Page Up}、[Shift]+{Page Down}按键"></a>[Shift]+{Page Up}、[Shift]+{Page Down}按键</h4><p>使用<strong><code>[Shift]+{Page Up}</code></strong>向前翻页。使用<strong><code>[Shift]+{Page Down}</code></strong>先后翻页</p>
+<h3 id="正确的关机方法"><a href="#正确的关机方法" class="headerlink" title="正确的关机方法"></a>正确的关机方法</h3></li>
+<li><p>正确的关机命令使用</p>
+<ul>
+<li><p>几个与关机或重启相关命令</p>
+<ul>
+<li>将数据同步写入硬盘的命令：<strong><code>sync</code></strong></li>
+<li>常用的关机命令：<strong><code>shutdown</code></strong></li>
+<li>重启、关机：<strong><code>reboot</code></strong>、<strong><code>halt</code></strong>、<strong><code>poweroff</code></strong></li>
+</ul>
+</li>
+<li><p>数据同步写入磁盘：<strong><code>sync</code></strong></p>
+<p>使用<strong><code>sync</code></strong>命令进行数据的写入操作。在命令行下输入<strong>sync</strong>，那么在内存中尚未被更新的数据，就会被写入硬盘中。So 在关机或重启系统之前最好多执行几次</p>
+</li>
+<li><p>常用的关机命令：<strong><code>shutdown</code></strong></p>
+<p>这个是关闭Linux的命令，如果是root管理员可以使用。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="built_in">shutdown</span>语法</span><br><span class="line"><span class="built_in">shutdown</span> -[krhc] [时间] [警告信息]</span><br><span class="line"> 选项与参数</span><br><span class="line">   -k：不是真的关机，只是发送警告信息出去。</span><br><span class="line">   -r：在将系统的服务停掉之后就重新启动（常用）</span><br><span class="line">   -h：将系统的服务停掉后，立即关机（常用）</span><br><span class="line">   -c：取消已经进行的<span class="built_in">shutdown</span>命令内容</span><br><span class="line">   时间：指定系统关机的时间，设置时间的样式如下：</span><br><span class="line"> 	<span class="built_in">shutdown</span> -h <span class="number">13</span>:<span class="number">00</span></span><br><span class="line">	系统将在今天的<span class="number">13</span>:<span class="number">00</span>分关机</span><br><span class="line">	<span class="built_in">shutdown</span> -h now</span><br><span class="line">	系统将立即关机</span><br><span class="line"> 	<span class="built_in">shutdown</span> -r now</span><br><span class="line">	系统会立即重启</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>shutdown可以完成如下的工作：</p>
+<ul>
+<li>可以自由选择关机模式：要是关机或重启均可；</li>
+</ul>
+</li>
+<li><p>可以设置关机时间：可以设置成现在立即关机，也可以设置某一个特定的时间关机；</p>
+<ul>
+<li>可以自定义关机信息：在关机之前，可以将自己设置的信息发送给在线用户；</li>
+</ul>
+</li>
+<li><p>可以仅发出警告信息：有时有可能要进行一些测试，而不想让其他的用户干扰，或是明白的告诉用户某段时间要注意一下。</p>
+</li>
+<li><p>重启，关机：<strong><code>reboot</code></strong>、<strong><code>halt</code></strong>，<strong><code>poweroff</code></strong></p>
+<p>这三个命令可以进行重启与关机的操作。一般在关机或重启时，都会执行如下命令：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sync</span>;<span class="keyword">sync</span>;<span class="keyword">sync</span>;reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用管理管理工具<strong><code>systemctl</code></strong>关机</p>
+<p>在CentOS 7中可以使用<strong><code>systemctl</code></strong>来进行关机，实际上面介绍的关机与重启命令都是调用systemctl这个命令。</p>
+<p>这个命令与关机的语法：</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">systemctl [命令]</span><br><span class="line">命令项目有：</span><br><span class="line">halt</span><br><span class="line">poweroff</span><br><span class="line">reboot</span><br><span class="line">suspend <span class="comment">//进入休眠模式</span></span><br><span class="line"># systemctl reboot   #系统重启</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>Linux</category>
       </categories>
