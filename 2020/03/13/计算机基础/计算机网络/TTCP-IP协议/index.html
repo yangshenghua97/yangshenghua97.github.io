@@ -1,0 +1,536 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>TCP/IP协议 | 楊さんノート</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="杨生华">
+    
+
+    
+    <meta name="description" content="TCP&#x2F;IP的标准制定由于TCP&#x2F;IP技术的公开性，他不属于任何一个厂商或者是专业协会所有。TCP&#x2F;IP的标准大部分都由RFC技术报告的形式公开。RCF文件包含了所有TCP&#x2F;IP的协定标准，以及其最新版本。RFC所涵盖的内容和细节非常广，也可以为新协定的标准和计划，但不能以学术研究论文的方式来编辑。 TCP&#x2F;IP的特性 它是其它网络服务的基础，几乎所有数据包交换网络都提供了这种服务。TCP&#x2F;IP是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP&#x2F;IP协议">
+<meta property="og:url" content="http://yoursite.com/2020/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TTCP-IP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="楊さんノート">
+<meta property="og:description" content="TCP&#x2F;IP的标准制定由于TCP&#x2F;IP技术的公开性，他不属于任何一个厂商或者是专业协会所有。TCP&#x2F;IP的标准大部分都由RFC技术报告的形式公开。RCF文件包含了所有TCP&#x2F;IP的协定标准，以及其最新版本。RFC所涵盖的内容和细节非常广，也可以为新协定的标准和计划，但不能以学术研究论文的方式来编辑。 TCP&#x2F;IP的特性 它是其它网络服务的基础，几乎所有数据包交换网络都提供了这种服务。TCP&#x2F;IP是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/linkway.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/PTCIP.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/IP.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/TCP.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/SANCIWUOSHOU.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/TCP3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E8%84%8F%E8%BF%9E%E6%8E%A5.png">
+<meta property="article:published_time" content="2020-03-12T18:19:13.000Z">
+<meta property="article:modified_time" content="2020-03-15T14:02:04.814Z">
+<meta property="article:author" content="杨生华">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/linkway.png">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="楊さんノート" type="application/atom+xml">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/59303310.png" alt="楊さんノート" title="楊さんノート"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="楊さんノート">楊さんノート</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/tags">tags</a></li>
+					
+						<li><a href="/categories">categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/03/13/计算机基础/计算机网络/TTCP-IP协议/" title="TCP/IP协议" itemprop="url">TCP/IP协议</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
+		
+  <p class="article-time">
+    <time datetime="2020-03-12T18:19:13.000Z" itemprop="datePublished"> 发表于 2020-03-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h3 id="TCP-IP的标准制定"><a href="#TCP-IP的标准制定" class="headerlink" title="TCP/IP的标准制定"></a>TCP/IP的标准制定</h3><p>由于TCP/IP技术的公开性，他不属于任何一个厂商或者是专业协会所有。TCP/IP的标准大部分都由<strong>RFC</strong>技术报告的形式公开。RCF文件包含了所有TCP/IP的协定标准，以及其最新版本。RFC所涵盖的内容和细节非常广，也可以为新协定的标准和计划，但不能以学术研究论文的方式来编辑。</p>
+<h3 id="TCP-IP的特性"><a href="#TCP-IP的特性" class="headerlink" title="TCP/IP的特性"></a>TCP/IP的特性</h3><ul>
+<li>它是其它网络服务的基础，几乎所有数据包交换网络都提供了这种服务。TCP/IP是根据信息中所含的地址资料来进行资料的传送，他不能确保每个独立路由的数据包是可靠和依序的送达目的地。在每个连线过程中，线路都不是被”独占”的，而是直接映射到硬件地址上，因此特别有效。</li>
+<li>因为数据包交换并不能确保每一个数据包的可靠性，因此我们就需要通讯软件来自动检测和修护传送过程中出现的错误和处理损坏数据包。这种服务就是用来确保电脑程序之间能够连接和传送大量的数据。关键的技术就是数据流进行分割，然后编号传送，然后通过接受的确认来确数据的完整性</li>
+<li>在数据包交换技术中，TCP/IP是独立于硬件之上的。TCP/IP有自己的一套数据包规定和定义,能应用在不同的网络之上</li>
+<li>只要用TCP/IP连接网络，就会获得一个独一无二的识别位址。数据包在交换过程中，是以位址数据为依据，不管数据包所经历的路由如何，数据都会被送到指定的地址。</li>
+<li>TCP/IP 的确认模式是以“端到端”进行的。這样就无需理会数据包交换过程中所参与的其他设备。</li>
+</ul>
+<h3 id="TCP-IP协议分层框架"><a href="#TCP-IP协议分层框架" class="headerlink" title="TCP/IP协议分层框架"></a>TCP/IP协议分层框架</h3><ul>
+<li><p>链路程：链路层以字节位单位0和1分别进行分组，定义数据帧，写入源和目标机器的物理地址，数据，校验位来传输数据。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/linkway.png" alt=""></p>
+<p>链路层报文结构</p>
+</li>
+<li><p>网络层：根据IP定义网络地址，区分网段。子网内根据地址解析协议(ARP)进行MAC寻址，子网外进行路由转发数据包，这个数据包即为IP数据包。</p>
+</li>
+<li><p>传输层：数据包通过网络层发送到目标计算机后，应用程序在传输层定义逻辑端口，确认身份后，将数据包交给应用程序，实现端口到端口间通讯。</p>
+</li>
+<li><p>应用层：传输层的数据到达应用程序时，以某种统一规定的协议格式解读数据。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/PTCIP.png" alt=""></p>
+<h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><p>IP是面向无连接、无状态的，没有额外的机制保证发送的包是否有序到达。IP首先规定出IP地址格式，该地址相当于在逻辑意义上进行了网段的划分，给没台机器额外设置了一个唯一的详细地址。IP地址属于网络层，主要的功能字啊WLAN内进行路由寻址，选择最佳路由。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/IP.png" alt=""></p>
+<h3 id="TCP建立连接"><a href="#TCP建立连接" class="headerlink" title="TCP建立连接"></a>TCP建立连接</h3><p>传输控制协议(TCP)，是一种面向连接、确保数据在端到端间的可靠传输的协议。面向连接是指在发送数据前，需要先建立一条虚拟的链路，然后让数据在这条链路上“流动”传输。每个TCP数据包是封装在IP包中的，每一个IP头的后面紧接的是TCP头。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/TCP.png" alt=""></p>
+<p>协议第一行的两个端口号各个占据两个字节，分别代表源机器与目标机器的端口号。这两个端口号与IP报头格式中的源IP地址和目标IP地址所组成的四元组可唯一标识一条TCP连接。由于TCP是面向连接的，所以有服务器和客户端之分。需要服务端先在相应的端口上进行监听，准备好接收客户端发起的连接请求。在类UNIX系统系统上通过netstat命令列出机器上已建立的连接信息，其中包含唯一标识一条连接的四元组，以及各连接的状态等内容。</p>
+<p>TCP的FLAG位有6个bit组成，分别代表SYN、ACK、FIN、URG、PSH、RST，需要重点关注的是SYN、ACK、FIN。SYN(Synchronize Sequence Numbers)用作建立连接时的同步信号；ACK(Acknowledgement)用于对收到的数据进行确认，所确认的数据由确认序列号表示；FIN(Finish)表示后面没有数据需要发送，通常意味着所建立的连接需要关闭。</p>
+<h4 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h4><p>TCP三次握手是指在建立连接的三个步骤：</p>
+<ul>
+<li><p>A机器发出一个数据包并将SYN置1，表示希望建立连接。这个包中的序列号假设是x。</p>
+</li>
+<li><p>B机器收到A机器发过来的数据包后，通过SYN得知这是一个建立连接的请求，于是发送一个响应包并将SYN和ACK标记都置为1。假设这个包中的序列号是y，而确认序列号的必须是x+1，表示收到了A发过来的SYN。在TCP中，SYN被当作数据中的一个字节。</p>
+</li>
+<li><p>A接收到B的响应后需进行确认，确认包中将ACK置1，并将确认序列号设置为y+1，表示收到了来自B的SYN。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/SANCIWUOSHOU.png" alt=""></p>
+<p>双方只有确认4类信息，才能建立连接。在第二次握手后，从B机器视角看还有连个NO信息无法确认。在第三次握手后，B机器才能确认自己的发报能力是否正常的。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/TCP3.png" alt=""></p>
+</li>
+</ul>
+<p>连接三次握手也是防止出现请求超时导致脏连接。TTL网络报文的生存时间往往都会超过TCP请求时间，如果两次握手就可以创建连接的话，传输数据并释放连接后，第一个超时的连接请求才到达B机器的话，B机器会认为是A创建的连接的请求，然后确认同意创建连接。因为A机器的状态不是SYN_SENT,所以直接丢弃了B的确认数据，以致最后只是B机器单方面创建连接完毕。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E8%84%8F%E8%BF%9E%E6%8E%A5.png" alt=""></p>
+<h3 id="TCP断开连接"><a href="#TCP断开连接" class="headerlink" title="TCP断开连接"></a>TCP断开连接</h3><p>TCP是全双工通信，双方都能作为数据的发送方和接收方，但TCP连接也会有断开的时候。A、B机器连接只要三次握手，而断开则需要四次挥手，例如下图：</p>
+<p>A机器想要断开连接，则待本方数据发送完毕后，传递FIN信号给B机器。B机器应答ACK，告诉A机器可以断开，但是需要等B机器处理完成数据，再主动给A机器发送FIN信号。这时A机器处于半关闭状态(FIN-WAIT-2)，无法再发送新的数据。B机器做好连接关闭前的准备工作后，发送FIN给A机器，此时B机器也进入半关闭状态(CLOSE_WAIT)。A机器发送针对B机器FIN的ACK后，进入TIME_WAIT状态，经过2MSL后，没有收到B机器传过来的报文，则确定B机器已经收到A机器最后发送的ACK指令，此时TCP连接正式释放。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/计算机网络/">计算机网络</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2020/03/11/计算机基础/计算机构成/CPU与内存/"  title="CPU与内存">
+ <strong>下一篇：</strong><br/> 
+ <span>CPU与内存
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP的标准制定"><span class="toc-number">1.</span> <span class="toc-text">TCP&#x2F;IP的标准制定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP的特性"><span class="toc-number">2.</span> <span class="toc-text">TCP&#x2F;IP的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP协议分层框架"><span class="toc-number">3.</span> <span class="toc-text">TCP&#x2F;IP协议分层框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP协议"><span class="toc-number">4.</span> <span class="toc-text">IP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP建立连接"><span class="toc-number">5.</span> <span class="toc-text">TCP建立连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP三次握手"><span class="toc-number">5.1.</span> <span class="toc-text">TCP三次握手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP断开连接"><span class="toc-number">6.</span> <span class="toc-text">TCP断开连接</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式原则/" title="设计模式原则">设计模式原则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux基础/" title="linux基础">linux基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/other/" title="other">other<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello 这是杨阿阳的博客 <br/>
+			This is my blog,yangayang（^A^）</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com//yangshenghua97" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
+		
+		<a href="/about" target="_blank" title="杨生华">杨生华</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
