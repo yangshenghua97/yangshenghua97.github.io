@@ -12,7 +12,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux文件权限与目录配置</title>
+    <title>Linux文件权限与目录简介</title>
     <url>/2020/03/16/Linux/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h3 id="Linux文件权限与文件属性"><a href="#Linux文件权限与文件属性" class="headerlink" title="Linux文件权限与文件属性"></a>Linux文件权限与文件属性</h3><h4 id="Linux文件属性"><a href="#Linux文件属性" class="headerlink" title="Linux文件属性"></a>Linux文件属性</h4><p>先来看下面的Linux文件属性信息:</p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">-rw-r--r--. <span class="number">1</span> root root <span class="number">29</span> Nov <span class="number">18</span> <span class="number">00</span>:<span class="number">00</span> test.txt</span><br><span class="line">drwxr-xr-x. <span class="number">4</span> root root <span class="number">39</span> Oct  <span class="number">8</span> <span class="number">14</span>:<span class="number">39</span> opt</span><br></pre></td></tr></table></figure>
