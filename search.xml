@@ -403,6 +403,79 @@
 <li><strong><code>~</code></strong>：代表目前使用者身份所在的家目录</li>
 <li><strong><code>~account</code></strong>：代表<strong>account</strong>这个使用者的家目录</li>
 </ul>
+<h4 id="处理目录的命令："><a href="#处理目录的命令：" class="headerlink" title="处理目录的命令："></a>处理目录的命令：</h4><ul>
+<li><p><strong><code>cd（change directory）</code></strong>：切换目录</p>
+<p>命令格式：<strong><code>cd [相对路径或绝对路径]</code></strong></p>
+<p><strong>利用相对路径的写法必须确认的目前的路径才能正确地去到想要的目录</strong></p>
+<p>下面看几个例子</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#切换到tmp目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /tmp</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line">/tmp</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#回到家目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line">/root</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#回到上一次的工作目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> -</span></span><br><span class="line">/tmp</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#当前的工作目录在/tmp，回到上一级目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ..</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span></span></span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>pwd（显示目前所在的目录）</code></strong></p>
+<p>命令格式：<strong><code>pwd [-p]</code></strong></p>
+<p>​                    选项与参数：-p：显示出真正的目录，而非使用链接路径</p>
+</li>
+<li><p><strong><code>mkdir</code></strong>：建立新目录</p>
+<p>命令格式</p>
+<p><strong><code>mkdir [-mp] 目录名称</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>-m</code></strong>：设置文件的权限。直接设置，不需使用默认权限（<strong>umask</strong>）</p>
+<p><strong><code>-p</code></strong>：递归创建子目录</p>
+<p>下面举几个例子：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#在当前的工作目录下创建test0目录</span></span><br><span class="line"><span class="string">$</span> <span class="string">mkdir</span> <span class="string">test0</span></span><br><span class="line"><span class="string">drwxr-xr-x</span> <span class="number">2</span> <span class="string">root</span> <span class="string">root</span> <span class="number">4096</span> <span class="string">Mar</span> <span class="number">19</span> <span class="number">16</span><span class="string">:58</span> <span class="string">test0</span></span><br><span class="line"><span class="comment">##在当前的工作目录下递归创建test1/test2/test3这样的多层目录</span></span><br><span class="line"><span class="string">$</span> <span class="string">mkdir</span> <span class="string">-p</span> <span class="string">test1/test2/test3</span></span><br></pre></td></tr></table></figure>
+
+<p>一般创建目录大都是使用默认权限（umask），mkdir可以在创建目录时可以指定权限，例如：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">$ mkdir -m <span class="number">711</span> test2</span><br><span class="line">drwx--x--x <span class="number">2</span> root root <span class="number">4096</span> Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">07</span> test2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>rmdir</code></strong>：删除“空”目录<br>命令格式：rmdir [-p] 目录名称<br>被删除的目录里不能存在其他的文件和目录，如果想要一次性删除一个目录以及该目录其下的子目录可以使用<strong><code>rm -rf 目录名称</code></strong>,但这样不是太安全，还是使用<strong><code>rmdir</code></strong>比较安全。</p>
+</li>
+</ul>
+<h4 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h4><h5 id="文件与目录查看：ls"><a href="#文件与目录查看：ls" class="headerlink" title="文件与目录查看：ls"></a>文件与目录查看：<strong><code>ls</code></strong></h5><p>命名格式：<strong><code>ls [-adlh]</code></strong> 文件名或目录名称</p>
+<p>选项参数：</p>
+<p><strong><code>-a</code></strong>：全部的文件，包括隐藏文件（开头为.的文件）一起列出</p>
+<p><strong><code>-d</code></strong>：仅列出目录本身，而不是列出目录内的文件数据</p>
+<p><strong><code>-h</code></strong>：将文件大小以及人类易读的方式（GB，KB，MB）列出</p>
+<p><strong><code>-l</code></strong>：详细信息显示，包括文件的属性与权限等数据</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">##列出root目录下的所有文件</span><br><span class="line">$ ls -al ~</span><br><span class="line">dr-xr-x---.  <span class="number">9</span> root root <span class="number">4096</span> Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">07</span> .</span><br><span class="line">dr-xr-xr-x. <span class="number">18</span> root root <span class="number">4096</span> Mar <span class="number">14</span> <span class="number">16</span>:<span class="number">57</span> ..</span><br><span class="line">-rw-------   <span class="number">1</span> root root <span class="number">5185</span> Mar <span class="number">18</span> <span class="number">23</span>:<span class="number">42</span> .bash_history</span><br><span class="line">······</span><br><span class="line">drwxr-xr-x   <span class="number">2</span> root root <span class="number">4096</span> Mar <span class="number">19</span> <span class="number">16</span>:<span class="number">58</span> test0</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> root root <span class="number">4096</span> Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">00</span> test1</span><br><span class="line">drwx--x--x   <span class="number">2</span> root root <span class="number">4096</span> Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">07</span> test2</span><br><span class="line">-rw-rw-rw-   <span class="number">1</span> root root    <span class="number">0</span> Mar <span class="number">18</span> <span class="number">01</span>:<span class="number">49</span> test.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">##列出root目录下的所有文件,以人类易读的方式</span><br><span class="line">$ ls -alh ~</span><br><span class="line">dr-xr-x---.  <span class="number">9</span> root root <span class="number">4.0</span>K Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">07</span> .</span><br><span class="line">dr-xr-xr-x. <span class="number">18</span> root root <span class="number">4.0</span>K Mar <span class="number">14</span> <span class="number">16</span>:<span class="number">57</span> ..</span><br><span class="line">-rw-------   <span class="number">1</span> root root <span class="number">5.1</span>K Mar <span class="number">18</span> <span class="number">23</span>:<span class="number">42</span> .bash_history</span><br><span class="line">······</span><br><span class="line">drwxr-xr-x   <span class="number">2</span> root root <span class="number">4.0</span>K Mar <span class="number">19</span> <span class="number">16</span>:<span class="number">58</span> test0</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> root root <span class="number">4.0</span>K Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">00</span> test1</span><br><span class="line">drwx--x--x   <span class="number">2</span> root root <span class="number">4.0</span>K Mar <span class="number">19</span> <span class="number">17</span>:<span class="number">07</span> test2</span><br><span class="line">-rw-rw-rw-   <span class="number">1</span> root root    <span class="number">0</span> Mar <span class="number">18</span> <span class="number">01</span>:<span class="number">49</span> test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="复制、删除、移动：cp、rm、mv"><a href="#复制、删除、移动：cp、rm、mv" class="headerlink" title="复制、删除、移动：cp、rm、mv"></a>复制、删除、移动：<strong><code>cp</code></strong>、<strong><code>rm</code></strong>、<strong><code>mv</code></strong></h4><ul>
+<li><p><strong><code>cp</code></strong>:复制文件或目录</p>
+<p>命令格式：<strong><code>cp [-ipr] 源文件（source） 目标文件（dest）</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>-a</code></strong>：参考下面的<strong><code>-dr</code></strong>选项</p>
+<p><strong><code>-d</code></strong>：若源文件为链接文件属性，则复制链接文件属性而非文件本身</p>
+<p><strong><code>-i</code></strong>：若目标文件已经存在，在覆盖时会先询问操作的进行</p>
+<p><strong><code>-p</code></strong>：连同文件的属性一起复制，不使用默认属性</p>
+<p><strong><code>-r</code></strong>：递归复制，用于目录的复制操作</p>
+<p>在默认的条件中，<strong><code>cp</code></strong>的源文件与目标文件的权限是不同的，目标文件的拥有者通常会是命令操作本身。</p>
+</li>
+<li><p><strong><code>rm</code></strong>（删除文件或目录）</p>
+<p>命令格式：<strong><code>rm [-fir] 文件或目录</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>-f</code></strong>：强制的意思</p>
+<p><strong><code>-I</code></strong>：交互模式，在删除之前会询问使用是否操作</p>
+<p><strong><code>-r</code></strong>：递归删除</p>
+<p>通常这个命令在使用时要十分小心，在删除前要认真确定删除的文件或目录是否正确，避免误删除的情况</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">#删除test1文件夹</span><br><span class="line">$ rm -rf test1 ##连同目录下的所有子目录一并强制删除</span><br><span class="line">删除文件也是如此</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>mv（移动文件与目录或重命名）</code></strong></p>
+<p>命令格式：<strong><code>mv [-fiu] source dest</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>-f</code></strong>：强制执行</p>
+<p><strong><code>-i</code></strong>：若目标文件已经存在，会询问是否覆盖</p>
+<p><strong><code>-u</code></strong>：若目标文件已存在，且<strong>source</strong>比较新，才会更新</p>
+<p>这里举几个例子：</p>
+<p>将<strong>test.txt</strong>文件移动到<strong>test0</strong>文件夹中</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">$ mv <span class="keyword">test</span>.txt test0</span><br><span class="line">$ <span class="keyword">ls</span> test0</span><br><span class="line"><span class="keyword">test</span>.txt</span><br></pre></td></tr></table></figure>
+
+<p>将<strong>test0</strong>文件夹重命名为<strong>test3</strong></p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>mv test0 test4</span><br><span class="line"><span class="variable">$ </span>ls .</span><br><span class="line">test3</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -413,7 +486,7 @@
   </entry>
   <entry>
     <title>Linux文件权限与目录简介</title>
-    <url>/2019/03/16/Linux/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/</url>
+    <url>/2019/03/16/Linux/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h3 id="Linux文件权限与文件属性"><a href="#Linux文件权限与文件属性" class="headerlink" title="Linux文件权限与文件属性"></a>Linux文件权限与文件属性</h3><h4 id="Linux文件属性"><a href="#Linux文件属性" class="headerlink" title="Linux文件属性"></a>Linux文件属性</h4><p>先来看下面的Linux文件属性信息:</p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">-rw-r--r--. <span class="number">1</span> root root <span class="number">29</span> Nov <span class="number">18</span> <span class="number">00</span>:<span class="number">00</span> test.txt</span><br><span class="line">drwxr-xr-x. <span class="number">4</span> root root <span class="number">39</span> Oct  <span class="number">8</span> <span class="number">14</span>:<span class="number">39</span> opt</span><br></pre></td></tr></table></figure>
 
