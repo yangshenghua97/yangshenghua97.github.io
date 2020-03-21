@@ -254,6 +254,32 @@
   </entry>
   
   <entry>
+    <title>文件与文件系统压缩</title>
+    <link href="http://yoursite.com/2019/03/21/Linux/%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%8E%8B%E7%BC%A9/"/>
+    <id>http://yoursite.com/2019/03/21/Linux/%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%8E%8B%E7%BC%A9/</id>
+    <published>2019-03-21T06:42:11.000Z</published>
+    <updated>2020-03-21T09:26:14.038Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux系统常见的压缩命令"><a href="#Linux系统常见的压缩命令" class="headerlink" title="Linux系统常见的压缩命令"></a>Linux系统常见的压缩命令</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*<span class="selector-class">.z</span> <span class="selector-tag">compress</span>程序压缩的文件；</span><br><span class="line">*<span class="selector-class">.zip</span> <span class="selector-tag">zip</span>程序压缩的文件；</span><br><span class="line">*<span class="selector-class">.gz</span> <span class="selector-tag">gzip</span>程序压缩的文件；</span><br><span class="line">*<span class="selector-class">.bz2</span> <span class="selector-tag">bzip2</span>程序压缩的文件；</span><br><span class="line">*<span class="selector-class">.xz</span> <span class="selector-tag">xz</span>程序压缩的文件；</span><br><span class="line">*<span class="selector-class">.tar</span> <span class="selector-tag">tar</span>程序打包的文件，并没有压缩过；</span><br><span class="line">*<span class="selector-class">.tar</span><span class="selector-class">.gz</span> <span class="selector-tag">tar</span>程序打包的文件，并经过<span class="selector-tag">gzip</span>的压缩</span><br><span class="line">*<span class="selector-class">.tar</span><span class="selector-class">.bz2</span> <span class="selector-tag">tar</span>程序打包的文件，并经过<span class="selector-tag">bzip2</span>的压缩</span><br><span class="line">*<span class="selector-class">.tar</span><span class="selector-class">.xz</span> <span class="selector-tag">tar</span>程序打包的文件，并经过<span class="selector-tag">xz</span>的压缩</span><br></pre></td></tr></table></figure><ul><li><p>gzip，zcat</p><p><strong><code>gzip</code></strong>可以说是应用最广泛的压缩命令。下面介绍这些命令;</p><ul><li><p><strong><code>gzip [-cdtv#] 文件名</code></strong></p><p>选项和参数：</p><p><strong><code>-c</code></strong>：将压缩的数据输出到屏幕上，可通过数据流重定向来处理；</p><p><strong><code>-d</code></strong>：解压缩的参数</p><p><strong><code>-t</code></strong>：可以用来检验一个压缩文件的一致性，看看文件是否有误</p><p><strong><code>-#</code></strong>：#表示压缩级别，-1最快，但压缩比最差，-9最慢，压缩比最好，默认为-6</p></li></ul></li><li><p>xz，xzcat</p><p>命令格式</p><p><strong><code>xz [-dtlkc#] 文件名</code></strong></p><p><strong><code>xcat 文件名.xz</code></strong></p><p>选项与参数:</p><p><strong><code>-d</code></strong>：解压缩；</p><p><strong><code>-t</code></strong>：测试压缩文件的完整性；</p><p><strong><code>-l</code></strong>：列出压缩文件的相关信息；</p><p><strong><code>-k</code></strong>：保留原本文件不删除</p><p><strong><code>-c</code></strong>：将数据在屏幕上输出</p><p><strong><code>-#</code></strong>：压缩级别</p></li></ul><h3 id="打包名命名：tar"><a href="#打包名命名：tar" class="headerlink" title="打包名命名：tar"></a>打包名命名：<strong><code>tar</code></strong></h3><p>命名格式：<br><strong><code>tat [-z][-j][-J][cv][-f 待建里的文件名] filename ...</code></strong>：打包与压缩<br><strong><code>tar [-z][-j][-J][tv][-f 既有的tar文件名]</code></strong>：查看文件名<br><strong><code>tar [-z][-j][-J][xv][-f 既有的tar文件名] [-C 目录]</code></strong>：解压缩<br>选项与参数：<br><strong><code>-c</code></strong>：建立打包文件，可搭配-v来查看过程中被打包的文件名；<br><strong><code>-t</code></strong>：查看打包文件的内容含有哪些文件名，重点看文件名；<br><strong><code>-x</code></strong>：解包或解压缩，可以搭配<strong><code>-C</code></strong>在特定目录解压；<br><strong><code>-z</code></strong>：通过gzip的支持进行压缩/解压缩：此时文件名最好为<strong>*.tar.gz</strong>；<br><strong><code>-C 目录</code></strong>：若要在特定目录解压缩，可以使用这个选项；<br><strong><code>-f finame</code></strong>：<strong>-f</strong>后面要立刻接要被处理的文件名<br><strong><code>--exclude=FILE</code></strong>：在压缩过程中，不要将FILE打包<br>注意：<strong><code>-c、-t、-x</code></strong>不可同时出现<br>常使用的命令组合：<br><strong><code>tar -zcvf filename.tar.gz</code></strong>、<strong><code>tar -jcvf filename.tar.bz2</code></strong>：压缩<br><strong><code>tar -ztvf filename.tar.gz</code></strong>、<strong><code>tar -jtvf filename.tar.bz2</code></strong>：查询<br><strong><code>tar -zxvf filename.tar.gz -C 目录</code></strong>、<strong><code>tar -jxvf filename.tar.bz2 -C 目录</code></strong>：解压缩</p><h3 id="常见的压缩与备份工具"><a href="#常见的压缩与备份工具" class="headerlink" title="常见的压缩与备份工具"></a>常见的压缩与备份工具</h3><h4 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h4><p>命令格式：<strong><code>dd if=input_file of=output_file bs=block_size count=number</code></strong></p><p>选项与参数：</p><p><strong><code>if</code></strong>：输如设备</p><p><strong><code>of</code></strong>：输出设备</p><p><strong><code>bs</code></strong>：设置的一个block的大小，若未指定则默认是512Bytes（一个扇区大小）</p><p><strong><code>count</code></strong>：多少个bs</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Linux系统常见的压缩命令&quot;&gt;&lt;a href=&quot;#Linux系统常见的压缩命令&quot; class=&quot;headerlink&quot; title=&quot;Linux系统常见的压缩命令&quot;&gt;&lt;/a&gt;Linux系统常见的压缩命令&lt;/h3&gt;&lt;figure class=&quot;highlight 
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux的文件与目录管理</title>
     <link href="http://yoursite.com/2019/03/18/Linux/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/"/>
     <id>http://yoursite.com/2019/03/18/Linux/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/</id>
