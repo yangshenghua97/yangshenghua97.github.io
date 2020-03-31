@@ -1,148 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SQL基础</title>
-    <url>/2020/03/27/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/SQL%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p>这篇文章主要以MySQL数据库进行讲解</p>
-<p>在阅读本文之前假设已经安装MySQL数据库。请先构建好数据源，如果没有安装MYSQL数据库可以通过下面的在线网站构建数据源并练习SQL语句</p>
-<p><strong>SQL在线练习网站：<a href="http://sqlfiddle.com/" target="_blank" rel="noopener">http://sqlfiddle.com/</a></strong></p>
-<p><strong>源数据下载：</strong><a href="https://forta.com/wp-content/uploads/books/0672327120/mysql_scripts.zip" target="_blank" rel="noopener">https://forta.com/wp-content/uploads/books/0672327120/mysql_scripts.zip</a></p>
-<hr>
-<h1 id="SQL语言分类"><a href="#SQL语言分类" class="headerlink" title="SQL语言分类"></a>SQL语言分类</h1><p>SQL语言主要分为三类：</p>
-<ul>
-<li>DML（Data Manipulation Language）：数据操作语言，常用的增删改查就属于DML，操作的对象是数据表中的对象。</li>
-<li>DDL（Data  Definition Language）：数据定义语言。建表，建立数据库就属于DDL</li>
-<li>DCL（Data Control Language）：数据控制语言，提交回滚，数据库安全管理等属于DCL</li>
-</ul>
-<p>本文将逐一介绍这三个SQL语言分类的简单讲解。</p>
-<h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><h2 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">#建products表并插入数据</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> products</span><br><span class="line">(</span><br><span class="line">  prod_id    <span class="built_in">char</span>(<span class="number">10</span>)      <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  vend_id    <span class="built_in">int</span>           <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_name  <span class="built_in">char</span>(<span class="number">255</span>)     <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_desc  <span class="built_in">text</span>          <span class="literal">NULL</span> ,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>(prod_id)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'ANV01'</span>, <span class="number">1001</span>, <span class="string">'.5 ton anvil'</span>, <span class="number">5.99</span>, <span class="string">'.5 ton anvil, black, complete with handy hook'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'ANV02'</span>, <span class="number">1001</span>, <span class="string">'1 ton anvil'</span>, <span class="number">9.99</span>, <span class="string">'1 ton anvil, black, complete with handy hook and carrying case'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'OL1'</span>, <span class="number">1002</span>, <span class="string">'Oil can'</span>, <span class="number">8.99</span>, <span class="string">'Oil can, red'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'FU1'</span>, <span class="number">1002</span>, <span class="string">'Fuses'</span>, <span class="number">3.42</span>, <span class="string">'1 dozen, extra long'</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h3><p>语法：<strong><code>SELECT 列名 FROM 表名</code></strong></p>
-<p>检索prod_name列</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT prod_name FROM products;</span><br><span class="line"><span class="comment">#结果为</span></span><br><span class="line">|<span class="string">    prod_name </span>|</span><br><span class="line">|<span class="string">--------------</span>|</span><br><span class="line">|<span class="string"> .5 ton anvil </span>|</span><br><span class="line">|<span class="string">  1 ton anvil </span>|</span><br><span class="line">|<span class="string">        Fuses </span>|</span><br><span class="line">|<span class="string">      Oil can </span>|</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上面的语句利用SELECT语句从products表中检索一个列为prod_name。所需列名在<strong><code>SELECT</code></strong>关键字后面给出，<strong><code>FROM</code></strong>关键字指定要从哪个表检索数据</li>
-</ul>
-<h3 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h3><p>语法：<strong><code>SELECT 列名1,列名2... FROM 表名</code></strong></p>
-<ul>
-<li>要从一个表中检索多个列，使用SELECT语句，后面键入多个列名，列名之间必须以逗号隔开</li>
-</ul>
-<blockquote>
-<p>当心逗号：在选择多个列时，一定要在列名之间加逗号，最后一个列名之后不用加</p>
-</blockquote>
-<p>还是以上面的数据源为例，检索prod_id、prod_name两列</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT prod_id,prod_name FROM products;</span><br><span class="line"><span class="comment">#其结果如下：</span></span><br><span class="line">|<span class="string"> prod_id </span>|<span class="string">    prod_name </span>|</span><br><span class="line">|<span class="string">---------</span>|<span class="string">--------------</span>|</span><br><span class="line">|<span class="string">   ANV01 </span>|<span class="string"> .5 ton anvil </span>|</span><br><span class="line">|<span class="string">   ANV02 </span>|<span class="string">  1 ton anvil </span>|</span><br><span class="line">|<span class="string">     FU1 </span>|<span class="string">        Fuses </span>|</span><br><span class="line">|<span class="string">     OL1 </span>|<span class="string">      Oil can </span>|</span><br></pre></td></tr></table></figure>
-
-<h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><p>语法：<strong><code>SELECT * FROM 表名</code></strong></p>
-<ul>
-<li>检索所有列时，给定一个通配符（<strong><code>*</code></strong>）,则会检索表中的所有列。</li>
-</ul>
-<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line">SELECT * FROM products;</span><br><span class="line">prod_id | <span class="type">vend_id</span> | <span class="type">prod_name</span>  | <span class="type">prod_price</span>  | <span class="type">prod_desc</span></span><br><span class="line">  ANV01	|  <span class="type">1001</span>	  | <span class="type">.5</span> ton anvil |  <span class="type">5</span><span class="number">.99</span>	| <span class="type">.5</span> ton anvil, black</span><br><span class="line">  ANV02	|  <span class="type">1001</span>	  | <span class="type">1</span> ton anvil |  <span class="type">9</span><span class="number">.99</span>	    | <span class="type">1</span> ton anvil, black</span><br></pre></td></tr></table></figure>
-
-<h3 id="检索不同的行（DISTINCT）"><a href="#检索不同的行（DISTINCT）" class="headerlink" title="检索不同的行（DISTINCT）"></a>检索不同的行（DISTINCT）</h3><p>语法：<strong><code>SELECT DISTINCT 列名 FROM 表名</code></strong></p>
-<p>要检索出有不同值的列表，使用<strong><code>DISTINCT</code></strong>关键字，此关键字必须直接放在列名的前面。此关键字指示MySQL只返回不同的值，这里的DISTINCT不能部分使用，它应用于所有列而不仅是前置它的列。</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT vend_id FROM products;</span><br><span class="line">|<span class="string"> vend_id </span>|</span><br><span class="line">|<span class="string">---------</span>|</span><br><span class="line">|<span class="string">    1001 </span>|</span><br><span class="line">|<span class="string">    1002 </span>|</span><br></pre></td></tr></table></figure>
-
-<h3 id="限制结果（LIMIT）"><a href="#限制结果（LIMIT）" class="headerlink" title="限制结果（LIMIT）"></a>限制结果（LIMIT）</h3><p>限制返回的行数。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。</p>
-<p>语法：</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,... </span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line"><span class="keyword">LIMIT</span> starts,<span class="built_in">count</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong><code>count</code></strong>：检索取多少行</p>
-</li>
-<li><p><strong><code>starts</code></strong>：从第几行开始，注意这里的开始行从0开始</p>
-</li>
-</ul>
-<p>返回前五行：</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-<p>带一个值的<strong><code>LIMIT</code></strong>总是从第一行开始，给出的数为返回的行数。带两个值的<strong><code>LIMIT</code></strong>可以指定从行号为第一个值的位置开始。</p>
-<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><h2 id="使用WHERE子句"><a href="#使用WHERE子句" class="headerlink" title="使用WHERE子句"></a>使用WHERE子句</h2><p>在SELECT语句中，数据根据<strong><code>WHERE</code></strong>子句中指定的搜索条件进行过滤。WHERE子句在表名后给出。在同时使用<strong><code>ORDER BY</code></strong>和WHERE子句时，应该让ORDER BY位于WHERE之后</p>
-<h3 id="WHERE子句操作符"><a href="#WHERE子句操作符" class="headerlink" title="WHERE子句操作符"></a>WHERE子句操作符</h3><p>语法：</p>
-<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,<span class="params">...</span> </span><br><span class="line">FROM 表名</span><br><span class="line"><span class="keyword">WHERE</span> 条件</span><br></pre></td></tr></table></figure>
-
-<p>MYSQL支持以下所有条件操作符：</p>
-<table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>=</td>
-<td>等于</td>
-</tr>
-<tr>
-<td>&lt;&gt;</td>
-<td>不等于</td>
-</tr>
-<tr>
-<td>!=</td>
-<td>不等于</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>小于等于</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-</tr>
-<tr>
-<td>&gt;=</td>
-<td>大于等于</td>
-</tr>
-<tr>
-<td>BETWEEN</td>
-<td>在指定的两个值之间</td>
-</tr>
-<tr>
-<td>IS NULL</td>
-<td>为NULL值</td>
-</tr>
-</tbody></table>
-<h3 id="过滤单个值"><a href="#过滤单个值" class="headerlink" title="过滤单个值"></a>过滤单个值</h3><p>过滤prod_name=’fuses’的数据</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name=<span class="string">'fuses'</span>;</span><br></pre></td></tr></table></figure>
-<p>过滤价格小于10元的数据 </p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price&lt;<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-<p>过滤价格小于等于10元的数据</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price&lt;=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="过滤不匹配"><a href="#过滤不匹配" class="headerlink" title="过滤不匹配"></a>过滤不匹配</h3><p>过滤vend_id不是1002的数据</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> vend_id != <span class="number">1002</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果条件值为字符串类型，则需要引用引号，如果条件值为数值类型，则不需要引用引号</p>
-</blockquote>
-<h3 id="过滤范围值-BETWEEN"><a href="#过滤范围值-BETWEEN" class="headerlink" title="过滤范围值(BETWEEN)"></a>过滤范围值(BETWEEN)</h3><p>如果需要检查某个范围的值，可以使用<strong><code>BETWEEN</code></strong>操作符。其语法与其他WHERE子句的操作符不同。BETWEEN需要两个值，过滤范围的开始值和结束值。在范围使用BETWEEN时，必须指定两个值——所需范围的低端值和高端值。这两个值必须用<strong><code>AND</code></strong>关键字分隔。BETWEEN匹配范围中的所有值，包括指定的开始值和结束值。</p>
-<p>过滤价格在5元和10元之间的所有产品</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">BETWEEN</span> <span class="number">5</span> <span class="keyword">AND</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="空值过滤-IS-NULL"><a href="#空值过滤-IS-NULL" class="headerlink" title="空值过滤(IS NULL)"></a>空值过滤(IS NULL)</h3><p>WHERE子句 <strong><code>IS NULL</code></strong>用来检查具有<strong>NULL</strong>值的列。</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
-<p>《MySQL必知必会》人民邮电出版社</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TCP/IP协议</title>
     <url>/2020/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TTCP-IP%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h3 id="TCP-IP的标准制定"><a href="#TCP-IP的标准制定" class="headerlink" title="TCP/IP的标准制定"></a>TCP/IP的标准制定</h3><p>由于TCP/IP技术的公开性，他不属于任何一个厂商或者是专业协会所有。TCP/IP的标准大部分都由<strong>RFC</strong>技术报告的形式公开。RCF文件包含了所有TCP/IP的协定标准，以及其最新版本。RFC所涵盖的内容和细节非常广，也可以为新协定的标准和计划，但不能以学术研究论文的方式来编辑。</p>
@@ -396,29 +254,27 @@
 <p>[^1 ]: 如果目录中已经有很多的文件，使用<code>git add .</code>命令让Git把当前的目录及子目录中的文件都添加到版本库中</p>
 <p>运行<code>git status</code> 命令显示中间状态的<code>index.html</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">  <span class="comment"># 这个命令显示新文件index.html将在下次提交时添加到版本库中</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><h4 id="2-3-版本库内文件的删除和重命名"><a href="#2-3-版本库内文件的删除和重命名" class="headerlink" title="2.3 版本库内文件的删除和重命名"></a>2.3 版本库内文件的删除和重命名</h4><ul>
 <li><h5 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h5><p>执行命令 <code>git rm</code>可以删除版本库里不需要的文件</p>
 <p>操作如下:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">  #</span><span class="bash"> 查看版本库中的文件</span></span><br><span class="line"><span class="meta">  $</span><span class="bash"> git ls-files</span></span><br><span class="line">  index.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行git rm index.html即可删除版本库中的index.html文件</span></span><br><span class="line"><span class="meta">  $</span><span class="bash"> git rm index.html</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="文件重命名"><a href="#文件重命名" class="headerlink" title="文件重命名"></a>文件重命名</h5><p>  在终端执行<code>git mv srcfile targetfile</code>即可以完成文件的重命名</p>
-<p>  例如：</p>
-  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 先查看版本库中的文件</span></span><br><span class="line"><span class="meta">  $</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br><span class="line"><span class="meta">  #</span><span class="bash"> 执行git mv index.html foo.html 将index.html修改为foo.html</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git mv index.html foo.html</span></span><br><span class="line"><span class="meta">  #</span><span class="bash"> 再次查看版本库文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">  foo.html</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看版本库中的文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git ls-files</span></span><br><span class="line">index.html</span><br></pre></td></tr></table></figure>
+<h1 id="执行git-rm-index-html即可删除版本库中的index-html文件"><a href="#执行git-rm-index-html即可删除版本库中的index-html文件" class="headerlink" title="执行git rm index.html即可删除版本库中的index.html文件"></a>执行git rm index.html即可删除版本库中的index.html文件</h1><p>$ git rm index.html</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line">- ##### 文件重命名</span><br><span class="line">  </span><br><span class="line">      在终端执行``git mv srcfile targetfile``即可以完成文件的重命名</span><br><span class="line">      </span><br><span class="line">      例如：</span><br><span class="line">    </span><br><span class="line">      ```<span class="keyword">shell</span></span><br><span class="line">    # 先查看版本库中的文件</span><br><span class="line">      $ git <span class="keyword">ls</span>-<span class="keyword">files</span></span><br><span class="line">    <span class="built_in">index</span>.html</span><br><span class="line">      # 执行git mv <span class="built_in">index</span>.html foo.html 将<span class="built_in">index</span>.html修改为foo.html</span><br><span class="line">    $ git mv <span class="built_in">index</span>.html foo.html</span><br><span class="line">      # 再次查看版本库文件</span><br><span class="line">    $ git <span class="keyword">ls</span>-<span class="keyword">files</span></span><br><span class="line">      foo.html</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
+<p>​    </p>
 </li>
 </ul>
 </li>
 </ul>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>版本控制管理</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -442,7 +298,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>版本控制管理</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -527,10 +383,268 @@
 </ul>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>版本控制管理</category>
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux进程管理</title>
+    <url>/2019/03/27/Linux/Linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h1><p>如何产生一个进程？程序一般是放置在物理磁盘中，然后通过用户的执行来触发，触发后会加载内存中成为一个个体，这就是进程，为了让系统可以管理这个进程，进程会给予执行者权限/属性等参数，以及进程所需的脚本或数据，最后在给予一个PID。操作系统通过这个PID来判断该进程是否具有执行权限。过程如下图；</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/process.png" alt=""></p>
+<p>举个常见的例子，我们在操作Linux的时候通过登录系统分给我们一个shell(bash)终端，这个shell终端具有一个PID，这个<strong><code>PID</code></strong>就是由UID/GID而来。当这个进程执行其他作业时，那么由这个进程衍生出来的其他进程在一般状态下，会沿用这个进程的相关权限。</p>
+<p><strong>关于程序和进程的总结</strong>：</p>
+<ul>
+<li><strong>程序：通常为二进制程序，放置在存储媒介中，以物理文件的形式存在</strong></li>
+<li><strong>进程：程序被触发后，执行者的权限与属性、程序的代码与所需的数据等都会被加载到内存中，操作系统给予这个内存中的单元一个标识符（PID）所以所进程就是一个正在运行时的程序</strong></li>
+</ul>
+<p><strong>程序调用的流程（fork and exec）</strong>：Linux的程序调用通常称为<strong><code>fork-and-exec</code></strong>的流程。进程都会借由父进程以复制（<strong><code>fork</code></strong>）的方式产生一个一模一样的子进程，然后被复制出来的子进程再以<strong><code>exec</code></strong>方式执行实际要执行的进程，最终就成为一个子进程。</p>
+<p>具体流程就像下面的图片</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/forkandexec.png" alt=""></p>
+<p>常驻在内存当中的进程通常都是负责一些系统所提供的功能以服务用户的各项任务，因此这些常驻进程称之为<strong>服务</strong></p>
+<h1 id="任务管理"><a href="#任务管理" class="headerlink" title="任务管理"></a>任务管理</h1><h2 id="什么是任务管理"><a href="#什么是任务管理" class="headerlink" title="什么是任务管理"></a>什么是任务管理</h2><p>任务管理是用在bash环境下的，当登录系统获取 bash shell之后，在单一终端下同时执行多个任务的管理操作，执行任务管理的操作中，每个任务都是目前bash的子进程，彼此之间都是有相关性。</p>
+<ul>
+<li><p>前台与后台</p>
+<p>说到终端，这里说一下前台与后台；</p>
+<p>可以出现提示字符让你操作的环境称为前台，其他任务就可以放入后台去暂停或运行，放入后台的任务是不可以使用【ctrl+c】来终止的</p>
+</li>
+</ul>
+<p>要执行bash的任务管理必须要注意的限制：</p>
+<ul>
+<li>这些任务所触发的进程必须是来自你shell的子进程（只管理自己的bash）；</li>
+<li>前台：可以控制与执行命令的这个环境称为前台任务；</li>
+<li>后台：可以自动执行任务，无法使用【ctrl+c】终止，可使用<strong><code>bg</code></strong>、<strong><code>fg</code></strong>（这两个命名后面会讲解）调用该任务；</li>
+<li>后台中【执行】的进程不能等待或输入；</li>
+</ul>
+<h2 id="任务控制的管理"><a href="#任务控制的管理" class="headerlink" title="任务控制的管理"></a>任务控制的管理</h2><ul>
+<li><p>直接将命令扔到后台去执行的<strong><code>&amp;</code></strong></p>
+<p>如果想要同时执行多个任务，利用<strong><code>&amp;</code></strong>可以将某些任务直接丢到后台环境，这样就可以继续操作前台的工作任务</p>
+<p>例如需要后台执行一个java程序可以这样做：</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">$ <span class="keyword">java </span>-<span class="keyword">jar </span>xxxx.<span class="keyword">jar </span>&amp;</span><br><span class="line">[<span class="number">1</span>] <span class="number">7851</span></span><br></pre></td></tr></table></figure>
+
+<p>当命令后面加上<strong><code>&amp;</code></strong>代表着该命令丢到后台执行，此时bash会给予这个命令一个<strong>任务号码【job number】</strong>，就如上面代码的那个【1】。后面的7851则是该命令触发的【PID】。当这个任务执行完毕后bash会返回如下信息，表示[1]这个任务已经执行完毕；</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[1]</span>+ <span class="selector-tag">Done</span> <span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">xxxx</span><span class="selector-class">.jar</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>将目前的任务丢到后台中暂停：【<strong><code>ctrl-z</code></strong>】</p>
+<p>将一个正在执行的任务，扔到后台去暂停，使用【ctrl+c】组合键可以实现，使用【ctrl+c】丢到后台当中的任务都是停止状态</p>
+</li>
+</ul>
+<ul>
+<li><p>查看目前的后台任务状态：<strong><code>jobs</code></strong></p>
+<p>命令格式：<strong><code>jobs [-lrs]</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>-l</code></strong>：列出【job number】、【PID】与命令串；</p>
+<p><strong><code>-r</code></strong>：仅列出正在后台运行的任务；</p>
+<p><strong><code>-s</code></strong>：仅列出正在后台停止的任务；</p>
+<p>看一个案例：将vim和vi丢到后台</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">$ vim &amp;</span><br><span class="line">[<span class="number">1</span>] <span class="number">11439</span></span><br><span class="line">$ vi &amp;</span><br><span class="line">[<span class="number">2</span>] <span class="number">11440</span></span><br><span class="line">$ jobs -l</span><br><span class="line">[<span class="number">1</span>]- <span class="number">11439</span> Stopped (tty output)    vim</span><br><span class="line">[<span class="number">2</span>]+ <span class="number">11440</span> Stopped (tty output)    vi</span><br></pre></td></tr></table></figure>
+
+<p>在上面输出的案例里，有+，-号，<strong><code>+</code></strong>号代表最近被放到后台的任务号码，<strong><code>-</code></strong>号代表最近第二个被放到后台中的任务号码，而第三个以后的任务，就不会有+-号出现</p>
+</li>
+</ul>
+<ul>
+<li><p>将后台任务拿到前台处理：<strong><code>fg</code></strong></p>
+<p>命令格式：<strong><code>fg %jobnumber</code></strong></p>
+<p>以上面案例基础上将vim和vi放到前台：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">jobs</span> -l</span></span><br><span class="line">[1]- 11439 Stopped (tty output)    vim</span><br><span class="line">[2]+ 11440 Stopped (tty output)    vi</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 将vim放到前台处理</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">fg</span> %1</span></span><br><span class="line">vim</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>让任务在后台下的状态变成运行中：<strong><code>bg %jobnumber</code></strong></p>
+<p>将还在后台停止的vi在后台运行</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">$ bg %<span class="number">1</span></span><br><span class="line">[<span class="number">1</span>]+ vi &amp;</span><br></pre></td></tr></table></figure>
+
+<p>就像上面的输出结果那样，命令串后面有一个【&amp;】符号，代表该任务别被启动到后台了</p>
+</li>
+</ul>
+<ul>
+<li><p>管理后台当中的任务：<strong><code>kill</code></strong></p>
+<p>如果想要将该任务直接删除或者重新启动，就可以用<strong><code>kill</code></strong>命令，使用这个命名时需要给这个命令一个信号（signal）</p>
+<p>命令格式：<strong><code>kill -signal %jobnumber</code></strong></p>
+<p>选项与参数：</p>
+<p><strong><code>signal</code></strong>：代表后面的接的任务有什么样的指示，下面列举几个常用的信号</p>
+<p><strong><code>-1</code></strong>：重新读取一次参数的配置文件；</p>
+<p><strong><code>-2</code></strong>：表示有键盘输入【ctrl-c】同样的操作；</p>
+<p><strong><code>-9</code></strong>：立刻强制删除一个任务；</p>
+<p><strong><code>-15</code></strong>：以正常的进程方式终止一项任务；</p>
+<p><strong>-9这信号通常是在【强制删除一个不正常的任务】是使用的，-15则是以正常步骤结束一项任务，这个信号也是默认值；</strong></p>
+</li>
+</ul>
+<ul>
+<li><p>脱机运行</p>
+<p>通常登录系统，系统会给当前的登录账号一个终端进程，在这个终端下运行的进程，如果终端退出则这些进程也会同时退出，所以Linux才有脱机管理。</p>
+<p>如果需要退出系统后让进程继续运行，则需要使用<strong><code>nohup</code></strong>命令</p>
+<p>命令格式：<strong><code>nohup [命令与参数]</code></strong>    在终端前台任务</p>
+<p>​            <strong><code>nohup [命令与参数]</code></strong> &amp; 在终端后台任务</p>
+<p><strong><code>nohup</code></strong>命令并不支持bash内置命令,所以命令只能是外部命令。</p>
+</li>
+</ul>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><ul>
+<li>将某个时间点的进程运行情况截取下来：<strong><code>ps</code></strong><ul>
+<li><strong><code>ps aux</code></strong>：查看系统所有的进程</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL基础</title>
+    <url>/2019/03/27/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/SQL%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>这篇文章主要以MySQL数据库进行讲解</p>
+<p>在阅读本文之前假设已经安装MySQL数据库。请先构建好数据源，如果没有安装MYSQL数据库可以通过下面的在线网站构建数据源并练习SQL语句</p>
+<p><strong>SQL在线练习网站：<a href="http://sqlfiddle.com/" target="_blank" rel="noopener">http://sqlfiddle.com/</a></strong></p>
+<p><strong>源数据下载：</strong><a href="https://forta.com/wp-content/uploads/books/0672327120/mysql_scripts.zip" target="_blank" rel="noopener">https://forta.com/wp-content/uploads/books/0672327120/mysql_scripts.zip</a></p>
+<hr>
+<h1 id="SQL语言分类"><a href="#SQL语言分类" class="headerlink" title="SQL语言分类"></a>SQL语言分类</h1><p>SQL语言主要分为三类：</p>
+<ul>
+<li>DML（Data Manipulation Language）：数据操作语言，常用的增删改查就属于DML，操作的对象是数据表中的对象。</li>
+<li>DDL（Data  Definition Language）：数据定义语言。建表，建立数据库就属于DDL</li>
+<li>DCL（Data Control Language）：数据控制语言，提交回滚，数据库安全管理等属于DCL</li>
+</ul>
+<p>本文将逐一介绍这三个SQL语言分类的简单讲解。</p>
+<h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><h2 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">#建products表并插入数据</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> products</span><br><span class="line">(</span><br><span class="line">  prod_id    <span class="built_in">char</span>(<span class="number">10</span>)      <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  vend_id    <span class="built_in">int</span>           <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_name  <span class="built_in">char</span>(<span class="number">255</span>)     <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">  prod_desc  <span class="built_in">text</span>          <span class="literal">NULL</span> ,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>(prod_id)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'ANV01'</span>, <span class="number">1001</span>, <span class="string">'.5 ton anvil'</span>, <span class="number">5.99</span>, <span class="string">'.5 ton anvil, black, complete with handy hook'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'ANV02'</span>, <span class="number">1001</span>, <span class="string">'1 ton anvil'</span>, <span class="number">9.99</span>, <span class="string">'1 ton anvil, black, complete with handy hook and carrying case'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'OL1'</span>, <span class="number">1002</span>, <span class="string">'Oil can'</span>, <span class="number">8.99</span>, <span class="string">'Oil can, red'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(prod_id, vend_id, prod_name, prod_price, prod_desc)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'FU1'</span>, <span class="number">1002</span>, <span class="string">'Fuses'</span>, <span class="number">3.42</span>, <span class="string">'1 dozen, extra long'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h3><p>语法：<strong><code>SELECT 列名 FROM 表名</code></strong></p>
+<p>检索prod_name列</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT prod_name FROM products;</span><br><span class="line"><span class="comment">#结果为</span></span><br><span class="line">|<span class="string">    prod_name </span>|</span><br><span class="line">|<span class="string">--------------</span>|</span><br><span class="line">|<span class="string"> .5 ton anvil </span>|</span><br><span class="line">|<span class="string">  1 ton anvil </span>|</span><br><span class="line">|<span class="string">        Fuses </span>|</span><br><span class="line">|<span class="string">      Oil can </span>|</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面的语句利用SELECT语句从products表中检索一个列为prod_name。所需列名在<strong><code>SELECT</code></strong>关键字后面给出，<strong><code>FROM</code></strong>关键字指定要从哪个表检索数据</li>
+</ul>
+<h3 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h3><p>语法：<strong><code>SELECT 列名1,列名2... FROM 表名</code></strong></p>
+<ul>
+<li>要从一个表中检索多个列，使用SELECT语句，后面键入多个列名，列名之间必须以逗号隔开</li>
+</ul>
+<blockquote>
+<p>当心逗号：在选择多个列时，一定要在列名之间加逗号，最后一个列名之后不用加</p>
+</blockquote>
+<p>还是以上面的数据源为例，检索prod_id、prod_name两列</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT prod_id,prod_name FROM products;</span><br><span class="line"><span class="comment">#其结果如下：</span></span><br><span class="line">|<span class="string"> prod_id </span>|<span class="string">    prod_name </span>|</span><br><span class="line">|<span class="string">---------</span>|<span class="string">--------------</span>|</span><br><span class="line">|<span class="string">   ANV01 </span>|<span class="string"> .5 ton anvil </span>|</span><br><span class="line">|<span class="string">   ANV02 </span>|<span class="string">  1 ton anvil </span>|</span><br><span class="line">|<span class="string">     FU1 </span>|<span class="string">        Fuses </span>|</span><br><span class="line">|<span class="string">     OL1 </span>|<span class="string">      Oil can </span>|</span><br></pre></td></tr></table></figure>
+
+<h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><p>语法：<strong><code>SELECT * FROM 表名</code></strong></p>
+<ul>
+<li>检索所有列时，给定一个通配符（<strong><code>*</code></strong>）,则会检索表中的所有列。</li>
+</ul>
+<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line">SELECT * FROM products;</span><br><span class="line">prod_id | <span class="type">vend_id</span> | <span class="type">prod_name</span>  | <span class="type">prod_price</span>  | <span class="type">prod_desc</span></span><br><span class="line">  ANV01	|  <span class="type">1001</span>	  | <span class="type">.5</span> ton anvil |  <span class="type">5</span><span class="number">.99</span>	| <span class="type">.5</span> ton anvil, black</span><br><span class="line">  ANV02	|  <span class="type">1001</span>	  | <span class="type">1</span> ton anvil |  <span class="type">9</span><span class="number">.99</span>	    | <span class="type">1</span> ton anvil, black</span><br></pre></td></tr></table></figure>
+
+<h3 id="检索不同的行（DISTINCT）"><a href="#检索不同的行（DISTINCT）" class="headerlink" title="检索不同的行（DISTINCT）"></a>检索不同的行（DISTINCT）</h3><p>语法：<strong><code>SELECT DISTINCT 列名 FROM 表名</code></strong></p>
+<p>要检索出有不同值的列表，使用<strong><code>DISTINCT</code></strong>关键字，此关键字必须直接放在列名的前面。此关键字指示MySQL只返回不同的值，这里的DISTINCT不能部分使用，它应用于所有列而不仅是前置它的列。</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT vend_id FROM products;</span><br><span class="line">|<span class="string"> vend_id </span>|</span><br><span class="line">|<span class="string">---------</span>|</span><br><span class="line">|<span class="string">    1001 </span>|</span><br><span class="line">|<span class="string">    1002 </span>|</span><br></pre></td></tr></table></figure>
+
+<h3 id="限制结果（LIMIT）"><a href="#限制结果（LIMIT）" class="headerlink" title="限制结果（LIMIT）"></a>限制结果（LIMIT）</h3><p>限制返回的行数。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。</p>
+<p>语法：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,... </span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line"><span class="keyword">LIMIT</span> starts,<span class="built_in">count</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong><code>count</code></strong>：检索取多少行</p>
+</li>
+<li><p><strong><code>starts</code></strong>：从第几行开始，注意这里的开始行从0开始</p>
+</li>
+</ul>
+<p>返回前五行：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>带一个值的<strong><code>LIMIT</code></strong>总是从第一行开始，给出的数为返回的行数。带两个值的<strong><code>LIMIT</code></strong>可以指定从行号为第一个值的位置开始。</p>
+<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><h2 id="使用WHERE子句"><a href="#使用WHERE子句" class="headerlink" title="使用WHERE子句"></a>使用WHERE子句</h2><p>在SELECT语句中，数据根据<strong><code>WHERE</code></strong>子句中指定的搜索条件进行过滤。WHERE子句在表名后给出。在同时使用<strong><code>ORDER BY</code></strong>和WHERE子句时，应该让ORDER BY位于WHERE之后</p>
+<h3 id="WHERE子句操作符"><a href="#WHERE子句操作符" class="headerlink" title="WHERE子句操作符"></a>WHERE子句操作符</h3><p>语法：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,<span class="params">...</span> </span><br><span class="line">FROM 表名</span><br><span class="line"><span class="keyword">WHERE</span> 条件</span><br></pre></td></tr></table></figure>
+
+<p>MYSQL支持以下所有条件操作符：</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>在指定的两个值之间</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>为NULL值</td>
+</tr>
+</tbody></table>
+<h3 id="过滤单个值"><a href="#过滤单个值" class="headerlink" title="过滤单个值"></a>过滤单个值</h3><p>过滤prod_name=’fuses’的数据</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name=<span class="string">'fuses'</span>;</span><br></pre></td></tr></table></figure>
+<p>过滤价格小于10元的数据 </p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price&lt;<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>过滤价格小于等于10元的数据</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price&lt;=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="过滤不匹配"><a href="#过滤不匹配" class="headerlink" title="过滤不匹配"></a>过滤不匹配</h3><p>过滤vend_id不是1002的数据</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> vend_id != <span class="number">1002</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果条件值为字符串类型，则需要引用引号，如果条件值为数值类型，则不需要引用引号</p>
+</blockquote>
+<h3 id="过滤范围值-BETWEEN"><a href="#过滤范围值-BETWEEN" class="headerlink" title="过滤范围值(BETWEEN)"></a>过滤范围值(BETWEEN)</h3><p>如果需要检查某个范围的值，可以使用<strong><code>BETWEEN</code></strong>操作符。其语法与其他WHERE子句的操作符不同。BETWEEN需要两个值，过滤范围的开始值和结束值。在范围使用BETWEEN时，必须指定两个值——所需范围的低端值和高端值。这两个值必须用<strong><code>AND</code></strong>关键字分隔。BETWEEN匹配范围中的所有值，包括指定的开始值和结束值。</p>
+<p>过滤价格在5元和10元之间的所有产品</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">BETWEEN</span> <span class="number">5</span> <span class="keyword">AND</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="空值过滤-IS-NULL"><a href="#空值过滤-IS-NULL" class="headerlink" title="空值过滤(IS NULL)"></a>空值过滤(IS NULL)</h3><p>WHERE子句 <strong><code>IS NULL</code></strong>用来检查具有<strong>NULL</strong>值的列。</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
+<p>《MySQL必知必会》人民邮电出版社</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
