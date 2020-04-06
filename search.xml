@@ -415,16 +415,212 @@
 <h3 id="下划线（-）通配符"><a href="#下划线（-）通配符" class="headerlink" title="下划线（_）通配符"></a>下划线（_）通配符</h3><p>下划线通配符只匹配单个字符而不是多个字符。</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_id,prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name <span class="keyword">LIKE</span> <span class="string">'_ ton anvil'</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="使用通配符的技巧"><a href="#使用通配符的技巧" class="headerlink" title="使用通配符的技巧"></a>使用通配符的技巧</h3><ul>
+<li>不要过度使用通配符，如果其他操作符能达到相同的效果，应该使用其他操作符；</li>
+<li>在确实需要使用通配符时，除非绝对有必要，否则不要把通配符放在搜索模式的开始处。如果把通配符置于开始处，搜索起来很慢；</li>
+<li>仔细注意通配符的位置，如果犯错位置。可能不会得到想要的数据；</li>
+</ul>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>MySQL中使用<strong><code>REGEXP</code></strong>关键字指定正则表达式的字符匹配。</p>
+<p>正则表达式常用的字符匹配列表</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配文本的开始字符</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配文本的结束字符</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任何单一字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配零个或多个在在它前面的字符</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的字符1次或多次</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>匹配包含指定的字符串的文本</td>
+</tr>
+<tr>
+<td>[字符集合]</td>
+<td>匹配字符集合中的任何一个字符</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>匹配不在括号中的任何字符</td>
+</tr>
+<tr>
+<td>字符串{n,}</td>
+<td>匹配前面的字符串至少n次</td>
+</tr>
+<tr>
+<td>字符串{n,m}</td>
+<td>匹配前面的字符串至少n次，至多m次。</td>
+</tr>
+<tr>
+<td>|</td>
+<td>进行OR匹配</td>
+</tr>
+</tbody></table>
+<p>正则表达式经典例子：</p>
+<p>基本字符匹配</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name REGEXP <span class="string">'1000'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name REGEXP <span class="string">'.000'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
 
+<p>进行OR匹配</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name REGEXP <span class="string">'1000|2000'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
 
+<p>范围匹配</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_name REGEXP <span class="string">'[1-5] Ton'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
 
+<p>匹配特殊字符</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_name</span><br><span class="line"><span class="keyword">FROM</span> vendors</span><br><span class="line"><span class="keyword">WHERE</span> vend_name REGEXP <span class="string">'\\.'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
 
+<h2 id="MYSQL函数"><a href="#MYSQL函数" class="headerlink" title="MYSQL函数"></a>MYSQL函数</h2><h3 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left()</td>
+<td>返回字符串左边的字符</td>
+</tr>
+<tr>
+<td>Length()</td>
+<td>返回字符串的长度</td>
+</tr>
+<tr>
+<td>Locate()</td>
+<td>找出字符串的一个子串</td>
+</tr>
+<tr>
+<td>Lower()</td>
+<td>将字符串转换为小写</td>
+</tr>
+<tr>
+<td>LTrim()</td>
+<td>去掉字符串左边的空格</td>
+</tr>
+<tr>
+<td>Right()</td>
+<td>去掉字符串右边的字符</td>
+</tr>
+<tr>
+<td>RTrim()</td>
+<td>去掉字符串右边的空格</td>
+</tr>
+<tr>
+<td>Upper()</td>
+<td>将字符串转换为大写</td>
+</tr>
+</tbody></table>
+<p>经典例子</p>
+<p>将字符串转换为大写</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_name,<span class="built_in">Upper</span>(vend_name)</span><br><span class="line"><span class="keyword">FROM</span> vendors</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> vend_name;</span><br></pre></td></tr></table></figure>
 
+<h3 id="日期时间处理函数"><a href="#日期时间处理函数" class="headerlink" title="日期时间处理函数"></a>日期时间处理函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AddDate()</td>
+<td>增加一个日期（天，周等）</td>
+</tr>
+<tr>
+<td>AddTime()</td>
+<td>增加一个时间（时，分等）</td>
+</tr>
+<tr>
+<td>CurDate()</td>
+<td>获取当前日期</td>
+</tr>
+<tr>
+<td>CurTime()</td>
+<td>获取当前时间</td>
+</tr>
+<tr>
+<td>Date()</td>
+<td>返回日期时间的日期部分</td>
+</tr>
+<tr>
+<td>DateDiff()</td>
+<td>计算两个日期之差</td>
+</tr>
+<tr>
+<td>Time()</td>
+<td>返回一个日期时间的时间部分</td>
+</tr>
+<tr>
+<td>Now()</td>
+<td>返回当前日期和时间</td>
+</tr>
+</tbody></table>
+<h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG()</td>
+<td>计算某一列的平均值</td>
+</tr>
+<tr>
+<td>COUNT()</td>
+<td>获取某一列的行数</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>获取某一列的最大值</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>获取某一列的最小值</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>获取某一列值之和</td>
+</tr>
+</tbody></table>
+<h2 id="数据分组"><a href="#数据分组" class="headerlink" title="数据分组"></a>数据分组</h2><h3 id="创建分组"><a href="#创建分组" class="headerlink" title="创建分组"></a>创建分组</h3><p>分组是在SELECT语句的<strong><code>GROUP BY</code></strong>子句中建立的。</p>
+<p>举个例子：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT vend_id,COUNT(*) as num_prods</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line">GROUP BY vend_id;</span><br></pre></td></tr></table></figure>
 
+<p>使用<strong><code>GROUP BY</code></strong>子句的一些规定</p>
+<ul>
+<li>GROUP BY子句可以包含任意数目的列。使得能够对分组进行嵌套，为数据分组提供更细致的控制。</li>
+<li>如果GROUP BY子句中嵌套了分组，数据将在最后规定的分组上进行汇总。</li>
+<li>GROUP BY子句中列出每个列都必须是检索列或是有效的表达式。如果在SELECT中使用表达式，则必须在GROUP BY子句中指定相同的表达式。不能使用别名。</li>
+<li>除聚集函数语句外，SELECT语句中每个列都必须在GROUP BY子句中给出。</li>
+<li>如果分组列中具有NULL值，则NULL将作为一个分组返回。如果列中有多行NULL值，他们将分为一组。</li>
+<li>GROUP BY子句必须出现在WHERE子句之后，ORDER BY子句之前。</li>
+</ul>
+<h3 id="过滤分组：HAVING"><a href="#过滤分组：HAVING" class="headerlink" title="过滤分组：HAVING"></a>过滤分组：<strong><code>HAVING</code></strong></h3><p>使用<strong><code>HAVING</code></strong>对分组进行过滤，基于分组聚集值进行分组。</p>
+<p>举几个例子</p>
+<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_id,COUNT<span class="comment">(*) as num_prods</span></span><br><span class="line"><span class="comment">FROM products</span></span><br><span class="line"><span class="comment">GROUP BY vend_id</span></span><br><span class="line"><span class="comment">HAVING COUNT(*)</span>&gt;<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT order_num,SUM(quantity*item_price) as ordertotal</span><br><span class="line"><span class="keyword">FROM</span> orderitems</span><br><span class="line">GROUP BY order_num</span><br><span class="line">HAVING SUM(quantity*item_price) &gt;=50;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<h3 id="SELECT子句顺序"><a href="#SELECT子句顺序" class="headerlink" title="SELECT子句顺序"></a>SELECT子句顺序</h3><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 <p>《MySQL必知必会》人民邮电出版社</p>
 <p>《MySQL 从入门到精通》清华大学出版社</p>
 </blockquote>
@@ -439,7 +635,7 @@
   </entry>
   <entry>
     <title>vim基本命令</title>
-    <url>/2019/04/04/vim%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <url>/2019/04/04/%E5%85%B6%E4%BB%96/vim%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<table>
 <thead>
 <tr>
@@ -569,6 +765,9 @@
 </tr>
 </tbody></table>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
       <tags>
         <tag>工具</tag>
       </tags>
@@ -1338,6 +1537,19 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java并发</title>
+    <url>/2018/04/06/Java%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="多线程的使用方式"><a href="#多线程的使用方式" class="headerlink" title="多线程的使用方式"></a>多线程的使用方式</h2><h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+</blockquote>
+]]></content>
+      <categories>
+        <category>并发</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
