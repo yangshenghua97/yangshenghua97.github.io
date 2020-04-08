@@ -1541,15 +1541,15 @@
   </entry>
   <entry>
     <title>Java并发</title>
-    <url>/2018/04/06/Java%E5%B9%B6%E5%8F%91/</url>
+    <url>/2018/04/06/java/Java%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="多线程的使用方式"><a href="#多线程的使用方式" class="headerlink" title="多线程的使用方式"></a>多线程的使用方式</h2><h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 </blockquote>
 ]]></content>
       <categories>
-        <category>并发</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>java并发</tag>
       </tags>
   </entry>
 </search>
