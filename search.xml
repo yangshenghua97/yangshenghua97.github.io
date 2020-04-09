@@ -620,7 +620,64 @@
 
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT order_num,SUM(quantity*item_price) as ordertotal</span><br><span class="line"><span class="keyword">FROM</span> orderitems</span><br><span class="line">GROUP BY order_num</span><br><span class="line">HAVING SUM(quantity*item_price) &gt;=50;</span><br></pre></td></tr></table></figure>
 
-<h3 id="SELECT子句顺序"><a href="#SELECT子句顺序" class="headerlink" title="SELECT子句顺序"></a>SELECT子句顺序</h3><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<h3 id="SELECT子句顺序"><a href="#SELECT子句顺序" class="headerlink" title="SELECT子句顺序"></a>SELECT子句顺序</h3><p>以下语句由上至下的顺序</p>
+<p><strong><code>SELECT</code></strong>：要返回的列或表达式</p>
+<p><strong><code>FROM</code></strong>：从中检索数据的表</p>
+<p><strong><code>WHERE</code></strong>：行级过滤</p>
+<p><strong><code>GROUP BY</code></strong>：分组说明</p>
+<p><strong><code>HAVING</code></strong>：组级过滤</p>
+<p><strong><code>ORDER BY</code></strong>：输出排序顺序</p>
+<p><strong><code>LIMIT</code></strong>：遥检索的行数</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>子查询就是嵌套在其他查询中的查询。</p>
+<h3 id="利用子查询过滤"><a href="#利用子查询过滤" class="headerlink" title="利用子查询过滤"></a>利用子查询过滤</h3><figure class="highlight sas"><table><tr><td class="code"><pre><span class="line"><span class="meta">SELECT</span> cust_id</span><br><span class="line"><span class="meta">FROM</span> orders</span><br><span class="line"><span class="meta">WHERE</span> order_num <span class="meta">IN(</span></span><br><span class="line"><span class="meta">SELECT</span> order_num</span><br><span class="line"><span class="meta">FROM</span> orderitems</span><br><span class="line"><span class="meta">WHERE</span> prod_id = <span class="string">'TNT2'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>上面的<strong>SELECT</strong>语句中子查询总是从内向外处理，上面的SQL语句实际上执行了两个SELECT操作。</p>
+<p>在<strong>WHERE</strong>子句中使用子查询能够编写出功能很强并且很灵活的SQL语句。对于能嵌套的子查询的数目没有限制，但在实际应用中对于性能的要求，不能嵌套太多的子查询。</p>
+<h3 id="用作计算字段使用子查询"><a href="#用作计算字段使用子查询" class="headerlink" title="用作计算字段使用子查询"></a>用作计算字段使用子查询</h3><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cust_name,cust_state,(</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">WHERE</span> orders.cust_id = customers.cust_id) <span class="keyword">as</span> orders</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> cust_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h2><h3 id="创建联结"><a href="#创建联结" class="headerlink" title="创建联结"></a>创建联结</h3><p>联结的创建非常简单，规定要联结的所有表以及他们如何关联即可。</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_name,prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> vendors <span class="keyword">as</span> vend,products <span class="keyword">as</span> prd</span><br><span class="line"><span class="keyword">WHERE</span> vend.vend_id = prd.vend_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> vend_name,prod_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内部联结"><a href="#内部联结" class="headerlink" title="内部联结"></a>内部联结</h3><p>基于两个表之间的相等测试，称为内部联结。</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_name,prod_name,prod_price</span><br><span class="line"><span class="keyword">FROM</span> vendors <span class="keyword">as</span> vend,<span class="keyword">INNER</span> <span class="keyword">JOIN</span> products <span class="keyword">as</span> prod</span><br><span class="line"><span class="keyword">ON</span> vend.vend_id = prod.vend_id;</span><br></pre></td></tr></table></figure>
+
+<p>两个表之间的关系是<strong>FROM</strong>子句的组成部分，以<strong>INNER JOIN</strong>指定，在使用这种语法时，联结条件用特定的<strong>ON</strong>子句而不是WHERE子句给出。传递给ON的实际条件与传递给WHERE的相同。</p>
+<h3 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h3><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT </span><span class="built_in">p1</span>.prod_id,<span class="built_in">p1</span>.prod_name</span><br><span class="line"><span class="symbol">FROM</span> products as <span class="built_in">p1</span>,products as <span class="built_in">p2</span></span><br><span class="line"><span class="symbol">WHERE</span> <span class="built_in">p1</span>.vend_id = <span class="built_in">p2</span>.vend_id</span><br><span class="line"><span class="keyword">AND</span></span><br><span class="line"><span class="keyword">p2.prod_id </span>= <span class="string">'DTNTR'</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>自联结通常作为外部语句用来替代从相同表中检索数据时使用的子查询语句。</p>
+<h3 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h3><p>看下面的例子：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> customers.cust_id,orders.order_num</span><br><span class="line"><span class="keyword">FROM</span> customers </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> </span><br><span class="line">orders</span><br><span class="line"><span class="keyword">ON</span> customers.cust_id = orders.cust_id;</span><br></pre></td></tr></table></figure>
+
+<p>在使用OUTER JOIN语法时，必须使用RIGHT或LEFT关键字指定包含其所有行的表（RIGHT指出的是OUTER JOIN右边的表，而LEFT指出的是OUTER JOIN左边的表）</p>
+<h3 id="使用联结和联结条件"><a href="#使用联结和联结条件" class="headerlink" title="使用联结和联结条件"></a>使用联结和联结条件</h3><ul>
+<li>注意所使用的联结类型，一般使用内部联结，但使用外部联结也是有效的；</li>
+<li>保证使用正确的联结条件，否则将返回不正确的数据；</li>
+<li>应该总是提供联结条件，否则会得笛卡儿积；</li>
+<li>在一个联结中可以包含多个表，甚至对于每个联结可以采用不同的联结类型。虽然这样做合法的，一般也很有用，但应该在一起测试他们之前，分别测试每个联结，这将是故障排除更为简单；</li>
+</ul>
+<h2 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h2><p>组合查询将结果作为单个查询结果集返回。这些组合查询通常称为复合查询。</p>
+<p>下面的情况，需要使用组合查询</p>
+<ul>
+<li>在单个查询浙江哦你从不同的表中返回类型类似结构的数据；</li>
+<li>对单个表执行多个查询，按单个查询返回数据；</li>
+</ul>
+<h3 id="创建组合查询-—-使用UNION"><a href="#创建组合查询-—-使用UNION" class="headerlink" title="创建组合查询 —  使用UNION"></a>创建组合查询 —  使用<strong><code>UNION</code></strong></h3><p><strong><code>UNION</code></strong>的使用很简单，写出每个SELECT语句，在各条语句之间放上关键字</p>
+<p>举个例子：</p>
+<p>第一条select语句</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_id,prod_id,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price &lt;= <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第二条select语句</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_id,prod_id,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> vend_id <span class="keyword">IN</span>(<span class="number">1001</span>,<span class="number">1002</span>);</span><br></pre></td></tr></table></figure>
+
+<p>复合两个语句</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> vend_id,prod_id,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> prod_price &lt;= <span class="number">5</span>;</span><br><span class="line">UNION</span><br><span class="line"><span class="keyword">SELECT</span> vend_id,prod_id,prod_price</span><br><span class="line"><span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> vend_id <span class="keyword">IN</span>(<span class="number">1001</span>,<span class="number">1002</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="UNION规则"><a href="#UNION规则" class="headerlink" title="UNION规则"></a>UNION规则</h3><ul>
+<li>UNION必须有<strong>两条或者两条以上</strong>SELECT语句组成，语句之间用关键字UNION分隔；</li>
+<li>UNION中的每个查询<strong>必须包含相同的列，表达式或聚集函数</strong>（不过各个列不需要以相同的次序列出）；</li>
+<li>列数据类型必须兼容：类型不必完全相同，但必须是DBSM可以隐式转换的类型；</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 <p>《MySQL必知必会》人民邮电出版社</p>
 <p>《MySQL 从入门到精通》清华大学出版社</p>
 </blockquote>
