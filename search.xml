@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hadoop安装、集群部署</title>
+    <title>Hadoop基础知识</title>
     <url>/2020/04/01/BigData/</url>
-    <content><![CDATA[<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+    <content><![CDATA[<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><ul>
+<li>MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题</li>
+</ul>
+<h3 id="关于MapReduce的两个重要进程"><a href="#关于MapReduce的两个重要进程" class="headerlink" title="关于MapReduce的两个重要进程"></a>关于MapReduce的两个重要进程</h3><ul>
+<li>JobTracker：主进程，负责接收客户作业提交</li>
+<li>TaskTracker：由JobTracker指派任务</li>
+</ul>
+<h3 id="MapReduce执行流程"><a href="#MapReduce执行流程" class="headerlink" title="MapReduce执行流程"></a>MapReduce执行流程</h3><p>文件要存储在HDFS上，每个文件切换成多个一定大小的文件块，存储在多个节点上</p>
+<h3 id="MapReduce的核心思想：分而治之"><a href="#MapReduce的核心思想：分而治之" class="headerlink" title="MapReduce的核心思想：分而治之"></a>MapReduce的核心思想：分而治之</h3><ul>
+<li>分解</li>
+<li>求解</li>
+<li>合并</li>
+</ul>
+<h2 id="Hadoop-2-0"><a href="#Hadoop-2-0" class="headerlink" title="Hadoop 2.0"></a>Hadoop 2.0</h2><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/HDFS2.0.png" alt=""></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 </blockquote>
 ]]></content>
       <categories>
@@ -138,90 +152,6 @@
       </categories>
       <tags>
         <tag>计算机基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>里氏替换原则</title>
-    <url>/2020/03/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<h2 id="什么是里氏替换原则"><a href="#什么是里氏替换原则" class="headerlink" title="什么是里氏替换原则"></a>什么是里氏替换原则</h2><p>在《大话设计模式》中：</p>
-<blockquote>
-<p><strong>里氏替换原则（LSP）：子类型必须能够替换掉他们的父类型</strong></p>
-</blockquote>
-<ul>
-<li><strong>一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且他察觉不出父类对象和子类对象的区别，那就是说，在软件里面，把父类都替换成它的子类，程序的行为没有变化</strong></li>
-</ul>
-<p><strong>只有当子类可以替换掉父类，软件单位的功能不受影响时，父类才能真正被复用，而子类也能够在父类的基础上增加新的行为</strong></p>
-<p>比方说，猫是继承动物类的，以动物的身份拥有吃喝跑叫等行为，如果需要扩展狗牛羊也拥有类似的行为，由于都是继承自动物类，所以除了更改实例化的地方，程序其他处无需改变</p>
-<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/Lishitihuan.jpg" alt=""></p>
-<p>伪代码:</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">动物 animal = <span class="keyword">new</span> 猫();</span><br><span class="line">animal.吃();</span><br><span class="line">animal.喝();</span><br><span class="line">animal.跑();</span><br><span class="line">animal.叫();</span><br></pre></td></tr></table></figure>
-
-<p><strong>由于子类型的可替换性才使得使用父类类型的模块在无需修改的情况下就可以扩展。</strong></p>
-<p>在《设计模式之禅》中是这样描述的：</p>
-<ul>
-<li><p><strong>如果对每种类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所有的对象o1都代换o2时，</strong></p>
-<p><strong>程序P的行为没有发生变化，那么类型S是类型T的子类型。</strong></p>
-</li>
-<li><p><strong>所有引用基类的地方必须能透明地使用其子类的对象。</strong></p>
-</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
-<ul>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式原则</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6大设计原则-单一职责原则</title>
-    <url>/2020/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/6%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a><strong>单一职责原则</strong></h1><ul>
-<li><p>单一职责(SRP)的定义：</p>
-<blockquote>
-<p><strong>就一个类而言，应该仅有一个引起它变化的原因。</strong></p>
-</blockquote>
-</li>
-</ul>
-<p>在编程的时候，会不知不觉的给一个类添加各种各样的功能、算法等等，这就意味着这个类维护麻烦，复用不可能，高耦合性，缺乏灵活。</p>
-<p><strong>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受意想不到破坏。软件设计真正的要做的许多内容，就是发现职责就是并把那些职责相互分离。</strong></p>
-<p><strong>其实要去判断是否应该分离出类来，并不难，如果能够想到多于一个的动机去改变一个类，那么这个类就具有多一个职责，那么就应该考虑类的职责分离</strong></p>
-<ul>
-<li><p>案例</p>
-<p>许多项目，都会接触到用户，机构，角色管理这类模块，基本上都是使用<strong><code>RBAC</code></strong>模型(Role-Based Access Control)，其实要讲的例子如下面的类图</p>
-<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/IUserInfo.jpg" alt=""></p>
-<p>通过这个类图一眼就能看出接口设计得有问题。</p>
-<p>下面我们拆分成两个接口。</p>
-<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/UserInfo.jpg" alt=""></p>
-<p>现在面对接口编程，所以产生这个UserInfo对象之后，当然可以把它当作IUserBO接口使用，也可以当作IUserBiz接口使用。要获得用户信息，就当是IUserBO的实现类；要是希望维护用户的信息，就把它当作IUserBiz的实现类就可以。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">.....</span><br><span class="line">IUserInfo userInfo = <span class="keyword">new</span> UserInfo();</span><br><span class="line"><span class="comment">//给BO赋值可以认为它是一个单纯的BO</span></span><br><span class="line">IUserBO userBO = (IUserBO)userInfo();</span><br><span class="line">userBO.setPassWord(<span class="string">"abc"</span>);</span><br><span class="line"><span class="comment">//执行动作，可以认为是一个业务逻辑类</span></span><br><span class="line">IUserBiz userBiz = (IUserBiz)userInfo();</span><br><span class="line">userBiz.deleUser();</span><br><span class="line">·····</span><br></pre></td></tr></table></figure>
-
-<h5 id="单一职责原则的好处"><a href="#单一职责原则的好处" class="headerlink" title="单一职责原则的好处"></a>单一职责原则的好处</h5><ul>
-<li>类的复杂性降低，实现什么职责都有清晰明确的定义</li>
-<li>可读性提高，复杂性降低，那就当然可读性提高</li>
-<li>可维护性提高，可读性提高，那就当然更容易维护</li>
-<li>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个接口修改只对相应的实现类有影响，对其他的接口无影响，这对系统的扩展性，维护性都有非常大帮助。</li>
-</ul>
-</li>
-</ul>
-<p>对于接口，我们在设计的时候一定要做到单一，但是对于实现类的需要多方面思考，硬套单一职责原则会引起类的剧增，给维护带来很多的麻烦，而且过分细分类的职责也会人为地增加系统的复杂性。</p>
-<p>单一职责适用于接口、类、方法。一个方法尽可能做一件事，每个方法的职责非常清晰明确，开发简单，维护也方便。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><strong>参考资料</strong></h2><blockquote>
-<p><strong>《设计模式之禅》作者：秦小波</strong>     机械工业出版社</p>
-<p><strong>《大话设计模式》作者：程杰</strong>         清华大学出版社</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式原则</tag>
       </tags>
   </entry>
   <entry>
@@ -1597,16 +1527,154 @@
       </tags>
   </entry>
   <entry>
-    <title>Java并发</title>
-    <url>/2018/04/06/java/Java%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="多线程的使用方式"><a href="#多线程的使用方式" class="headerlink" title="多线程的使用方式"></a>多线程的使用方式</h2><h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+    <title>Java多线程基础volatile关键字</title>
+    <url>/2018/07/22/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volitile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<p>关于volatile下面有必要说一下内存与CPU相关的知识</p>
+<h3 id="CPU-Cache模型"><a href="#CPU-Cache模型" class="headerlink" title="CPU Cache模型"></a>CPU Cache模型</h3><p>CPU的处理速度和内存访问速度之间差距很大，通过直连内存的方式会导致CPU资源受到限制，为了降低CPU整体的吞吐量，可在CPU和内存之间增加缓存的设计，目前缓存的数量可增加到3级，最靠近CPU的缓存称为L1，依次是L2，L3和主内存。CPU缓存模型如下：</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCache.png" alt=""></p>
+<p>Cache的出现为了解决CPU直接访问内存效率低下的问题，CPU将运算所需的数据从主内存复制一份到CPU Cache中，CPU在计算时就可以直接对CPU Cache中的数据进行读取和写入，运算结束后，再将CPU Cache中的最新数据刷新回主内存中。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCacheandMemory.png" alt=""></p>
+<h3 id="CPU缓存一致性问题"><a href="#CPU缓存一致性问题" class="headerlink" title="CPU缓存一致性问题"></a>CPU缓存一致性问题</h3><p>缓存的出现极大提高CPU的吞吐能力，但也引入了缓存不一致的问题，为了解决缓存不一致性的问题，通常主流的解决方法有两种：</p>
+<ul>
+<li><p>通过总线加锁的方式</p>
+</li>
+<li><p>通过缓存一致性协议</p>
+<p>缓存一致性协议的大致思想：当CPU在操作Cache中的数据时，如果发现该变量是一个共享变量，在其他CPU Cache中存在一个副本，当进行如下操作时：</p>
+<ul>
+<li>读取操作：不做任何处理，只将Cache中的数据读取到寄存器中</li>
+<li>写入操作：发出信号通知其他CPU将该变量的Cache line置为无效状态，其他CPU进行该变量读取时，必须在主存中再次获取。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCacheconsistency.png" alt=""></p>
+<h4 id="volatile的定义"><a href="#volatile的定义" class="headerlink" title="volatile的定义"></a>volatile的定义</h4><ul>
+<li>为了确保共享变量能够准确和一致性的更新，线程应该确保通过排他锁单独获取这个变量。Java提供了volatile关键字，如果一个字段被声明为volatile，多线程内存模型确保所有线程看到这个变量的值是一致的。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 </blockquote>
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>java并发</tag>
+        <tag>java并发编程</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Java并发之上下文切换</title>
+    <url>/2018/04/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%801/</url>
+    <content><![CDATA[<h4 id="何为上下文切换"><a href="#何为上下文切换" class="headerlink" title="何为上下文切换"></a>何为上下文切换</h4><ul>
+<li>CPU通过时间片分配算法来循环执行任务，当前任务执行一个任务时间片后会切换到下一个任务，但是在切换之前将保存上一个任务的状态，以便下次切换回这个任务时，可以在再加载这个任务的状态，所以任务从保存再到加载的过程就是一次上下文切换。上下文切换也会影响多线程的执行速度</li>
+</ul>
+<p>下面看一段代码：</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ConcurrencyTest &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span>  <span class="keyword">long</span> <span class="keyword">count</span> = <span class="number">10000000000</span>L;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        concurrency();</span><br><span class="line">        serial();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> concurrency() <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">                    a +=<span class="number">5</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        <span class="keyword">int</span> b= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis()-start;</span><br><span class="line">        thread.<span class="keyword">join</span>();</span><br><span class="line">        System.out.<span class="keyword">println</span>(<span class="string">"concurrency:"</span>+time+<span class="string">"ms,b = "</span>+b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> serial()&#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            a+=<span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis()-start;</span><br><span class="line">        System.out.<span class="keyword">println</span>(<span class="string">"serial:"</span>+time+<span class="string">"ms,b= "</span>+b+<span class="string">" a= "</span>+a);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码是比较串行与并发时的执行效果；</p>
+<p>在测试中可以看到数据量在10万以下，并发的执行速度比串行的执行速度慢；在测试中可以看到数据量在100万以上时，并发的执行速度比串行的执行速度快约2倍。上面的结果是因为线程有创建和上下文切换的开销。</p>
+<h4 id="如何减少上下文切换"><a href="#如何减少上下文切换" class="headerlink" title="如何减少上下文切换"></a>如何减少上下文切换</h4><p>减少上下文切换的方法有四种：</p>
+<ul>
+<li>无锁并发编程：多线程竞争锁时，会引发上下文切换，所以多线程处理数据时，可以使用例如将数据ID按照Hash算法取模分段，不同的线程处理不同段的数据</li>
+<li>CAS算法：Java的Atomic包使用CAS算法来更新数据，而不需加锁</li>
+<li>使用最少线程：避免创建不需要的线程</li>
+<li>协程：在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>java并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小杨的简介</title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a><strong>个人信息</strong></h1><ul>
+<li><p><strong>杨生华/男/1997</strong></p>
+</li>
+<li><p><strong>本科/吉林化⼯学院/外国语学院/⽇语系/</strong></p>
+</li>
+<li><p><strong>年级：2020年毕业</strong></p>
+</li>
+<li><p><strong>联系方式：13944680832</strong></p>
+</li>
+<li><p><strong>微信：</strong></p>
+<img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" style="zoom: 25%;" />
+</li>
+<li><p><strong>技术博客：<a href="https://yangshenghua97.github.io/" target="_blank" rel="noopener">楊さんノート</a></strong></p>
+</li>
+<li><p><strong>Github：<a href="https://github.com/yangshenghua97/" target="_blank" rel="noopener">yangshenghua97</a></strong></p>
+</li>
+<li><p><strong>期望职位：/实习/Java后端开发</strong></p>
+</li>
+<li><p><strong>期望薪资：税前⽉薪3k-4k</strong></p>
+</li>
+</ul>
+<h1 id="项目和作品"><a href="#项目和作品" class="headerlink" title="项目和作品"></a><strong>项目和作品</strong></h1><h2 id="个人博客后台管理系统"><a href="#个人博客后台管理系统" class="headerlink" title="个人博客后台管理系统"></a><strong>个人博客后台管理系统</strong></h2><h4 id="2019-01-2019-02"><a href="#2019-01-2019-02" class="headerlink" title="2019.01-2019.02"></a><strong>2019.01-2019.02</strong></h4><h3 id="技术运用："><a href="#技术运用：" class="headerlink" title="技术运用："></a>技术运用：</h3><ul>
+<li>开发环境：Windows/Linux、IntelliJ IDEA、JDK 1.8、MySQL 5.7、Redis、Tomcat 5. x、Git、Maven;</li>
+<li>后端框架：Spring、Spring MVC、Myatis;</li>
+<li>前端框架：AdminLTE3,JQuery等前端框架；</li>
+</ul>
+<h3 id="项目介绍："><a href="#项目介绍：" class="headerlink" title="项目介绍："></a>项目介绍：</h3><ul>
+<li>基于Spring+Spring MVC + MyBatis框架的整合运用；</li>
+<li>利用 Spring AOP对用户登录进行Token身份验证、Spring 事务隔离对SQL进行验证</li>
+<li>MySQL 5.7 数据的基本使用、使用Druid数据库连接池对项目执行的SQL进行监控与优化；</li>
+<li>单图/多图上传技术；</li>
+<li>文件导入导出功能；</li>
+<li>利用Redis缓存数据库对用户Token进行缓存</li>
+<li>基于阿里云Linux系统进行部署与发布；</li>
+<li>Nginx + Tomcat的集群搭建；</li>
+</ul>
+<h2 id="微人事人力资源管理系统"><a href="#微人事人力资源管理系统" class="headerlink" title="微人事人力资源管理系统"></a><strong>微人事人力资源管理系统</strong></h2><h3 id="技术运用：-1"><a href="#技术运用：-1" class="headerlink" title="技术运用："></a>技术运用：</h3><ul>
+<li>开发环境：Windows/Linux、IntelliJ IDEA、JDK 1.8、MySQL 5.7、Redis、Tomcat 5. x、Git、Maven;</li>
+<li>后端框架：Spring Boot、MyBatis；</li>
+<li>前端框架：Vue.js+Axios；</li>
+</ul>
+<h3 id="项目介绍：-1"><a href="#项目介绍：-1" class="headerlink" title="项目介绍："></a>项目介绍：</h3><ul>
+<li><p>基于Spring Boot、MyBatis、Spring Security的运用；</p>
+</li>
+<li><p>项目利用Maven对多模块进行整合，后端权限认证采用Spring Security实现；</p>
+</li>
+<li><p>数据库访问使用MyBatis，同时使用Redis实现认证信息缓存；</p>
+</li>
+<li><p>项目实现了邮件发送功能，采用Spring-Boot-Email+Spring Thymeleaf配合Java 多线程来对邮件进行发送；</p>
+</li>
+</ul>
+<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a><strong>技能清单</strong></h1><ul>
+<li><p><strong>Java开发</strong>：熟悉Java开发、 对于Java多线程、I/O操作、反射、Java网络编程等都能其进行简单的应用。<br>熟练使用Java集合，并且简单阅读多ArrayList、LinkedList、HashMap的源码。<br> 了解ConcurrentHashMap的使用场景；</p>
+</li>
+<li><p>熟练操作<strong>Linux</strong>，掌握Linux常用命令，能够独立编写<strong>Linux Shell</strong>脚本代码，曾在阿里云服务器上发布过个人博客，熟悉Linux系统管理等；</p>
+</li>
+<li><p>熟练SQL语句编写、使用虚拟机搭建<strong>MySQL</strong>集群进行主从复制，事务隔离，索引优化等</p>
+</li>
+<li><p>了解<strong>Redis</strong>命令简单使用，使用虚拟机搭建Redis集群进行主从复制</p>
+</li>
+<li><p>前端框架：了解Vue.js、Node.js构建前端应用框架</p>
+</li>
+<li><p>版本管理、文档和自动化部署工具：了解<strong>Git</strong>版本控制系统常用命令的使用</p>
+</li>
+<li><p>开发框架及单元测试：JUnit对项目的各个模块进行单元测试、Spring、<strong>Spring Boot</strong>、Spring MVC、<strong>MyBatis</strong>的简单使用</p>
+</li>
+</ul>
+<h1 id="学校经历"><a href="#学校经历" class="headerlink" title="学校经历"></a><strong>学校经历</strong></h1><p>2018.04-2018.09<br><strong>担任学生会网络部，主要工作是运营学院微信公众号以及组织学院活动；</strong></p>
+<p>2018.06-2018.07<br><strong>参加学校互联网+创新创业大赛获得校级团队二等奖；</strong></p>
+<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"><a href="#目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作" class="headerlink" title="  目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"></a>  <strong>目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作</strong></h2>]]></content>
+  </entry>
+  <entry>
+    <title>Categories</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>guestbook</title>
+    <url>/guestbook/index.html</url>
+    <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
+  </entry>
+  <entry>
+    <title>Tags</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

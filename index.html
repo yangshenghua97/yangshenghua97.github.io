@@ -81,12 +81,17 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/04/01/BigData/" title="Hadoop安装、集群部署" itemprop="url">
+    <a href="/2020/04/01/BigData/" title="Hadoop基础知识" itemprop="url">
   
-    <h1 itemprop="name">Hadoop安装、集群部署</h1>
+    <h1 itemprop="name">Hadoop基础知识</h1>
     
      
-           <p itemprop="description" >参考资料</p>
+           <p itemprop="description" >MapReduce
+MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题
+
+关于MapReduce的两个重要进程
+JobTracker：主进程，负责接收客户作业提交
+TaskTracker：由JobTracker指派任</p>
         
     
     <time datetime="2020-04-01T15:46:11.000Z" itemprop="datePublished">2020-04-01</time>
@@ -150,61 +155,6 @@
         
     
     <time datetime="2020-03-11T12:53:21.000Z" itemprop="datePublished">2020-03-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/03/08/设计模式/设计原则/6大设计原则-里氏替换原则/" title="里氏替换原则" itemprop="url">
-  
-    <h1 itemprop="name">里氏替换原则</h1>
-    
-     
-           <p itemprop="description" >什么是里氏替换原则在《大话设计模式》中：
-
-里氏替换原则（LSP）：子类型必须能够替换掉他们的父类型
-
-
-一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且他察觉不出父类对象和子类对象的区别，那就是说，在软件里面，把父类都替换成它的子类，程序的行为没有变化
-
-只有当</p>
-        
-    
-    <time datetime="2020-03-08T07:04:15.000Z" itemprop="datePublished">2020-03-08</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/03/07/设计模式/设计原则/6大设计原则-单一职责原则/" title="6大设计原则-单一职责原则" itemprop="url">
-  
-    <h1 itemprop="name">6大设计原则-单一职责原则</h1>
-    
-     
-           <p itemprop="description" >单一职责原则
-单一职责(SRP)的定义：
-
-就一个类而言，应该仅有一个引起它变化的原因。
-
-
-
-在编程的时候，会不知不觉的给一个类添加各种各样的功能、算法等等，这就意味着这个类维护麻烦，复用不可能，高耦合性，缺乏灵活。
-如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职</p>
-        
-    
-    <time datetime="2020-03-07T12:37:04.000Z" itemprop="datePublished">2020-03-07</time>
   </a>
 </section>
 
@@ -311,6 +261,75 @@ Git提供一种机制来确定相对于另一</p>
 
 
 
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/04/05/数据库/mysql/SQL基础2/" title="SQL基础（二）" itemprop="url">
+  
+    <h1 itemprop="name">SQL基础（二）</h1>
+    
+     
+           <p itemprop="description" >过滤数据百分号（%）通配符%表示任何字符出现任意次数。
+123SELECT prod_id,prod_nameFROM productsWHERE prod_name LIKE &#39;jet%&#39;;
+
+上面的SQL检索任意以jet为开头的词，%告诉MYSQL接受jet之后的任意字符，不</p>
+        
+    
+    <time datetime="2019-04-05T09:57:27.000Z" itemprop="datePublished">2019-04-05</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/04/04/其他/vim基本命令/" title="vim基本命令" itemprop="url">
+  
+    <h1 itemprop="name">vim基本命令</h1>
+    
+     
+           <p itemprop="description" >h或者向左箭头
+光标向左移动一个字符
+
+
+
+j或者向下箭头
+光标向下移动一个字符
+
+
+k或者向上箭头
+光标向上移动一个字符
+
+
+l或者向右箭头
+光标向右移动一个字符
+
+
+Page Down
+屏幕向下移动一页
+
+
+Page Up
+屏幕向上移动一页
+
+
+n
+n表示数字，按下数字再按空</p>
+        
+    
+    <time datetime="2019-04-04T13:22:53.000Z" itemprop="datePublished">2019-04-04</time>
+  </a>
+</section>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix unexpand">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -329,7 +348,7 @@ Git提供一种机制来确定相对于另一</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
 		  
 		
 		  
@@ -360,10 +379,6 @@ Git提供一种机制来确定相对于另一</p>
 			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>3</sup></a></li>
 		  
 		
-		  
-			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
-		  
-		
 		</ul>
 </div>
 
@@ -382,11 +397,7 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
-				<li><a href="/tags/设计模式原则/" title="设计模式原则">设计模式原则<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>2</sup></a></li>
 			
 		
 			
@@ -398,6 +409,18 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
+				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
@@ -406,19 +429,7 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
-				<li><a href="/tags/java并发/" title="java并发">java并发<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 		</ul>
