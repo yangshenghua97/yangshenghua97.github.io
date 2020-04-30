@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-23T05:12:10.698Z</updated>
+  <updated>2020-04-30T10:48:36.896Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,80 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大数据各组件安装</title>
+    <link href="http://yoursite.com/2020/04/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2020/04/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/</id>
+    <published>2020-04-30T10:44:31.000Z</published>
+    <updated>2020-04-30T10:48:36.896Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="hadoop" scheme="http://yoursite.com/tags/hadoop/"/>
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="hive" scheme="http://yoursite.com/tags/hive/"/>
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+      <category term="zookeeper" scheme="http://yoursite.com/tags/zookeeper/"/>
+    
+      <category term="hbase" scheme="http://yoursite.com/tags/hbase/"/>
+    
+      <category term="flink" scheme="http://yoursite.com/tags/flink/"/>
+    
+      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
+    
+      <category term="flume" scheme="http://yoursite.com/tags/flume/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java并发编程之Synchronized</title>
+    <link href="http://yoursite.com/2020/04/25/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8BSynchronized/"/>
+    <id>http://yoursite.com/2020/04/25/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8BSynchronized/</id>
+    <published>2020-04-25T08:07:02.000Z</published>
+    <updated>2020-04-29T13:56:19.390Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="synchronized的实现原理"><a href="#synchronized的实现原理" class="headerlink" title="synchronized的实现原理"></a>synchronized的实现原理</h2><h3 id="利用synchronized实现同步的基础："><a href="#利用synchronized实现同步的基础：" class="headerlink" title="利用synchronized实现同步的基础："></a>利用synchronized实现同步的基础：</h3><ul><li>对于普通同步方法，锁是当前的实例对象</li><li>对于静态同步方法，锁是当前类的Class对象</li><li>对于同步方法块，锁是Synchronized括号里的配置对象</li></ul><h3 id="Synchronized实现原理："><a href="#Synchronized实现原理：" class="headerlink" title="Synchronized实现原理："></a>Synchronized实现原理：</h3><p>JVM基于进入和退出<strong><code>Monitor</code></strong>对象来实现方法同步和代码块同步，代码块同步使用<strong><code>monitorenter</code></strong>和<strong><code>monitorexit</code></strong>指令实现，monitorenter指令是在编译后插入到同步代码块开始位置，而monitorexit是插入到方法结束和异常处，<strong><code>JVM</code></strong>要保证每个monitorenter必须有对应的monitorexit与之匹配。</p><p>关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一时刻，只能有一个线程处于方法或同步块中，他保证了线程对变量访问的可见性和排他性。对于同步块的实现使用monitorenter和monitorexit指令，而同步方法则是依靠方法修饰符上的ACC_SYNCHRONIZED来完成。其本质上是对一个对象的监视器(monitor)进行获取，而这个过程是排他的，也就是在同一时刻只能有一个线程获得synchronized所保护对象的监视器。任意一个对象都拥有自己的监视器，当这个对象有同步块或者这个对象的同步方法调用时，执行方法的线程必须先获取到该对象的监视器才能进入同步块或者同步方法，而没有获取到监视器的线程将会被阻塞在同步块和同步方法的入口处，进入<strong><code>BLOCKED</code></strong>状态。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;synchronized的实现原理&quot;&gt;&lt;a href=&quot;#synchronized的实现原理&quot; class=&quot;headerlink&quot; title=&quot;synchronized的实现原理&quot;&gt;&lt;/a&gt;synchronized的实现原理&lt;/h2&gt;&lt;h3 id=&quot;利用syn
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="java并发编程" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Hadoop基础知识</title>
@@ -223,6 +297,63 @@
     
     
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java并发基础Java中的锁</title>
+    <link href="http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java%E4%B8%AD%E7%9A%84%E9%94%81/"/>
+    <id>http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java%E4%B8%AD%E7%9A%84%E9%94%81/</id>
+    <published>2019-04-30T10:40:11.000Z</published>
+    <updated>2020-04-30T10:41:51.902Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="java并发编程" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java并发基础</title>
+    <link href="http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java/"/>
+    <id>http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java/</id>
+    <published>2019-04-30T10:39:37.000Z</published>
+    <updated>2020-04-30T10:42:24.059Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href=""></a></li><li><a href=""></a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/l
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="java并发编程" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -447,88 +578,6 @@
     
     
       <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初识Linux</title>
-    <link href="http://yoursite.com/2019/03/15/Linux/Linux%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2019/03/15/Linux/Linux%E5%9F%BA%E7%A1%80/</id>
-    <published>2019-03-15T14:20:39.000Z</published>
-    <updated>2020-03-18T13:45:01.808Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="什么是Linux"><a href="#什么是Linux" class="headerlink" title="什么是Linux?"></a>什么是Linux?</h3><p>Linux就是一个操作系统(手动狗头)</p><h3 id="Linux几个常用的命令"><a href="#Linux几个常用的命令" class="headerlink" title="Linux几个常用的命令"></a>Linux几个常用的命令</h3><ul><li><p><strong><code>cd dir</code></strong>：跳转到指定文件夹</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">跳转到root目录</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~</span></span><br><span class="line">跳转到之前目录</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> -</span></span><br><span class="line">跳转到上级目录</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ..</span></span><br></pre></td></tr></table></figure><p>cd 后面还可以文件夹绝对路径或相对路径跳转到指定目录</p><p>例如跳转到 <strong>/</strong>下的<strong>tmp</strong>目录</p><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">cd</span> <span class="string">/tmp</span></span><br></pre></td></tr></table></figure></li><li><p><strong><code>pwd</code></strong>：查看当前所处的路径，输入<strong><code>pwd</code></strong>系统会返回当前所处的目录的绝对路径</p></li><li><p><strong><code>ls -al</code></strong>：列出文件夹下的所有文件，包括隐藏文件</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">ls</span> -<span class="keyword">al</span></span><br></pre></td></tr></table></figure></li></ul><h3 id="操作Linux系统几个重要的热键"><a href="#操作Linux系统几个重要的热键" class="headerlink" title="操作Linux系统几个重要的热键"></a>操作Linux系统几个重要的热键</h3><ul><li><h4 id="Tab-按键"><a href="#Tab-按键" class="headerlink" title="[Tab]按键"></a>[Tab]按键</h4><p><strong><code>[Tab]</code></strong>按键就是在切换大小写按键<strong><code>[Casp Lock]</code></strong>上面的那个按键，它具有命令补全与文件补齐的功能。关键是可以避免打错命令或文件名。</p><p>这里总结一下</p><p><strong>[Tab]接在一串命令的第一个字段后面，则为【命令补全】</strong></p><p><strong>[Tab]接在一串命令的第二个字段后面，则为【文件补全】</strong></p></li><li><h4 id="Ctrl-c-按键"><a href="#Ctrl-c-按键" class="headerlink" title="[Ctrl+c]按键"></a>[Ctrl+c]按键</h4><p>有时候某些命令或程序在系统上一直“跑个不停”，想让命令或程序“停掉”时，可以用这个按键。输入:<strong><code>[Ctrl+c]</code></strong>按键，可以中断目前程序或命令。</p></li><li><h4 id="Ctrl-d"><a href="#Ctrl-d" class="headerlink" title="[Ctrl+d]"></a>[Ctrl+d]</h4><p>如果想要直接离开命令行模式，可以直接按下<strong><code>[Ctrl+d]</code></strong>就能直接离开（相当于输入exit）</p></li><li><h4 id="Shift-Page-Up-、-Shift-Page-Down-按键"><a href="#Shift-Page-Up-、-Shift-Page-Down-按键" class="headerlink" title="[Shift]+{Page Up}、[Shift]+{Page Down}按键"></a>[Shift]+{Page Up}、[Shift]+{Page Down}按键</h4><p>使用<strong><code>[Shift]+{Page Up}</code></strong>向前翻页。使用<strong><code>[Shift]+{Page Down}</code></strong>先后翻页</p><h3 id="正确的关机方法"><a href="#正确的关机方法" class="headerlink" title="正确的关机方法"></a>正确的关机方法</h3></li><li><p>正确的关机命令使用</p><ul><li><p>几个与关机或重启相关命令</p><ul><li>将数据同步写入硬盘的命令：<strong><code>sync</code></strong></li><li>常用的关机命令：<strong><code>shutdown</code></strong></li><li>重启、关机：<strong><code>reboot</code></strong>、<strong><code>halt</code></strong>、<strong><code>poweroff</code></strong></li></ul></li><li><p>数据同步写入磁盘：<strong><code>sync</code></strong></p><p>使用<strong><code>sync</code></strong>命令进行数据的写入操作。在命令行下输入<strong>sync</strong>，那么在内存中尚未被更新的数据，就会被写入硬盘中。So 在关机或重启系统之前最好多执行几次</p></li><li><p>常用的关机命令：<strong><code>shutdown</code></strong></p><p>这个是关闭Linux的命令，如果是root管理员可以使用。</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shutdown</span>语法</span><br><span class="line"><span class="built_in">shutdown</span> -[krhc] [时间] [警告信息]</span><br><span class="line"> 选项与参数</span><br><span class="line">   -k：不是真的关机，只是发送警告信息出去。</span><br><span class="line">   -r：在将系统的服务停掉之后就重新启动（常用）</span><br><span class="line">   -h：将系统的服务停掉后，立即关机（常用）</span><br><span class="line">   -c：取消已经进行的<span class="built_in">shutdown</span>命令内容</span><br><span class="line">   时间：指定系统关机的时间，设置时间的样式如下：</span><br><span class="line"> <span class="built_in">shutdown</span> -h <span class="number">13</span>:<span class="number">00</span></span><br><span class="line">系统将在今天的<span class="number">13</span>:<span class="number">00</span>分关机</span><br><span class="line"><span class="built_in">shutdown</span> -h now</span><br><span class="line">系统将立即关机</span><br><span class="line"> <span class="built_in">shutdown</span> -r now</span><br><span class="line">系统会立即重启</span><br></pre></td></tr></table></figure><ul><li><p>shutdown可以完成如下的工作：</p><ul><li>可以自由选择关机模式：要是关机或重启均可；</li></ul></li><li><p>可以设置关机时间：可以设置成现在立即关机，也可以设置某一个特定的时间关机；</p><ul><li>可以自定义关机信息：在关机之前，可以将自己设置的信息发送给在线用户；</li></ul></li><li><p>可以仅发出警告信息：有时有可能要进行一些测试，而不想让其他的用户干扰，或是明白的告诉用户某段时间要注意一下。</p></li><li><p>重启，关机：<strong><code>reboot</code></strong>、<strong><code>halt</code></strong>，<strong><code>poweroff</code></strong></p><p>这三个命令可以进行重启与关机的操作。一般在关机或重启时，都会执行如下命令：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sync</span>;<span class="keyword">sync</span>;<span class="keyword">sync</span>;reboot</span><br></pre></td></tr></table></figure></li><li><p>使用管理管理工具<strong><code>systemctl</code></strong>关机</p><p>在CentOS 7中可以使用<strong><code>systemctl</code></strong>来进行关机，实际上面介绍的关机与重启命令都是调用systemctl这个命令。</p><p>这个命令与关机的语法：</p><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl [命令]</span><br><span class="line">命令项目有：</span><br><span class="line">halt</span><br><span class="line">poweroff</span><br><span class="line">reboot</span><br><span class="line">suspend <span class="comment">//进入休眠模式</span></span><br><span class="line"># systemctl reboot   #系统重启</span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><p>《鸟哥的Linux私房菜—基础学习篇（第四版）》 鸟哥著 人民邮电出版社</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;什么是Linux&quot;&gt;&lt;a href=&quot;#什么是Linux&quot; class=&quot;headerlink&quot; title=&quot;什么是Linux?&quot;&gt;&lt;/a&gt;什么是Linux?&lt;/h3&gt;&lt;p&gt;Linux就是一个操作系统(手动狗头)&lt;/p&gt;
-&lt;h3 id=&quot;Linux几个常用的命令
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java多线程基础volatile关键字</title>
-    <link href="http://yoursite.com/2018/07/22/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volitile%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-    <id>http://yoursite.com/2018/07/22/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volitile%E5%85%B3%E9%94%AE%E5%AD%97/</id>
-    <published>2018-07-22T11:16:24.000Z</published>
-    <updated>2020-04-25T06:20:04.005Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="并发编程的三个重要特性"><a href="#并发编程的三个重要特性" class="headerlink" title="并发编程的三个重要特性"></a>并发编程的三个重要特性</h4><ol><li><p>原子性</p><p>原子性指在一次的操作或多次的操作中，要么所有操作全部执行且不会受到任何因素的干扰而中断，要么所有操作全部不执行</p></li><li><p>可见性</p><p>当一个线程对共享变量进行修改，另外的线程可以立刻看到修改后的新值。</p></li><li><p>有序性</p><p>有序性是指程序代码在被执行过程中的先后顺序。Java编译器以及运行期的优化，导致代码的执行顺序未必就是在编写代码时的顺序。</p></li></ol><p>关于volatile下面有必要说一下内存与CPU相关的知识</p><h3 id="CPU-Cache模型"><a href="#CPU-Cache模型" class="headerlink" title="CPU Cache模型"></a>CPU Cache模型</h3><p>CPU的处理速度和内存访问速度之间差距很大，通过直连内存的方式会导致CPU资源受到限制，为了降低CPU整体的吞吐量，可在CPU和内存之间增加缓存的设计，目前缓存的数量可增加到3级，最靠近CPU的缓存称为L1，依次是L2，L3和主内存。CPU缓存模型如下：</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCache.png" alt=""></p><p>Cache的出现为了解决CPU直接访问内存效率低下的问题，CPU将运算所需的数据从主内存复制一份到CPU Cache中，CPU在计算时就可以直接对CPU Cache中的数据进行读取和写入，运算结束后，再将CPU Cache中的最新数据刷新回主内存中。</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCacheandMemory.png" alt=""></p><h3 id="CPU缓存一致性问题"><a href="#CPU缓存一致性问题" class="headerlink" title="CPU缓存一致性问题"></a>CPU缓存一致性问题</h3><p>缓存的出现极大提高CPU的吞吐能力，但也引入了缓存不一致的问题，为了解决缓存不一致性的问题，通常主流的解决方法有两种：</p><ul><li><p>通过总线加锁的方式</p></li><li><p>通过缓存一致性协议</p><p>缓存一致性协议的大致思想：当CPU在操作Cache中的数据时，如果发现该变量是一个共享变量，在其他CPU Cache中存在一个副本，当进行如下操作时：</p><ul><li>读取操作：不做任何处理，只将Cache中的数据读取到寄存器中</li><li>写入操作：发出信号通知其他CPU将该变量的Cache line置为无效状态，其他CPU进行该变量读取时，必须在主存中再次获取。</li></ul></li></ul><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCacheconsistency.png" alt=""></p><h3 id="关于volatile关键字"><a href="#关于volatile关键字" class="headerlink" title="关于volatile关键字"></a>关于volatile关键字</h3><p>为了确保共享变量能够准确和一致性的更新，线程应该确保通过排他锁单独获取这个变量。Java提供了volatile关键字，如果一个字段被声明为volatile，多线程内存模型确保所有线程看到这个变量的值是一致的。</p><h4 id="JMM内存模型"><a href="#JMM内存模型" class="headerlink" title="JMM内存模型"></a>JMM内存模型</h4><p>java内存模型决定了一个线程对共享变量的写入何时对其他线程可见，java内存模型定义了线程和内存之间的抽象关系</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/JMM.png" alt=""></p><ul><li>共享变量存储于主内存中，每个线程都可以访问。</li><li>每个线程都有私有的工作内存或称为本地内存。</li><li>工作内存只存储该线程对共享变量的副本</li><li>线程不能直接操作主内存，只有先操作工作内存后才能写入主内存。</li><li>工作内存和Java内存模型一样也是一个抽象的概念，其实并不存在，它涵盖了缓存、寄存器、编译器优化以及硬件等。</li></ul><p>在前面所说的并发编程的三大特性，JMM如何保证这三大特性</p><ol><li><p><strong>JMM与原子性</strong></p><p>先介绍几种简单的赋值操作</p><p>(1) x = 1</p><p>(2) y = x</p><p>(3) y++</p><p>(4) z = z+1</p><p>在上面的四类赋值操作中，只有第一种赋值操作具有原子性，其余均不具备原子性。可以得出以下结论</p><ul><li><p>多个原子性的操作在一起就不再是原子性操作</p></li><li><p>简单的读取与赋值是原子性，将一个变量赋值给另外一个变量的操作就不具备原子性</p></li><li><p>JMM只保证基本读取和赋值的原子性操作，其余的均不能保证，如果要使某些代码段具备原子性，需要使用关键字synchronized，或JUC中的lock。如果想要使得int等类型自增操作具备原子性封装类型<strong>atomic.*</strong></p><p><strong>最后volatile关键字不具备保证原子性的语义</strong></p></li></ul></li><li><p><strong>JMM与可见性</strong></p><p>Java通过三种方式来保证可见性</p><ul><li><p>使用关键字volatile，当一个变量被volatile关键字修饰时，对于共享资源的读操作会直接在主内存中进行（也可能会缓存到工作内存中，当其他线程对该共享资源进行修改，则会导致当前线程在工作内存中的共享资源失效，必须要在主内存中再次获取），对于共享资源的写操作当然是先要修改工作内存，但是修改结束后会立刻将其刷新进主内存中。</p></li><li><p>通过synchronized关键字能够保证可见性，synchronized关键字能够保证同一时刻只有一个线程获得锁，然后执行同步方法，并且还会确保在锁释放之前，会将对变量的修改刷新到主内存中。</p></li><li><p>通过JUC提供的显式锁Lock也能保证可见性，Lock的lock方法能够保证在同一时刻只有一个线程获得锁然后执行同步方法，并且会确保在锁释放（Lock的unlock方法）之前会将对变量的修改刷新到主内存中。</p><p><strong>volatile关键字具有保证可见性的语义</strong></p></li></ul></li><li><p><strong>JMM与有序性</strong></p><p>在JMM中允许编译器和处理器对指令进行重排序，在当线程下并不会引起什么问题。在多线程下，重排序会影响到程序的正确运行。</p><p>Java提供了三种保证有序性的方式</p><ul><li>使用volatile关键字来保证有序性。</li><li>使用synchronized关键字来保证有序性。</li><li>使用显式锁Lock来保证有序性</li></ul><p>在JMM中具备一些自带的有序性规则，不需要任何同步手段就能够保证有序性，这规则称之为Happens-before原则。</p><h4 id="Happens-Before规则"><a href="#Happens-Before规则" class="headerlink" title="Happens-Before规则"></a>Happens-Before规则</h4><ul><li>程序次序规则：在一个线程内，代码按照编写时的次序执行，编写在后面的操作发生于编写在前面的操作之后。虚拟机还是可能会对程序代码的指令进行重排序，只要确保在一个线程内最终的结果和代码顺序执行的结果一致即可。</li><li>锁定规则：一个unlock操作要先行发生于对同一个锁的lock操作</li><li>volatile变量规则：对一个变量的写操作要早于对这个变量的读操</li><li>传递规则：如果操作A先于操作B，B操作先于C操作，则A操作一定先于C操作，说明Happens-Before</li><li>线程启动规则：Thread对象的start()方法先行发生于线程的任何动作，只有start后的线程才能真正运行，否则Thread只是一个对象。</li><li>线程中断规则：对线程执行interrupt()方法，肯定要优先于捕获到中断信号。</li><li>线程的终结规则：线程中断所有的操作都要先行发生于线程的终止检测，线程的任务执行，逻辑单元执行肯定要发生于线程死亡之前。</li><li>对象的终结规则：一个对象初始化的完成先行发生于finalize()方法之前。</li></ul><p><strong>volatile关键字具有保证顺序性的语义</strong></p></li></ol><h4 id="volatile关键字语义"><a href="#volatile关键字语义" class="headerlink" title="volatile关键字语义"></a>volatile关键字语义</h4><p>被volatile修饰的实例变量或类变量具备两层语义：</p><ol><li>保证不同线程之间对共享变量操作时的可见性，也就是说当一个线程修改<strong>volatile</strong>修饰变量，另外一个线程立即可看到新的值。</li><li>禁止对指令进行重排序操作。</li></ol><h4 id="volatile的原理和实现机制"><a href="#volatile的原理和实现机制" class="headerlink" title="volatile的原理和实现机制"></a>volatile的原理和实现机制</h4><p>volatile关键字可以保证可见性以及顺序性，是如何做到的？</p><p>观察OpenJDK源码就知道，被volatile修饰的变量存在于一个”lock;”前缀</p><p>“lock;”前缀实际上相当于一个内存屏障，该屏障会为指令提供几个保障：</p><ul><li>确保指令重排序时不会将后面的代码排到内存屏障之前</li><li>确保指令重排序时不会将其前面的代码排到内存屏障之后</li><li>确保在执行到内存屏障修饰的指令时前面的代码全部执行完成</li><li>强制在线程工作内存中值的修改刷新至主内存中</li><li>如果是写操作，则会导致其他线程工作内存中的缓存数据失效</li></ul><h4 id="volatile和synchronized的区别"><a href="#volatile和synchronized的区别" class="headerlink" title="volatile和synchronized的区别"></a>volatile和synchronized的区别</h4><ul><li><p><strong>使用上的区别</strong></p><ul><li>volatile关键字只能用于修饰实例变量和类变量，不能用于修饰方法以及方法参数和局部变量，常量等</li><li>synchronized关键字不能用于对变量的修饰，只能用于修饰方法或语句块</li><li>volatile修饰的变量可以为null，synchronized关键字同步语句块的monitor对象不能为null</li></ul></li><li><p><strong>对原子的保证</strong></p><ul><li><p>volatile无法保证原子性</p></li><li><p>由于synchronized是一种排他机制，因此被synchronized关键字修饰的同步代码块是无法被中途打断，因此其能够保证代码的原子性</p></li></ul></li><li><p>对可见性的保证</p><ul><li>俩者均可以保证共享资源在多线程间的可见性，但是实现机制完全不同</li><li>synchronized借助JVM指令monitorentry和monitorexit对通过排他的方式使得同步代码块串行化，在monitorexit时所有共享资源都将会被刷新到主内存中。</li><li>volatile使用机器指令“lock;”的方式迫使其他线程工作内存中的数据失效，必须到主内存中进行再次加载。</li></ul></li><li><p>对有序性的保证</p><ul><li>volatile关键字禁止JVM编译器以及处理器对其进行重排序，所以它能够保证有序性</li><li>虽然synchronized关键字所修改的同步方法也可以保证顺序性，但是这种顺序性是以程序的串行化执行换来的，在synchronized关键字所修改的代码块中代码指令也会发生指令重排序的情况</li></ul></li><li><p>其他</p><ul><li>volatile不会使线程陷入阻塞</li><li>synchronized关键字会使线程进入阻塞状态</li></ul></li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;并发编程的三个重要特性&quot;&gt;&lt;a href=&quot;#并发编程的三个重要特性&quot; class=&quot;headerlink&quot; title=&quot;并发编程的三个重要特性&quot;&gt;&lt;/a&gt;并发编程的三个重要特性&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;原子性&lt;/p&gt;
-&lt;p&gt;原子性指在一次的操作或多次的
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="java并发编程" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java并发之上下文切换</title>
-    <link href="http://yoursite.com/2018/04/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%801/"/>
-    <id>http://yoursite.com/2018/04/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%801/</id>
-    <published>2018-04-06T10:39:51.000Z</published>
-    <updated>2020-04-23T08:00:56.206Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="何为上下文切换"><a href="#何为上下文切换" class="headerlink" title="何为上下文切换"></a>何为上下文切换</h4><ul><li>CPU通过时间片分配算法来循环执行任务，当前任务执行一个任务时间片后会切换到下一个任务，但是在切换之前将保存上一个任务的状态，以便下次切换回这个任务时，可以在再加载这个任务的状态，所以任务从保存再到加载的过程就是一次上下文切换。上下文切换也会影响多线程的执行速度</li></ul><p>下面看一段代码：</p><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ConcurrencyTest &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span>  <span class="keyword">long</span> <span class="keyword">count</span> = <span class="number">10000000000</span>L;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        concurrency();</span><br><span class="line">        serial();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> concurrency() <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">                    a +=<span class="number">5</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        <span class="keyword">int</span> b= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis()-start;</span><br><span class="line">        thread.<span class="keyword">join</span>();</span><br><span class="line">        System.out.<span class="keyword">println</span>(<span class="string">"concurrency:"</span>+time+<span class="string">"ms,b = "</span>+b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> serial()&#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            a+=<span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++)&#123;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis()-start;</span><br><span class="line">        System.out.<span class="keyword">println</span>(<span class="string">"serial:"</span>+time+<span class="string">"ms,b= "</span>+b+<span class="string">" a= "</span>+a);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>上面的代码是比较串行与并发时的执行效果；</p><p>在测试中可以看到数据量在10万以下，并发的执行速度比串行的执行速度慢；在测试中可以看到数据量在100万以上时，并发的执行速度比串行的执行速度快约2倍。上面的结果是因为线程有创建和上下文切换的开销。</p><h4 id="如何减少上下文切换"><a href="#如何减少上下文切换" class="headerlink" title="如何减少上下文切换"></a>如何减少上下文切换</h4><p>减少上下文切换的方法有四种：</p><ul><li>无锁并发编程：多线程竞争锁时，会引发上下文切换，所以多线程处理数据时，可以使用例如将数据ID按照Hash算法取模分段，不同的线程处理不同段的数据</li><li>CAS算法：Java的Atomic包使用CAS算法来更新数据，而不需加锁</li><li>使用最少线程：避免创建不需要的线程</li><li>协程：在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。</li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;何为上下文切换&quot;&gt;&lt;a href=&quot;#何为上下文切换&quot; class=&quot;headerlink&quot; title=&quot;何为上下文切换&quot;&gt;&lt;/a&gt;何为上下文切换&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;CPU通过时间片分配算法来循环执行任务，当前任务执行一个任务时间片后会切换到下一个任务，
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="java并发编程" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   

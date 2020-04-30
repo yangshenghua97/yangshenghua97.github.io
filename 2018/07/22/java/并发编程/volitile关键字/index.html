@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Java多线程基础volatile关键字 | 楊さんノート</title>
+    <title>Java并发基础volatile关键字 | 楊さんノート</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="杨生华">
@@ -13,7 +13,7 @@
     
     <meta name="description" content="并发编程的三个重要特性 原子性 原子性指在一次的操作或多次的操作中，要么所有操作全部执行且不会受到任何因素的干扰而中断，要么所有操作全部不执行  可见性 当一个线程对共享变量进行修改，另外的线程可以立刻看到修改后的新值。  有序性 有序性是指程序代码在被执行过程中的先后顺序。Java编译器以及运行期的优化，导致代码的执行顺序未必就是在编写代码时的顺序。   关于volatile下面有必要说一下内存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java多线程基础volatile关键字">
+<meta property="og:title" content="Java并发基础volatile关键字">
 <meta property="og:url" content="http://yoursite.com/2018/07/22/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volitile%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
 <meta property="og:site_name" content="楊さんノート">
 <meta property="og:description" content="并发编程的三个重要特性 原子性 原子性指在一次的操作或多次的操作中，要么所有操作全部执行且不会受到任何因素的干扰而中断，要么所有操作全部不执行  可见性 当一个线程对共享变量进行修改，另外的线程可以立刻看到修改后的新值。  有序性 有序性是指程序代码在被执行过程中的先后顺序。Java编译器以及运行期的优化，导致代码的执行顺序未必就是在编写代码时的顺序。   关于volatile下面有必要说一下内存">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/CPUCacheconsistency.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/JMM.png">
 <meta property="article:published_time" content="2018-07-22T11:16:24.000Z">
-<meta property="article:modified_time" content="2020-04-25T06:20:04.005Z">
+<meta property="article:modified_time" content="2020-04-29T12:10:58.931Z">
 <meta property="article:author" content="杨生华">
 <meta property="article:tag" content="java并发编程">
 <meta name="twitter:card" content="summary">
@@ -92,7 +92,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/07/22/java/并发编程/volitile关键字/" title="Java多线程基础volatile关键字" itemprop="url">Java多线程基础volatile关键字</a>
+      <a href="/2018/07/22/java/并发编程/volitile关键字/" title="Java并发基础volatile关键字" itemprop="url">Java并发基础volatile关键字</a>
   </h1>
   <p class="article-author">By
        
@@ -204,6 +204,11 @@
 </ol>
 <h4 id="volatile的原理和实现机制"><a href="#volatile的原理和实现机制" class="headerlink" title="volatile的原理和实现机制"></a>volatile的原理和实现机制</h4><p>volatile关键字可以保证可见性以及顺序性，是如何做到的？</p>
 <p>观察OpenJDK源码就知道，被volatile修饰的变量存在于一个”lock;”前缀</p>
+<p><strong>Lock前缀指令在多核处理器下会引发两件事</strong></p>
+<ul>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>写回内存操作会使在其他CPU里缓存了该内存地址的数据无效</li>
+</ul>
 <p>“lock;”前缀实际上相当于一个内存屏障，该屏障会为指令提供几个保障：</p>
 <ul>
 <li>确保指令重排序时不会将后面的代码排到内存屏障之前</li>
@@ -228,20 +233,20 @@
 </li>
 </ul>
 </li>
-<li><p>对可见性的保证</p>
+<li><p><strong>对可见性的保证</strong></p>
 <ul>
 <li>俩者均可以保证共享资源在多线程间的可见性，但是实现机制完全不同</li>
 <li>synchronized借助JVM指令monitorentry和monitorexit对通过排他的方式使得同步代码块串行化，在monitorexit时所有共享资源都将会被刷新到主内存中。</li>
 <li>volatile使用机器指令“lock;”的方式迫使其他线程工作内存中的数据失效，必须到主内存中进行再次加载。</li>
 </ul>
 </li>
-<li><p>对有序性的保证</p>
+<li><p><strong>对有序性的保证</strong></p>
 <ul>
 <li>volatile关键字禁止JVM编译器以及处理器对其进行重排序，所以它能够保证有序性</li>
 <li>虽然synchronized关键字所修改的同步方法也可以保证顺序性，但是这种顺序性是以程序的串行化执行换来的，在synchronized关键字所修改的代码块中代码指令也会发生指令重排序的情况</li>
 </ul>
 </li>
-<li><p>其他</p>
+<li><p><strong>其他</strong></p>
 <ul>
 <li>volatile不会使线程陷入阻塞</li>
 <li>synchronized关键字会使线程进入阻塞状态</li>
@@ -350,7 +355,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>5</sup></a></li>
 		  
 		
 		  
@@ -362,7 +367,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 		  
 		
 		  
@@ -391,7 +396,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
 			
 		
 			
@@ -399,11 +412,11 @@
 			
 		
 			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>2</sup></a></li>
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
 			
 		
 			
@@ -415,6 +428,22 @@
 			
 		
 			
+				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
@@ -423,15 +452,19 @@
 			
 		
 			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
 			
 		
 		</ul>
