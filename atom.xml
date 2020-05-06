@@ -303,7 +303,7 @@
     <link href="http://yoursite.com/2019/05/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/"/>
     <id>http://yoursite.com/2019/05/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/</id>
     <published>2019-05-06T09:02:12.000Z</published>
-    <updated>2020-05-06T10:11:44.235Z</updated>
+    <updated>2020-05-06T10:14:13.307Z</updated>
     
     <content type="html"><![CDATA[<p>在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了<strong>ConcurrentHashMap</strong>。</p><p>ConcurrentHashMap利用锁的分断技术可有效提升并发访问率，在容器里有多把锁，每一把锁用于锁容器其中一部分数据，当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提升并发访问效率。</p><h3 id="ConcurrentHashMap的结构"><a href="#ConcurrentHashMap的结构" class="headerlink" title="ConcurrentHashMap的结构"></a>ConcurrentHashMap的结构</h3><p>ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。Segment是一种可重入锁；HashEntry用于存储键值对数据，一个ConcurrentHashMap包含一个Segment数组。Segment数组的结构和HashMap类似，是一种数组和链表结构，一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须先获得与它对应的Segment锁。</p><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/ConcurrentHashMap.png" alt=""></p><h3 id="ConcurrentHashMap初始化"><a href="#ConcurrentHashMap初始化" class="headerlink" title="ConcurrentHashMap初始化"></a>ConcurrentHashMap初始化</h3><h4 id="初始化Segment数组"><a href="#初始化Segment数组" class="headerlink" title="初始化Segment数组"></a>初始化Segment数组</h4>]]></content>
     
