@@ -1898,19 +1898,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Tags</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Categories</title>
     <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>guestbook</title>
-    <url>/guestbook/index.html</url>
-    <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
   </entry>
   <entry>
     <title>小杨的简介</title>
@@ -1985,5 +1975,15 @@
 <h1 id="学校经历"><a href="#学校经历" class="headerlink" title="学校经历"></a><strong>学校经历</strong></h1><p>2018.04-2018.09<br><strong>担任学生会网络部，主要工作是运营学院微信公众号以及组织学院活动；</strong></p>
 <p>2018.06-2018.07<br><strong>参加学校互联网+创新创业大赛获得校级团队二等奖；</strong></p>
 <h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"><a href="#目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作" class="headerlink" title="  目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"></a>  <strong>目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作</strong></h2>]]></content>
+  </entry>
+  <entry>
+    <title>Tags</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>guestbook</title>
+    <url>/guestbook/index.html</url>
+    <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
   </entry>
 </search>
