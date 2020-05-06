@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>大数据各组件安装</title>
-    <url>/2020/04/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <url>/2020/04/30/bigdata/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 </blockquote>
 ]]></content>
@@ -44,7 +44,7 @@
   </entry>
   <entry>
     <title>Hadoop基础知识</title>
-    <url>/2020/04/01/BigData/</url>
+    <url>/2020/04/01/bigdata/BigData/</url>
     <content><![CDATA[<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><ul>
 <li>MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题</li>
 </ul>
@@ -376,6 +376,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Java并发容器和框架</title>
+    <url>/2019/05/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<p>在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了<strong>ConcurrentHashMap</strong>。</p>
+<p>ConcurrentHashMap利用锁的分断技术可有效提升并发访问率，在容器里有多把锁，每一把锁用于锁容器其中一部分数据，当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提升并发访问效率。</p>
+<h3 id="ConcurrentHashMap的结构"><a href="#ConcurrentHashMap的结构" class="headerlink" title="ConcurrentHashMap的结构"></a>ConcurrentHashMap的结构</h3><p>ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。Segment是一种可重入锁；HashEntry用于存储键值对数据，一个ConcurrentHashMap包含一个Segment数组。Segment数组的结构和HashMap类似，是一种数组和链表结构，一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须先获得与它对应的Segment锁。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/ConcurrentHashMap.png" alt=""></p>
+<h3 id="ConcurrentHashMap初始化"><a href="#ConcurrentHashMap初始化" class="headerlink" title="ConcurrentHashMap初始化"></a>ConcurrentHashMap初始化</h3><h4 id="初始化Segment数组"><a href="#初始化Segment数组" class="headerlink" title="初始化Segment数组"></a>初始化Segment数组</h4>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>java并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java并发基础Java中的锁</title>
     <url>/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java%E4%B8%AD%E7%9A%84%E9%94%81/</url>
     <content><![CDATA[<p>锁是用来控制多个线程访问共享资源的方式，一个锁能够防止多个线程同时访问共享资源。</p>
@@ -401,6 +416,15 @@
 <p>读写锁同样依赖自定义同步器来实现同步功能，而读写状态就是其同步器的同步状态。读写锁的自定义同步器需要在同步同步状态上维护多个读线程和一个写线程的状态，状态的设计成为读写锁实现的关键。</p>
 <p>如果在一个整型变量上维护多种状态，就一定需要“按位切割使用”这个变量，读写锁将变量切分成两个部分，高16为表示读，低16位表示写</p>
 <p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/ReadAndWriterStatu.png" alt=""></p>
+</li>
+<li><p>写锁的获取与释放</p>
+<p>写锁是一个支持重进入的排它锁，如果当前线程已经获取了写锁，则增加写状态。如果当前线程在获取写锁时，读锁已经被获取或者该线程不是已经获取写锁的线程，则当前线程进入等待状态。写锁的释放与ReentrantLock的释放过程基本相似，每次释放均减少写状态，当写状态为0时表示写锁已经被释放，从而等待读写线程能够继续访问读写锁，同时前次的写线程的修改对后续读写线程可见。</p>
+</li>
+<li><p>读锁的获取与释放</p>
+<p>读锁是一个支持重进入的共享锁，能够被多个线程同时获取，在没有其他的写线程访问时，读锁总会被成功的获取，而所做的只是增加读状态，如果当前线程已经获取了读锁，则增加读状。如果当前线程在获取读锁时，写锁已被其他线程获取，则进入等待状态。</p>
+</li>
+<li><p>锁降级</p>
+<p>锁降级指的是<strong>写锁降级为读锁</strong>。如果当前线程拥有写锁，然后将其释放，最后在获取读锁，这种分段完成的过程不能称为锁降级。锁降级是指把持住写锁，再获取到读锁，随后释放写锁的过程。锁降级中读锁释放主要是为了保证数据的可见性。</p>
 </li>
 </ul>
 <h3 id="队列同步器"><a href="#队列同步器" class="headerlink" title="队列同步器"></a>队列同步器</h3><p>队列同步器<strong><code>AbstractQueuedSynchronizer</code></strong>，是用来构建锁或者其他同步组件的基本框架，使用一个<strong>int</strong>成员变量表示同步状态，通过内置FIFO队列来完成资源的获取线程的排队工作。</p>
@@ -1874,9 +1898,19 @@
       </tags>
   </entry>
   <entry>
+    <title>Tags</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Categories</title>
     <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>guestbook</title>
+    <url>/guestbook/index.html</url>
+    <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
   </entry>
   <entry>
     <title>小杨的简介</title>
@@ -1951,15 +1985,5 @@
 <h1 id="学校经历"><a href="#学校经历" class="headerlink" title="学校经历"></a><strong>学校经历</strong></h1><p>2018.04-2018.09<br><strong>担任学生会网络部，主要工作是运营学院微信公众号以及组织学院活动；</strong></p>
 <p>2018.06-2018.07<br><strong>参加学校互联网+创新创业大赛获得校级团队二等奖；</strong></p>
 <h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"><a href="#目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作" class="headerlink" title="  目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"></a>  <strong>目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作</strong></h2>]]></content>
-  </entry>
-  <entry>
-    <title>guestbook</title>
-    <url>/guestbook/index.html</url>
-    <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
-  </entry>
-  <entry>
-    <title>Tags</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

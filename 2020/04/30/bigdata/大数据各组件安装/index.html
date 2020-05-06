@@ -4,28 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hadoop基础知识 | 楊さんノート</title>
+    <title>大数据各组件安装 | 楊さんノート</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="杨生华">
     
 
     
-    <meta name="description" content="MapReduce MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题  关于MapReduce的两个重要进程 JobTracker：主进程，负责接收客户作业提交 TaskTracker：由JobTracker指派任务  MapReduce执行流程文件要存储在HDFS上，每个文件切换成多个一定大小的文件块，存储在多个节点上 MapRe">
+    <meta name="description" content="参考资料">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop基础知识">
-<meta property="og:url" content="http://yoursite.com/2020/04/01/BigData/index.html">
+<meta property="og:title" content="大数据各组件安装">
+<meta property="og:url" content="http://yoursite.com/2020/04/30/bigdata/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="楊さんノート">
-<meta property="og:description" content="MapReduce MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题  关于MapReduce的两个重要进程 JobTracker：主进程，负责接收客户作业提交 TaskTracker：由JobTracker指派任务  MapReduce执行流程文件要存储在HDFS上，每个文件切换成多个一定大小的文件块，存储在多个节点上 MapRe">
+<meta property="og:description" content="参考资料">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/HDFS2.0.png">
-<meta property="article:published_time" content="2020-04-01T15:46:11.000Z">
-<meta property="article:modified_time" content="2020-04-23T05:12:10.698Z">
+<meta property="article:published_time" content="2020-04-30T10:44:31.000Z">
+<meta property="article:modified_time" content="2020-04-30T11:05:54.716Z">
 <meta property="article:author" content="杨生华">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="hive">
+<meta property="article:tag" content="spark">
+<meta property="article:tag" content="zookeeper">
+<meta property="article:tag" content="hbase">
+<meta property="article:tag" content="flink">
+<meta property="article:tag" content="kafka">
+<meta property="article:tag" content="flume">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/HDFS2.0.png">
 
     
     
@@ -90,34 +96,20 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/04/01/BigData/" title="Hadoop基础知识" itemprop="url">Hadoop基础知识</a>
+      <a href="/2020/04/30/bigdata/大数据各组件安装/" title="大数据各组件安装" itemprop="url">大数据各组件安装</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
 		
   <p class="article-time">
-    <time datetime="2020-04-01T15:46:11.000Z" itemprop="datePublished"> 发表于 2020-04-01</time>
+    <time datetime="2020-04-30T10:44:31.000Z" itemprop="datePublished"> 发表于 2020-04-30</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><ul>
-<li>MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题</li>
-</ul>
-<h3 id="关于MapReduce的两个重要进程"><a href="#关于MapReduce的两个重要进程" class="headerlink" title="关于MapReduce的两个重要进程"></a>关于MapReduce的两个重要进程</h3><ul>
-<li>JobTracker：主进程，负责接收客户作业提交</li>
-<li>TaskTracker：由JobTracker指派任务</li>
-</ul>
-<h3 id="MapReduce执行流程"><a href="#MapReduce执行流程" class="headerlink" title="MapReduce执行流程"></a>MapReduce执行流程</h3><p>文件要存储在HDFS上，每个文件切换成多个一定大小的文件块，存储在多个节点上</p>
-<h3 id="MapReduce的核心思想：分而治之"><a href="#MapReduce的核心思想：分而治之" class="headerlink" title="MapReduce的核心思想：分而治之"></a>MapReduce的核心思想：分而治之</h3><ul>
-<li>分解</li>
-<li>求解</li>
-<li>合并</li>
-</ul>
-<h2 id="Hadoop-2-0"><a href="#Hadoop-2-0" class="headerlink" title="Hadoop 2.0"></a>Hadoop 2.0</h2><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/HDFS2.0.png" alt=""></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+		<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 </blockquote>
   
 	</div>
@@ -132,7 +124,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/大数据/">大数据</a><a href="/tags/hadoop/">hadoop</a>
+  <span></span> <a href="/tags/大数据/">大数据</a><a href="/tags/hadoop/">hadoop</a><a href="/tags/mysql/">mysql</a><a href="/tags/hive/">hive</a><a href="/tags/spark/">spark</a><a href="/tags/zookeeper/">zookeeper</a><a href="/tags/hbase/">hbase</a><a href="/tags/flink/">flink</a><a href="/tags/kafka/">kafka</a><a href="/tags/flume/">flume</a>
   </div>
 
 </div>
@@ -176,19 +168,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/04/25/java/并发编程/Java并发编程之Synchronized/" title="Java并发编程之Synchronized">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Java并发编程之Synchronized</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/03/13/计算机基础/计算机网络/TTCP-IP协议/"  title="TCP/IP协议">
+<a href="/2020/04/25/java/并发编程/Java并发编程之Synchronized/"  title="Java并发编程之Synchronized">
  <strong>下一篇：</strong><br/> 
- <span>TCP/IP协议
+ <span>Java并发编程之Synchronized
 </span>
 </a>
 </div>
@@ -205,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce"><span class="toc-number">1.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于MapReduce的两个重要进程"><span class="toc-number">1.1.</span> <span class="toc-text">关于MapReduce的两个重要进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce执行流程"><span class="toc-number">1.2.</span> <span class="toc-text">MapReduce执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce的核心思想：分而治之"><span class="toc-number">1.3.</span> <span class="toc-text">MapReduce的核心思想：分而治之</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop-2-0"><span class="toc-number">2.</span> <span class="toc-text">Hadoop 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li></ol>
  
   </div>
 
@@ -219,7 +203,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>5</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
 		  
 		
 		  
@@ -264,7 +248,7 @@
 			
 		
 			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>5</sup></a></li>
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>6</sup></a></li>
 			
 		
 			
@@ -276,11 +260,11 @@
 			
 		
 			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 			
 		
 			
@@ -292,7 +276,7 @@
 			
 		
 			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
 			
 		
 			
@@ -300,11 +284,11 @@
 			
 		
 			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
+				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
 			
 		
 			
@@ -316,6 +300,10 @@
 			
 		
 			
+				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
@@ -324,11 +312,7 @@
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
+				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
 			
 		
 		</ul>
