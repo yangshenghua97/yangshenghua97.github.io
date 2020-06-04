@@ -81,6 +81,56 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2020/05/16/AQS同步器/" title="队列同步器-AQS" itemprop="url">
+  
+    <h1 itemprop="name">队列同步器-AQS</h1>
+    
+     
+           <p itemprop="description" >什么是队列同步器队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。
+同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。
+锁和同步器两者的关系：锁是面向使用者，定义了使用者与</p>
+        
+    
+    <time datetime="2020-05-16T05:03:22.000Z" itemprop="datePublished">2020-05-16</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2020/05/04/Java中的线程池/" title="Java中的线程池" itemprop="url">
+  
+    <h1 itemprop="name">Java中的线程池</h1>
+    
+     
+           <p itemprop="description" >合理使用线程池的好处
+降低资源消耗
+通过重复利用已创建的线程降低线程创建和的销毁造成的消耗
+
+提高响应速度
+当任务到达时，任务可以不需要等到线程创建就能立即执行
+
+提高线程的可管理性
+线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一</p>
+        
+    
+    <time datetime="2020-05-04T06:29:41.000Z" itemprop="datePublished">2020-05-04</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2020/04/30/bigdata/大数据各组件安装/" title="大数据各组件安装" itemprop="url">
   
     <h1 itemprop="name">大数据各组件安装</h1>
@@ -126,17 +176,16 @@ Synchronized实现原理：JVM基于进入和退</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/04/01/bigdata/BigData/" title="Hadoop基础知识" itemprop="url">
+    <a href="/2020/04/01/bigdata/BigData/" title="MapReduce基础" itemprop="url">
   
-    <h1 itemprop="name">Hadoop基础知识</h1>
+    <h1 itemprop="name">MapReduce基础</h1>
     
      
            <p itemprop="description" >MapReduce
-MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题
+MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题，MapReduce利用分治思想，解决数据可以切割进行计算的应用
 
 关于MapReduce的两个重要进程
-JobTracker：主进程，负责接收客户作业提交
-TaskTracker：由JobTracker指派任</p>
+JobTracker：主进程，负责接收客</p>
         
     
     <time datetime="2020-04-01T15:46:11.000Z" itemprop="datePublished">2020-04-01</time>
@@ -259,53 +308,6 @@ TaskTracker：由JobTracker指派任</p>
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/02/15/git/Git提交/" title="Git提交" itemprop="url">
-  
-    <h1 itemprop="name">Git提交</h1>
-    
-     
-           <p itemprop="description" >吧啦吧啦乱七八遭的东西在Git中，提交（commit）是用来记录版本库的变更的。当提交时，Git记录索引的快照并把快照放进对象库（简单的介绍）。提交的快照是串联在一起的，每张新的快照指向它的先驱。随着时间的推移，一系列的变更就表示一系列的提交。
-Git提供一种机制来确定相对于另一</p>
-        
-    
-    <time datetime="2020-02-15T08:54:50.000Z" itemprop="datePublished">2020-02-15</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/02/12/git/关于Git文件管理/" title="关于Git文件管理" itemprop="url">
-  
-    <h1 itemprop="name">关于Git文件管理</h1>
-    
-     
-           <p itemprop="description" >git中的文件分类​    Git将所有文件分为3类：已追踪的、被忽略的以及未追踪的
-
-已追踪的
-已追踪的文件是指已经在版本库中的文件，或者是已暂存到索引中的文件。如果想将新文件newfile添加到已追踪的文件，执行 git add newfile即可
-
-被忽略的
-被忽略的文件必</p>
-        
-    
-    <time datetime="2020-02-12T11:25:36.000Z" itemprop="datePublished">2020-02-12</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
@@ -324,7 +326,7 @@ Git提供一种机制来确定相对于另一</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>8</sup></a></li>
 		  
 		
 		  
@@ -365,15 +367,11 @@ Git提供一种机制来确定相对于另一</p>
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>8</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
 			
 		
 			
@@ -381,11 +379,15 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
 			
 		
 			
@@ -397,7 +399,7 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
@@ -405,11 +407,15 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
+				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
 			
 		
 			
@@ -421,19 +427,15 @@ Git提供一种机制来确定相对于另一</p>
 			
 		
 			
+				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
 			
 		
 		</ul>

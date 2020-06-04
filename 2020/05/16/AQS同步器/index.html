@@ -4,27 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Java并发容器和框架 | 楊さんノート</title>
+    <title>队列同步器-AQS | 楊さんノート</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="杨生华">
     
 
     
-    <meta name="description" content="在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了ConcurrentHashMap。 ConcurrentHashMap利用锁的分断技术可有效提升并发访问率，在容器里有多把锁，每一把锁用于锁容器其中一部分数据，当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提升并发访问效率。 ConcurrentHashMap的">
+    <meta name="description" content="什么是队列同步器队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。 同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。 锁和同步器两者的关系：锁是面向使用者，定义了使用者与锁交互的接口，隐藏实现细节；而同步器面向的是锁的实现者，简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发容器和框架">
-<meta property="og:url" content="http://yoursite.com/2019/05/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:title" content="队列同步器-AQS">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/index.html">
 <meta property="og:site_name" content="楊さんノート">
-<meta property="og:description" content="在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了ConcurrentHashMap。 ConcurrentHashMap利用锁的分断技术可有效提升并发访问率，在容器里有多把锁，每一把锁用于锁容器其中一部分数据，当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提升并发访问效率。 ConcurrentHashMap的">
+<meta property="og:description" content="什么是队列同步器队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。 同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。 锁和同步器两者的关系：锁是面向使用者，定义了使用者与锁交互的接口，隐藏实现细节；而同步器面向的是锁的实现者，简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/ConcurrentHashMap.png">
-<meta property="article:published_time" content="2019-05-06T09:02:12.000Z">
-<meta property="article:modified_time" content="2020-05-06T10:14:13.307Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/AQSLinked.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/AQSLinkedCASAddtail.png">
+<meta property="article:published_time" content="2020-05-16T05:03:22.000Z">
+<meta property="article:modified_time" content="2020-06-04T05:57:00.150Z">
 <meta property="article:author" content="杨生华">
 <meta property="article:tag" content="java并发编程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/ConcurrentHashMap.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/AQSLinked.png">
 
     
     
@@ -89,24 +90,66 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/05/06/java/并发编程/Java并发容器和框架/" title="Java并发容器和框架" itemprop="url">Java并发容器和框架</a>
+      <a href="/2020/05/16/AQS同步器/" title="队列同步器-AQS" itemprop="url">队列同步器-AQS</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
 		
   <p class="article-time">
-    <time datetime="2019-05-06T09:02:12.000Z" itemprop="datePublished"> 发表于 2019-05-06</time>
+    <time datetime="2020-05-16T05:03:22.000Z" itemprop="datePublished"> 发表于 2020-05-16</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<p>在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了<strong>ConcurrentHashMap</strong>。</p>
-<p>ConcurrentHashMap利用锁的分断技术可有效提升并发访问率，在容器里有多把锁，每一把锁用于锁容器其中一部分数据，当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效提升并发访问效率。</p>
-<h3 id="ConcurrentHashMap的结构"><a href="#ConcurrentHashMap的结构" class="headerlink" title="ConcurrentHashMap的结构"></a>ConcurrentHashMap的结构</h3><p>ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。Segment是一种可重入锁；HashEntry用于存储键值对数据，一个ConcurrentHashMap包含一个Segment数组。Segment数组的结构和HashMap类似，是一种数组和链表结构，一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须先获得与它对应的Segment锁。</p>
-<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/ConcurrentHashMap.png" alt=""></p>
-<h3 id="ConcurrentHashMap初始化"><a href="#ConcurrentHashMap初始化" class="headerlink" title="ConcurrentHashMap初始化"></a>ConcurrentHashMap初始化</h3><h4 id="初始化Segment数组"><a href="#初始化Segment数组" class="headerlink" title="初始化Segment数组"></a>初始化Segment数组</h4>  
+		<h2 id="什么是队列同步器"><a href="#什么是队列同步器" class="headerlink" title="什么是队列同步器"></a>什么是队列同步器</h2><p>队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。</p>
+<p>同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。</p>
+<p><strong>锁和同步器两者的关系：锁是面向使用者，定义了使用者与锁交互的接口，隐藏实现细节；而同步器面向的是锁的实现者，简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。</strong></p>
+<p>AQS的主要使用方式是继承，子类通过继承同步器并实现它的抽象方法来管理同步状态，在抽象方法的实现过程中需要对同步状态进行更新，因此就需要使用同步器提供的3个方法来保证状态的改变是安全的。</p>
+<h2 id="队列同步器的实现"><a href="#队列同步器的实现" class="headerlink" title="队列同步器的实现"></a>队列同步器的实现</h2><h3 id="同步队列"><a href="#同步队列" class="headerlink" title="同步队列"></a>同步队列</h3><p>同步队列依赖内部的同步队列完成同步状态的管理，当前线程获得同步状态失败时，同步器会将当前线程以及等待状态等信息构成一个节点将其加入到同步队列中，同时会阻塞当前线程，当同步状态释放时，会将首节点的线程唤醒，使其再次尝试获取同步状态。同步队列中的节点用来保存获取同步状态失败的线程引用、等待状态以及前驱后继节点。</p>
+<table>
+<thead>
+<tr>
+<th>属性类型与名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int waitStatus</td>
+<td>等待状态</td>
+</tr>
+<tr>
+<td>Node prev</td>
+<td>前驱节点</td>
+</tr>
+<tr>
+<td>Node next</td>
+<td>后继节点</td>
+</tr>
+<tr>
+<td>Node nextWaiter</td>
+<td>等待队列中的后继节点</td>
+</tr>
+<tr>
+<td>Thread thread</td>
+<td>获取同步状态的线程</td>
+</tr>
+</tbody></table>
+<p>上面的<strong><code>waitStatus</code></strong>变量中有这么几个状态，</p>
+<ul>
+<li>CANCELED</li>
+<li>SIGNAL</li>
+<li>CONDITION</li>
+<li>PROPAGATE</li>
+<li>INITIAL</li>
+</ul>
+<p>同步队列的基本结构如下</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/AQSLinked.png" alt=""></p>
+<p>同步器提供一个基于CAS的设置尾节点的方法（compareAndSetStatus），通过CAS设置尾节点；</p>
+<p>如下图：</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/AQSLinkedCASAddtail.png" alt=""></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -163,19 +206,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/02/12/git/关于Git文件管理/" title="关于Git文件管理">
-  <strong>上一篇：</strong><br/>
-  <span>
-  关于Git文件管理</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/04/30/java/并发编程/Java并发基础Java中的锁/"  title="Java并发基础Java中的锁">
+<a href="/2020/05/04/Java中的线程池/"  title="Java中的线程池">
  <strong>下一篇：</strong><br/> 
- <span>Java并发基础Java中的锁
+ <span>Java中的线程池
 </span>
 </a>
 </div>
@@ -192,7 +227,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap的结构"><span class="toc-number">1.</span> <span class="toc-text">ConcurrentHashMap的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap初始化"><span class="toc-number">2.</span> <span class="toc-text">ConcurrentHashMap初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化Segment数组"><span class="toc-number">2.1.</span> <span class="toc-text">初始化Segment数组</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是队列同步器"><span class="toc-number">1.</span> <span class="toc-text">什么是队列同步器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列同步器的实现"><span class="toc-number">2.</span> <span class="toc-text">队列同步器的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步队列"><span class="toc-number">2.1.</span> <span class="toc-text">同步队列</span></a></li></ol></li></ol>
  
   </div>
 
@@ -206,7 +241,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>8</sup></a></li>
 		  
 		
 		  
@@ -247,15 +282,11 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>8</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
 			
 		
 			
@@ -263,11 +294,15 @@
 			
 		
 			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
 			
 		
 			
@@ -279,7 +314,7 @@
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
@@ -287,11 +322,15 @@
 			
 		
 			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
+				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
 			
 		
 			
@@ -303,19 +342,15 @@
 			
 		
 			
+				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
 			
 		
 		</ul>

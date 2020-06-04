@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2019/05/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/</loc>
+    <loc>http://yoursite.com/2020/05/04/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
     
-    <lastmod>2020-05-06T10:14:13.307Z</lastmod>
+    <lastmod>2020-06-04T12:53:06.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java%E4%B8%AD%E7%9A%84%E9%94%81/</loc>
+    
+    <lastmod>2020-06-04T06:03:26.423Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/16/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/</loc>
+    
+    <lastmod>2020-06-04T05:57:00.150Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/01/bigdata/BigData/</loc>
+    
+    <lastmod>2020-05-12T02:19:39.787Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/03/27/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/SQL%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2020-05-11T08:49:10.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/04/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%801/</loc>
+    
+    <lastmod>2020-05-11T07:20:26.025Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/25/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6/</loc>
+    
+    <lastmod>2020-05-09T08:53:21.771Z</lastmod>
     
   </url>
   
@@ -12,13 +54,6 @@
     <loc>http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java/</loc>
     
     <lastmod>2020-05-06T09:01:30.973Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/30/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80Java%E4%B8%AD%E7%9A%84%E9%94%81/</loc>
-    
-    <lastmod>2020-05-06T08:58:29.493Z</lastmod>
     
   </url>
   
@@ -51,20 +86,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/04/06/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%801/</loc>
-    
-    <lastmod>2020-04-23T08:00:56.206Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/01/bigdata/BigData/</loc>
-    
-    <lastmod>2020-04-23T05:12:10.698Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2019/04/05/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/SQL%E5%9F%BA%E7%A1%802/</loc>
     
     <lastmod>2020-04-09T13:52:30.812Z</lastmod>
@@ -75,13 +96,6 @@
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-04-08T13:03:17.937Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/03/27/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/SQL%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2020-04-05T10:12:02.303Z</lastmod>
     
   </url>
   
