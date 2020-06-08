@@ -1,0 +1,577 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Executor框架 | 楊さんノート</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="杨生华">
+    
+
+    
+    <meta name="description" content="Executor框架两级调度 Java线程启动时会创建一个本地操作系统线程，当该Java线程终止时，这个操作系统线程也会被回收。操作系统会调度所有线程并将它们分配给可用CPU。 在上面的调度模型中： 在上层，Java多线程程序通常把应用分解为若干任务，然后使用用户级的调度器将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。 Executor框架结构Executor框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Executor框架">
+<meta property="og:url" content="http://yoursite.com/2020/06/05/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Executor%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="楊さんノート">
+<meta property="og:description" content="Executor框架两级调度 Java线程启动时会创建一个本地操作系统线程，当该Java线程终止时，这个操作系统线程也会被回收。操作系统会调度所有线程并将它们分配给可用CPU。 在上面的调度模型中： 在上层，Java多线程程序通常把应用分解为若干任务，然后使用用户级的调度器将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。 Executor框架结构Executor框">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/Executor%E6%A1%86%E6%9E%B6%E7%9A%84Class%E4%B8%8Einterface.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/SingleThradPoolExecutor.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/FixedThreadPool.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%9D%A8%5CDesktop%5C%E8%AF%BB%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5CCachedThreadPool.png">
+<meta property="article:published_time" content="2020-06-05T06:13:11.000Z">
+<meta property="article:modified_time" content="2020-06-06T10:05:32.139Z">
+<meta property="article:author" content="杨生华">
+<meta property="article:tag" content="java并发编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6.png">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="楊さんノート" type="application/atom+xml">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/59303310.png" alt="楊さんノート" title="楊さんノート"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="楊さんノート">楊さんノート</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/tags">tags</a></li>
+					
+						<li><a href="/categories">categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/06/05/java/并发编程/Executor框架/" title="Executor框架" itemprop="url">Executor框架</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
+		
+  <p class="article-time">
+    <time datetime="2020-06-05T06:13:11.000Z" itemprop="datePublished"> 发表于 2020-06-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h3 id="Executor框架两级调度"><a href="#Executor框架两级调度" class="headerlink" title="Executor框架两级调度"></a>Executor框架两级调度</h3><p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6.png" alt=""></p>
+<p>Java线程启动时会创建一个本地操作系统线程，当该Java线程终止时，这个操作系统线程也会被回收。操作系统会调度所有线程并将它们分配给可用CPU。</p>
+<p>在上面的调度模型中：</p>
+<p>在上层，Java多线程程序通常把应用分解为若干任务，然后使用用户级的调度器将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。</p>
+<h3 id="Executor框架结构"><a href="#Executor框架结构" class="headerlink" title="Executor框架结构"></a>Executor框架结构</h3><p>Executor框架由3大部分组成</p>
+<ul>
+<li><p><strong>任务</strong></p>
+<p>包括被执行任务需要的实现接口(Runnable接口或Callable接口)<br>Runnable接口和Callable接口的实现类，可以被ThreadPoolExecutor或者ScheduleThreadPoolExecutor</p>
+</li>
+<li><p><strong>执行的任务</strong></p>
+<p>包括任务执行机制的核心接口<strong><code>Executor</code></strong>以及继承自<strong><code>Executor</code></strong>的<strong><code>ExecutorService</code></strong>接口</p>
+<p>Executor是一个接口，时Executor框架的基础，它将任务的提交与任务的执行分离</p>
+<p>ThreadPoolExecutor是线程池的核心实现类，用来执行被提交的任务</p>
+<p>ScheduleThreadPoolExecutor，可以在给定的延迟后运行命令，或者定期执行命令</p>
+</li>
+<li><p><strong>异步计算的框架</strong><br>包括接口<strong><code>Future</code></strong>和实现Future接口的<strong><code>FutureTask</code></strong>类，代表异步计算的结果</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/Executor%E6%A1%86%E6%9E%B6%E7%9A%84Class%E4%B8%8Einterface.png" alt=""></p>
+</li>
+</ul>
+<h3 id="Executor框架成员"><a href="#Executor框架成员" class="headerlink" title="Executor框架成员"></a>Executor框架成员</h3><p>Executor框架主要成员：ThreadPoolExecutor、ScheduledThreadPoolExecutor、Future接口、Runnable接口、Callable接口、Executors。</p>
+<ul>
+<li><p><strong>ThreadPoolExecutor</strong></p>
+<p>ThreadPoolExecutor通常使用工厂类<strong>Executors</strong>来创建，Executors可以创建3种类型的ThreadPoolExecutor；分别是SingleThreadExecutor、FixedThreadPool、CachedThreadPool。ThreadPoolExecutor是Executor框架最核心的类，是实现线程池的类。主要由下列组件构成</p>
+<ul>
+<li>corePool：核心线程池大小</li>
+<li>maximumPool：最大线程池的大小</li>
+<li>BlockingQueue：用来暂时保存任务的工作队列</li>
+</ul>
+</li>
+</ul>
+<p>下面分别介绍3种类型的ThreadPoolExecutor：</p>
+<ul>
+<li><p><strong>SingleThreadExecutor</strong>：</p>
+<p>SingleThreadExecutor适用于需要保证顺序执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="keyword">new</span><span class="type">SingleThreadExecutor</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">FinalizableDelegatedExecutorService</span></span><br><span class="line"><span class="type"></span>            (<span class="keyword">new</span> <span class="type">ThreadPoolExecutor</span>(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                    <span class="number">0</span>L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> <span class="type">LinkedBlockingQueue</span>&lt;Runnable&gt;()));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="keyword">new</span><span class="type">SingleThreadExecutor</span>(ThreadFactory threadFactory) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">FinalizableDelegatedExecutorService</span></span><br><span class="line"><span class="type"></span>            (<span class="keyword">new</span> <span class="type">ThreadPoolExecutor</span>(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                    <span class="number">0</span>L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> <span class="type">LinkedBlockingQueue</span>&lt;Runnable&gt;(),</span><br><span class="line">                                    threadFactory));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，SingleThreadExecutor的corePoolSize和maximumPoolSize被设置为1，SingleThreadExecutor使用无界队列<strong>LinkedQueueBlockingQueue</strong>作为线程池的工作队列（队列的容量为Integer.MAX_VALUE）。SingleThreadExecutor的运行图如下</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/SingleThradPoolExecutor.png" alt=""></p>
+<p>下面对上图中的过程进行说明：</p>
+<p>1.如果当前运行的线程少于corePoolSize（线程池中没有运行的线程），则创建一个线程类执行任务</p>
+<p>2.在线程池完成预热之后，将任务加入LinkedBlockingQueue</p>
+<p>3.线程执行完1中的任务后，会在一个无限循环中反复从LinkedBlockingQueue获取任务来执行</p>
+</li>
+<li><p><strong>FixedThreadPool</strong>：</p>
+<p>FixedThreadPool适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场景。适用于负载均衡比较重的服务器</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="keyword">new</span><span class="type">FixedThreadPool</span>(int nThreads) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ThreadPoolExecutor</span>(nThreads, nThreads,</span><br><span class="line">                                      <span class="number">0</span>L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                      <span class="keyword">new</span> <span class="type">LinkedBlockingQueue</span>&lt;Runnable&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="keyword">new</span><span class="type">FixedThreadPool</span>(int nThreads, ThreadFactory threadFactory) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ThreadPoolExecutor</span>(nThreads, nThreads,</span><br><span class="line">                                      <span class="number">0</span>L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                      <span class="keyword">new</span> <span class="type">LinkedBlockingQueue</span>&lt;Runnable&gt;(),</span><br><span class="line">                                      threadFactory);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指定的参数nThread</p>
+<p>当线程池中的线程数大于corePoolSize时，keepAliveTime为多余的空闲线程等待新任务的最长时间，超过这个时间后多余的线程将被终止。把keepAliveTime设置为0L，说明多余的空闲线程会被立即终止。</p>
+<p><img src="https://raw.githubusercontent.com/yangshenghua97/Image/master/FixedThreadPool.png" alt=""></p>
+<p>1.如果当前运行的线程数少于corePoolSize，则创建线程来执行任务</p>
+<p>2.在线程池完成预热后将任务加入LinkedBlockingQueue</p>
+<p>3.线程执行完成1中的任务后，会在循环中反复从LinkedBlockingQueue获取任务来执行</p>
+<p>FixedThreadPool使用无界队列LinkedBlockingQueue作为线程池的工作队列（队列的容量为Integer.MAX_VALUE）</p>
+</li>
+<li><p><strong>CachedThreadPool</strong></p>
+<p>CachedThreadPool是大小无界的线程池，适用于执行很多短期异步任务的小程序或负载较轻的服务器</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="keyword">new</span><span class="type">CachedThreadPool</span>(ThreadFactory threadFactory) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ThreadPoolExecutor</span>(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                      <span class="number">60</span>L, TimeUnit.SECONDS,</span><br><span class="line">                                      <span class="keyword">new</span> <span class="type">SynchronousQueue</span>&lt;Runnable&gt;(),</span><br><span class="line">                                      threadFactory);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>CachedThreadPool的corePoolSize被设置为0，maximumPoolSize被设置为Integer.MAX_VALUE,即maximumPool是无界，把keepAliveTime设置为60L，CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会终止</p>
+<p><img src="C:%5CUsers%5C%E6%9D%A8%5CDesktop%5C%E8%AF%BB%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5CCachedThreadPool.png" alt=""></p>
+</li>
+</ul>
+<h3 id="ScheduleThreadPoolExecutor"><a href="#ScheduleThreadPoolExecutor" class="headerlink" title="ScheduleThreadPoolExecutor"></a>ScheduleThreadPoolExecutor</h3><p>待续</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java并发编程/">java并发编程</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2020/06/05/bigdata/MapReduce-HDFS/"  title="MapReduce&amp;HDFS">
+ <strong>下一篇：</strong><br/> 
+ <span>MapReduce&amp;HDFS
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor框架两级调度"><span class="toc-number">1.</span> <span class="toc-text">Executor框架两级调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor框架结构"><span class="toc-number">2.</span> <span class="toc-text">Executor框架结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor框架成员"><span class="toc-number">3.</span> <span class="toc-text">Executor框架成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleThreadPoolExecutor"><span class="toc-number">4.</span> <span class="toc-text">ScheduleThreadPoolExecutor</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本控制管理/" title="版本控制管理">版本控制管理<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi 这是杨阿阳的博客 <br/>
+			This is my blog,yangayang（^A^）</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com//yangshenghua97" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
+		
+		<a href="/about" target="_blank" title="杨生华">杨生华</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

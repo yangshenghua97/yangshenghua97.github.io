@@ -14,7 +14,7 @@
     <meta name="description" content="合理使用线程池的好处 降低资源消耗 通过重复利用已创建的线程降低线程创建和的销毁造成的消耗  提高响应速度 当任务到达时，任务可以不需要等到线程创建就能立即执行  提高线程的可管理性 线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优、监控   线程池的实现原理线程池的处理流程  线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中的线程池">
-<meta property="og:url" content="http://yoursite.com/2020/05/04/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/05/04/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
 <meta property="og:site_name" content="楊さんノート">
 <meta property="og:description" content="合理使用线程池的好处 降低资源消耗 通过重复利用已创建的线程降低线程创建和的销毁造成的消耗  提高响应速度 当任务到达时，任务可以不需要等到线程创建就能立即执行  提高线程的可管理性 线程是稀缺资源，如果无限制创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优、监控   线程池的实现原理线程池的处理流程  线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建">
 <meta property="og:locale" content="zh_CN">
@@ -91,7 +91,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/05/04/Java中的线程池/" title="Java中的线程池" itemprop="url">Java中的线程池</a>
+      <a href="/2020/05/04/java/并发编程/Java中的线程池/" title="Java中的线程池" itemprop="url">Java中的线程池</a>
   </h1>
   <p class="article-author">By
        
@@ -222,7 +222,7 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2020/05/16/AQS同步器/" title="队列同步器-AQS">
+ <a href="/2020/05/16/java/并发编程/AQS同步器/" title="队列同步器-AQS">
   <strong>上一篇：</strong><br/>
   <span>
   队列同步器-AQS</span>
@@ -231,9 +231,9 @@
 
 
 <div class="next">
-<a href="/2020/04/30/bigdata/大数据各组件安装/"  title="大数据各组件安装">
+<a href="/2020/04/25/java/并发编程/Java并发编程之Synchronized/"  title="Java并发编程之Synchronized">
  <strong>下一篇：</strong><br/> 
- <span>大数据各组件安装
+ <span>Java并发编程之Synchronized
 </span>
 </a>
 </div>
@@ -264,7 +264,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>8</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>10</sup></a></li>
 		  
 		
 		  
@@ -276,7 +276,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 		  
 		
 		  
@@ -305,7 +305,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>8</sup></a></li>
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
 			
 		
 			
@@ -313,23 +313,7 @@
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
@@ -337,27 +321,15 @@
 			
 		
 			
-				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
 			
@@ -365,15 +337,15 @@
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>1</sup></a></li>
 			
 		
 		</ul>

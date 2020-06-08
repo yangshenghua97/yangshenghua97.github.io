@@ -14,7 +14,7 @@
     <meta name="description" content="什么是队列同步器队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。 同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。 锁和同步器两者的关系：锁是面向使用者，定义了使用者与锁交互的接口，隐藏实现细节；而同步器面向的是锁的实现者，简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="队列同步器-AQS">
-<meta property="og:url" content="http://yoursite.com/2020/05/16/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/index.html">
 <meta property="og:site_name" content="楊さんノート">
 <meta property="og:description" content="什么是队列同步器队列同步器是用来构建锁或者其他同步组件的基础框架，它使用一个int成员变量表示同步状态，通过内置的FIFO队列完成资源获得线程的排队工作。 同步器是实现锁的关键，在锁的实现中聚合同步器，利用同步器实现锁的语义。 锁和同步器两者的关系：锁是面向使用者，定义了使用者与锁交互的接口，隐藏实现细节；而同步器面向的是锁的实现者，简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等">
 <meta property="og:locale" content="zh_CN">
@@ -90,7 +90,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/05/16/AQS同步器/" title="队列同步器-AQS" itemprop="url">队列同步器-AQS</a>
+      <a href="/2020/05/16/java/并发编程/AQS同步器/" title="队列同步器-AQS" itemprop="url">队列同步器-AQS</a>
   </h1>
   <p class="article-author">By
        
@@ -206,9 +206,17 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2020/06/05/bigdata/MapReduce-HDFS/" title="MapReduce&amp;HDFS">
+  <strong>上一篇：</strong><br/>
+  <span>
+  MapReduce&amp;HDFS</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2020/05/04/Java中的线程池/"  title="Java中的线程池">
+<a href="/2020/05/04/java/并发编程/Java中的线程池/"  title="Java中的线程池">
  <strong>下一篇：</strong><br/> 
  <span>Java中的线程池
 </span>
@@ -241,7 +249,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>8</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>10</sup></a></li>
 		  
 		
 		  
@@ -253,7 +261,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 		  
 		
 		  
@@ -282,7 +290,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>8</sup></a></li>
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
 			
 		
 			
@@ -290,23 +298,7 @@
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
@@ -314,27 +306,15 @@
 			
 		
 			
-				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
 			
@@ -342,15 +322,15 @@
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>1</sup></a></li>
 			
 		
 		</ul>

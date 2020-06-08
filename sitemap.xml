@@ -2,7 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/05/04/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <loc>http://yoursite.com/2019/06/07/java/java%E5%9F%BA%E7%A1%80/Java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/</loc>
+    
+    <lastmod>2020-06-08T13:54:08.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/05/bigdata/MapReduce-HDFS/</loc>
+    
+    <lastmod>2020-06-06T10:32:39.137Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/05/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Executor%E6%A1%86%E6%9E%B6/</loc>
+    
+    <lastmod>2020-06-06T10:05:32.139Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/04/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
     
     <lastmod>2020-06-04T12:53:06.297Z</lastmod>
     
@@ -16,16 +37,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/05/16/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/</loc>
+    <loc>http://yoursite.com/2020/05/16/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/AQS%E5%90%8C%E6%AD%A5%E5%99%A8/</loc>
     
     <lastmod>2020-06-04T05:57:00.150Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/01/bigdata/BigData/</loc>
-    
-    <lastmod>2020-05-12T02:19:39.787Z</lastmod>
     
   </url>
   
@@ -75,13 +89,6 @@
     <loc>http://yoursite.com/2018/07/22/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volitile%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
     
     <lastmod>2020-05-06T01:42:50.060Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/30/bigdata/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%84%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
-    
-    <lastmod>2020-04-30T11:05:54.716Z</lastmod>
     
   </url>
   

@@ -81,7 +81,51 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/05/16/AQS同步器/" title="队列同步器-AQS" itemprop="url">
+    <a href="/2020/06/05/java/并发编程/Executor框架/" title="Executor框架" itemprop="url">
+  
+    <h1 itemprop="name">Executor框架</h1>
+    
+     
+           <p itemprop="description" >Executor框架两级调度
+Java线程启动时会创建一个本地操作系统线程，当该Java线程终止时，这个操作系统线程也会被回收。操作系统会调度所有线程并将它们分配给可用CPU。
+在上面的调度模型中：
+在上层，Java多线程程序通常把应用分解为若干任务，然后使用用户级的调度器将这些</p>
+        
+    
+    <time datetime="2020-06-05T06:13:11.000Z" itemprop="datePublished">2020-06-05</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2020/06/05/bigdata/MapReduce-HDFS/" title="MapReduce&amp;HDFS" itemprop="url">
+  
+    <h1 itemprop="name">MapReduce&amp;HDFS</h1>
+    
+     
+           <p itemprop="description" >MapReduceMapReduce编程模型
+整个MapReduce计算过程分为Map阶段和Reduce阶段，也称为映射和缩减阶段，这两个独立的阶段实际上是两个独立的过程，即Map过程和Reduce过程，在Map中进行数据的读取和数据的预处理，之后将预处理的结果发送给Reduce</p>
+        
+    
+    <time datetime="2020-06-05T03:18:43.000Z" itemprop="datePublished">2020-06-05</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2020/05/16/java/并发编程/AQS同步器/" title="队列同步器-AQS" itemprop="url">
   
     <h1 itemprop="name">队列同步器-AQS</h1>
     
@@ -103,7 +147,7 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/05/04/Java中的线程池/" title="Java中的线程池" itemprop="url">
+    <a href="/2020/05/04/java/并发编程/Java中的线程池/" title="Java中的线程池" itemprop="url">
   
     <h1 itemprop="name">Java中的线程池</h1>
     
@@ -131,26 +175,6 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/04/30/bigdata/大数据各组件安装/" title="大数据各组件安装" itemprop="url">
-  
-    <h1 itemprop="name">大数据各组件安装</h1>
-    
-     
-           <p itemprop="description" >参考资料</p>
-        
-    
-    <time datetime="2020-04-30T10:44:31.000Z" itemprop="datePublished">2020-04-30</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
     <a href="/2020/04/25/java/并发编程/Java并发编程之Synchronized/" title="Java并发编程之Synchronized" itemprop="url">
   
     <h1 itemprop="name">Java并发编程之Synchronized</h1>
@@ -165,30 +189,6 @@ Synchronized实现原理：JVM基于进入和退</p>
         
     
     <time datetime="2020-04-25T08:07:02.000Z" itemprop="datePublished">2020-04-25</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/04/01/bigdata/BigData/" title="MapReduce基础" itemprop="url">
-  
-    <h1 itemprop="name">MapReduce基础</h1>
-    
-     
-           <p itemprop="description" >MapReduce
-MapReduce是海量数据的分布式计算框架，这一框架解决了：数据分布式存储，作业调度，容错，机器间通信等复杂问题，MapReduce利用分治思想，解决数据可以切割进行计算的应用
-
-关于MapReduce的两个重要进程
-JobTracker：主进程，负责接收客</p>
-        
-    
-    <time datetime="2020-04-01T15:46:11.000Z" itemprop="datePublished">2020-04-01</time>
   </a>
 </section>
 
@@ -326,7 +326,7 @@ JobTracker：主进程，负责接收客</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>8</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>10</sup></a></li>
 		  
 		
 		  
@@ -338,7 +338,7 @@ JobTracker：主进程，负责接收客</p>
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 		  
 		
 		  
@@ -367,7 +367,7 @@ JobTracker：主进程，负责接收客</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>8</sup></a></li>
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
 			
 		
 			
@@ -375,23 +375,7 @@ JobTracker：主进程，负责接收客</p>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
@@ -399,27 +383,15 @@ JobTracker：主进程，负责接收客</p>
 			
 		
 			
-				<li><a href="/tags/hbase/" title="hbase">hbase<sup>1</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/kafka/" title="kafka">kafka<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/flume/" title="flume">flume<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hive/" title="hive">hive<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
 			
@@ -427,15 +399,15 @@ JobTracker：主进程，负责接收客</p>
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/flink/" title="flink">flink<sup>1</sup></a></li>
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>1</sup></a></li>
 			
 		
 		</ul>

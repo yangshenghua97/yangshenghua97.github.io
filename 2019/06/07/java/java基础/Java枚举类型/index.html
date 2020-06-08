@@ -1,0 +1,536 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Java枚举类型 | 楊さんノート</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="杨生华">
+    
+
+    
+    <meta name="description" content="Enum关键字enum关键字，在需要群组并使用枚举类型集合时，可以很方便的处理。由于枚举类型的实例是常量，因此命名时大都使用大写。在创建enum时，编译器会自动添加一些有用的特性，,比如会创建toString()方法，便于显示某个enum实例的名字。编译器还会创建ordinal()方法，用来表示某个特定enum常量的声明顺序。static values()方法产生常量值构成的数组,还会生成一个相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java枚举类型">
+<meta property="og:url" content="http://yoursite.com/2019/06/07/java/java%E5%9F%BA%E7%A1%80/Java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="楊さんノート">
+<meta property="og:description" content="Enum关键字enum关键字，在需要群组并使用枚举类型集合时，可以很方便的处理。由于枚举类型的实例是常量，因此命名时大都使用大写。在创建enum时，编译器会自动添加一些有用的特性，,比如会创建toString()方法，便于显示某个enum实例的名字。编译器还会创建ordinal()方法，用来表示某个特定enum常量的声明顺序。static values()方法产生常量值构成的数组,还会生成一个相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-07T13:12:02.000Z">
+<meta property="article:modified_time" content="2020-06-08T13:54:08.832Z">
+<meta property="article:author" content="杨生华">
+<meta property="article:tag" content="java基础编程">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="楊さんノート" type="application/atom+xml">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/59303310.png" alt="楊さんノート" title="楊さんノート"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="楊さんノート">楊さんノート</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/tags">tags</a></li>
+					
+						<li><a href="/categories">categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/06/07/java/java基础/Java枚举类型/" title="Java枚举类型" itemprop="url">Java枚举类型</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
+		
+  <p class="article-time">
+    <time datetime="2019-06-07T13:12:02.000Z" itemprop="datePublished"> 发表于 2019-06-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h3 id="Enum关键字"><a href="#Enum关键字" class="headerlink" title="Enum关键字"></a>Enum关键字</h3><p><strong><code>enum</code></strong>关键字，在需要群组并使用枚举类型集合时，可以很方便的处理。由于枚举类型的实例是常量，因此命名时大都使用大写。在创建enum时，编译器会自动添加一些有用的特性，,比如会创建toString()方法，便于显示某个enum实例的名字。编译器还会创建ordinal()方法，用来表示某个特定<strong>enum常量</strong>的声明顺序。<strong><code>static values()</code></strong>方法产生常量值构成的数组,还会生成一个相关的类，这个类继承自<strong><code>java.lang.Enum</code></strong></p>
+<p>下面看代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">              <span class="comment">//values()方法用于产生常量值构成的数组</span></span><br><span class="line">		<span class="keyword">for</span>(Spiciness s:Spiciness.values()) &#123;</span><br><span class="line">             <span class="comment">//ordinal()方法，用来表示某个特定**enum常量**的声明顺序</span></span><br><span class="line">			System.out.println(s+<span class="string">" ,"</span>+s.ordinal());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Spiciness &#123;</span><br><span class="line"><span class="comment">//声明enum常量时通常使用大写字母</span></span><br><span class="line">	NOT,</span><br><span class="line">	MILD,</span><br><span class="line">	MEDIUM,</span><br><span class="line">	HOT</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleEnumeUse</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Spiciness howhot = Spiciness.MILD;</span><br><span class="line">		System.out.println(howhot);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>enum还有一个实用的特性，可以在<strong><code>switch</code></strong>语句块中使用</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> EnumType.demo1.Spiciness.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Burrito</span> &#123;</span></span><br><span class="line">	Spiciness deg;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Burrito</span><span class="params">(Spiciness s)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.deg = s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describe</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"This Burrito"</span>);</span><br><span class="line">		<span class="keyword">switch</span> (deg) &#123;</span><br><span class="line">		<span class="keyword">case</span> NOT:</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"not"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> MILD:</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"this MILD"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> MEDIUM:</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"a little hot"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> HOT:</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"this is HOT"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">		Burrito plain = <span class="keyword">new</span> Burrito(HOT);</span><br><span class="line">		plain.describe();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于switch是要在有限的可能值集合中进行选择，因此与enum能很好的进行组合。</p>
+<h3 id="将静态导入应用于enum"><a href="#将静态导入应用于enum" class="headerlink" title="将静态导入应用于enum"></a>将静态导入应用于enum</h3><p>使用<strong><code>static import</code></strong>能够将enum实例的标识符带入当前的命名空间，所以无需再用enum类型来修饰enum实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Spiciness &#123;</span><br><span class="line">	NOT,</span><br><span class="line">	MILD,</span><br><span class="line">	MEDIUM,</span><br><span class="line">	HOT</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//static import导入Spiciness</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> EnumType.demo1.Spiciness.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImportEnum</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(HOT);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="向enum中添加新方法"><a href="#向enum中添加新方法" class="headerlink" title="向enum中添加新方法"></a>向enum中添加新方法</h3><p>如果希望每个枚举能够返回对自身的描述，<strong>而不是使用toString实现</strong>，这只能返回枚举实例的名字。为此，需要提供一个构造器，专门负责处理这个额外的信息，然后添加一个方法，返回这个描述信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumFunction &#123;</span><br><span class="line">	NAME(<span class="string">"我是杨阿阳"</span>),</span><br><span class="line">	AGE(<span class="string">"23"</span>);</span><br><span class="line">	<span class="keyword">private</span> String decript;</span><br><span class="line"> 	EnumFunction(String decript)&#123;</span><br><span class="line"> 		<span class="keyword">this</span>.decript = decript;</span><br><span class="line"> 	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getDecript</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> decript;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(EnumFunction e:EnumFunction.values()) &#123;</span><br><span class="line">			System.out.println(e+<span class="string">": "</span>+e.getDecript());</span><br><span class="line">		&#125;</span><br><span class="line">        System.out.println(EnumFunction.AGE.getDecript());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//outinfo~</span></span><br><span class="line">NAME: 我是杨阿阳</span><br><span class="line">AGE: <span class="number">23</span></span><br><span class="line"><span class="number">23</span></span><br></pre></td></tr></table></figure>
+
+<p>在定义<strong>enum方法时</strong>，必须在enum实例序列的最后添加一个分号。同时必须先定义enum实例。如果在定义enum实例前定义任何方法或属性，那么编译时就会报错。在定义enum时将enum的构造器修饰为<strong><code>private</code></strong></p>
+<h3 id="常量相关的方法"><a href="#常量相关的方法" class="headerlink" title="常量相关的方法"></a>常量相关的方法</h3><p>在enum中可以声明常量方法，从而为每个enum实例赋予各自不同的行为。如果要实现常量相关的方法，需要为enum定义一个或多个<strong><code>abstract方法</code></strong>，然后为每个enum实例实现该抽象方法。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ConstantSpecificMethod &#123;</span><br><span class="line">	DATA_TIME&#123;</span><br><span class="line">		<span class="function"><span class="keyword">String</span> <span class="title">getinfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">"getinfo1"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	ClassPath&#123;</span><br><span class="line">		<span class="function"><span class="keyword">String</span> <span class="title">getinfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">"getinfo2"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function">abstract <span class="keyword">String</span> <span class="title">getinfo</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">		ConstantSpecificMethod s = ConstantSpecificMethod.ClassPath;</span><br><span class="line">		System.out.<span class="built_in">println</span>(s.getinfo());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过相应的enum实例，可以调用其上的方法，上面的代码也称为<strong>表驱动的代码</strong>，这跟设计模式里的命令模式有些相似</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java基础编程/">java基础编程</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/02/12/git/关于Git文件管理/" title="关于Git文件管理">
+  <strong>上一篇：</strong><br/>
+  <span>
+  关于Git文件管理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2019/04/30/java/并发编程/Java并发基础Java中的锁/"  title="Java并发基础Java中的锁">
+ <strong>下一篇：</strong><br/> 
+ <span>Java并发基础Java中的锁
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enum关键字"><span class="toc-number">1.</span> <span class="toc-text">Enum关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将静态导入应用于enum"><span class="toc-number">2.</span> <span class="toc-text">将静态导入应用于enum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向enum中添加新方法"><span class="toc-number">3.</span> <span class="toc-text">向enum中添加新方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量相关的方法"><span class="toc-number">4.</span> <span class="toc-text">常量相关的方法</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本控制管理/" title="版本控制管理">版本控制管理<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi 这是杨阿阳的博客 <br/>
+			This is my blog,yangayang（^A^）</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com//yangshenghua97" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
+		
+		<a href="/about" target="_blank" title="杨生华">杨生华</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
