@@ -607,11 +607,152 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法概述</title>
-    <url>/2020/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/</url>
-    <content><![CDATA[]]></content>
+    <title>数据结构基础</title>
+    <url>/2020/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<ul>
+<li><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>数据结构是算法的基石，是数据的组织、管理、存储形式，请使用的目的是为了访问和修改数据。数据结构的组成形式有：线性结构、树、图、其他数据结构（这个后面会缀述）</p>
+</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ul>
+<li><p>数组是有限个相同类型的变量所组成的有序集合，数组中的每个变量称为元素。</p>
+<h4 id="数组的基本操作"><a href="#数组的基本操作" class="headerlink" title="数组的基本操作"></a>数组的基本操作</h4></li>
+<li><p>读取元素：读取元素，只需要给出一个数组的下标，就可以读取相应的数组元素。这种根据下标读取的元素的方式称为随机读取。</p>
+</li>
+<li><p>更新元素：把一个元素的值替换成为一个新值，利用数组下标，把新值赋给该元素。</p>
+</li>
+<li><p>插入元素：插入数组元素的有三种：尾部插入、中间插入、超范围插入。</p>
+<p>中间插入复杂些，因为数组的每个元素都有固定的下标，所以需要把插入位置及以后的元素向后移动，再把插入的元素放到对应的数组位置上。</p>
+<p>超范围插入：超范围插入涉及到扩容，可以创建一个新数组，长度是旧数组的2倍，再把旧数组中的元素复制给新数组，就是实现了数组的扩容。</p>
+</li>
+<li><p>删除元素：数组的删除操作，如果删除的元素位于数组的中间，其后的元素都需要向前（也就是向左移动一位）</p>
+<h4 id="数组的优点和缺点"><a href="#数组的优点和缺点" class="headerlink" title="数组的优点和缺点"></a>数组的优点和缺点</h4><p>数组的优点是拥有高效的随机访问能力。数组的缺点在插入和删除元素方面，由于数组元素连续紧密的存储在内存中，插入和删除元素会导致大量元素移动。数组适合读多写少的应用场景。</p>
+</li>
+</ul>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>  <strong>链表</strong>是一种在物理上非连续、非顺序的数据结构，由若干节点所组成。单向链表的每个节点包含两部分，一部分是存放数据的变量<strong>data</strong>，一部分是指向下一个节点的指针<strong>next</strong>。</p>
+  <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">private static class <span class="keyword">Node</span><span class="title">&#123;</span></span><br><span class="line"><span class="title">	int</span> data;</span><br><span class="line">	<span class="keyword">Node</span> <span class="title">next</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  双向链表比单项链表多了指向前置节点的<strong>prev</strong>指针</p>
+<p>  链表在内存中的存储方式是随机存储</p>
+<h4 id="链表的基本操作"><a href="#链表的基本操作" class="headerlink" title="链表的基本操作"></a>链表的基本操作</h4><ul>
+<li><p>查找节点：</p>
+<p>链表查找节点时只能从头节点开始向后逐个查找。</p>
+</li>
+<li><p>更新节点：</p>
+<p>链表的更新过程会像数组那样，直接把旧数据替换成新数据即可</p>
+</li>
+<li><p>插入节点：</p>
+<p>尾部插入：把最后一个节点的next指针指向新插入的节点即可。</p>
+<p>头部插入：把新节点的next节点的指针原先的头节点，把新节点变成链表的头节点</p>
+<p>中间插入：把新节点的next指针指向插入位置的节点，插入位置前置节点的next指针指向新节点。</p>
+</li>
+<li><p>删除元素：</p>
+<p>尾部删除：把倒数第二个节点的next指针指向空即可</p>
+<p>头部删除：把链表的头节点设为原先头节点的next指针即可</p>
+<p>中间删除：把要删除的节点的前置节点的next指针，指向要删除元素的下一个节点即可</p>
+<p>上代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyLinkedList</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="keyword">private</span> Node last;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data,<span class="keyword">int</span> index)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt; size)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"Index outfound"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node insertedNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">            head = insertedNode;</span><br><span class="line">            last = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(index == <span class="number">0</span>)&#123;</span><br><span class="line">            insertedNode.next = head;</span><br><span class="line">            head = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(size == index)&#123;</span><br><span class="line">            last.next = insertedNode;</span><br><span class="line">            last = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Node prevNode = get(index-<span class="number">1</span>);</span><br><span class="line">            insertedNode.next = prevNode.next;</span><br><span class="line">            prevNode.next = insertedNode;</span><br><span class="line">        &#125;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt;= size)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"数组越界"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp = head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node temp = head;</span><br><span class="line">        <span class="keyword">while</span>(temp != <span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(temp.data);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"size："</span>+size);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span>|| index &gt;= size)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"下标越界"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node removeNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">// 删除头结点</span></span><br><span class="line">            removeNode = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(index == size-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">// 删除尾节点</span></span><br><span class="line">            Node prevNode = get(index-<span class="number">1</span>);</span><br><span class="line">            removeNode = prevNode.next;</span><br><span class="line">            prevNode.next = <span class="keyword">null</span>;</span><br><span class="line">            last = prevNode;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// 删除中间节点</span></span><br><span class="line">            Node prevNode = get(index-<span class="number">1</span>);</span><br><span class="line">            Node nextNode = prevNode.next.next;</span><br><span class="line">            removeNode = prevNode.next;</span><br><span class="line">            prevNode.next = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> removeNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        Node next;</span><br><span class="line">        Node(<span class="keyword">int</span> data)&#123;</span><br><span class="line">            <span class="keyword">this</span>.data = data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        MyLinkedList myLinkedList = <span class="keyword">new</span> MyLinkedList();</span><br><span class="line">        myLinkedList.insert(<span class="number">3</span>,<span class="number">0</span>);</span><br><span class="line">        myLinkedList.insert(<span class="number">7</span>,<span class="number">1</span>);</span><br><span class="line">        myLinkedList.insert(<span class="number">9</span>,<span class="number">2</span>);</span><br><span class="line">        myLinkedList.insert(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">        myLinkedList.insert(<span class="number">6</span>,<span class="number">1</span>);</span><br><span class="line">        myLinkedList.remove(<span class="number">0</span>);</span><br><span class="line">        myLinkedList.output();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组和链表的比较：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>查找</th>
+<th>更新</th>
+<th>插入</th>
+<th>删除</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数组</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>链表</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>对于读操作多写操作少的应用场景数组适合一些，对于需要频繁插入数据删除数据来说，链表合适一些</p>
+</li>
+</ul>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈是一种线性数据结构，栈中的元素只能先入后出。最早进入的元素存放的位置叫作栈底，最后进入的元素存放的位置叫作栈顶。</p>
+<h4 id="栈的基本操作"><a href="#栈的基本操作" class="headerlink" title="栈的基本操作"></a>栈的基本操作</h4><ul>
+<li><p>入栈(push)</p>
+<p>入栈操作就是把新元素放入栈中，只允许从栈顶一侧放入元素，新元素的位置将会成为新的栈顶</p>
+</li>
+<li><p>出栈(pop)</p>
+<p>出栈操作是把元素从栈中弹出，只有栈顶元素才能允许出栈，出栈元素的前一个元素将会成为新的栈顶。</p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyStack</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] stack;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stack = <span class="keyword">new</span> <span class="keyword">int</span>[capacity];</span><br><span class="line">        <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> elem)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(size &gt; stack.length)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"数组越界"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        stack[size] = elem;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(size &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"栈为空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> stack[size];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        System.out.print(<span class="string">"栈顶："</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = size-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            System.out.println(pop());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"栈底："</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        MyStack stack = <span class="keyword">new</span> MyStack(<span class="number">5</span>);</span><br><span class="line">        stack.push(<span class="number">5</span>);</span><br><span class="line">        stack.push(<span class="number">6</span>);</span><br><span class="line">        stack.push(<span class="number">52</span>);</span><br><span class="line">        System.out.println(stack.pop());</span><br><span class="line">        <span class="comment">// stack.output();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p><strong>队列</strong>是一种线性数据结构，队列中的元素只能先入后出，对列的出口端叫作<strong>队头</strong>(front)，队列的入口端叫作<strong>队尾</strong>(rear)。</p>
+<h4 id="队列的基本操作"><a href="#队列的基本操作" class="headerlink" title="队列的基本操作"></a>队列的基本操作</h4><ul>
+<li><p>入队（enqueue）</p>
+<p>入队操作（enqueue）就是把新元素放入队列中，只允许在队尾的位置放入元素，新元素的下一个位置将会成为新的对尾。</p>
+</li>
+<li><p>出队（dequeue）</p>
+<p>出队操作就是把元素移出队列，只允许在队头一侧移出元素，出队元素的后一个元素将会成为队头。</p>
+</li>
+</ul>
+<p><strong>循环队列</strong>：在数组不做扩容的前提下，可以利用已出队元素留下的空间，让队尾指针重新指回数组的首位。<strong>一直到(队尾下标+1)%数组长度 = 队头下标，表示此队列已经满</strong>，队尾指针指向的位置永远空出1位，所以队列最大容量比数组长度小1。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] array;</span><br><span class="line">    <span class="comment">// 队头</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="comment">// 队尾</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rear;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = <span class="keyword">new</span> <span class="keyword">int</span>[capacity];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    入队操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">int</span> elem)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>((rear+<span class="number">1</span>)%array.length == front)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"队列已满"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        array[rear] = elem;</span><br><span class="line">        rear = (rear+<span class="number">1</span>)%array.length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dequeue</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rear==front)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"队列已空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> dequeueElem = array[front];</span><br><span class="line">        front = (front+<span class="number">1</span>)%array.length;</span><br><span class="line">        <span class="keyword">return</span> dequeueElem;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = front;i!=rear;i=(i+<span class="number">1</span>)%array.length)&#123;</span><br><span class="line">            System.out.println(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        MyQueue queue = <span class="keyword">new</span> MyQueue(<span class="number">5</span>);</span><br><span class="line">        queue.enqueue(<span class="number">5</span>);</span><br><span class="line">        queue.enqueue(<span class="number">4</span>);</span><br><span class="line">        queue.enqueue(<span class="number">6</span>);</span><br><span class="line">        queue.enqueue(<span class="number">5</span>);</span><br><span class="line">        queue.output();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="栈和队列的应用"><a href="#栈和队列的应用" class="headerlink" title="栈和队列的应用"></a>栈和队列的应用</h3><p>栈的输出顺序和输入顺序相反，所以栈通常用于对“历史”的回溯，也就是逆流而上追溯“历史”。<br>例如实现递归的逻辑，就可以用栈来代替，因为栈可以回溯方法的调用链。</p>
+<p>队列的输出顺序和输入顺序相同，所以队列通常用于对“历史”的回放，也就是按照“历史”顺序，把“历<br>史”重演一遍。<br>例如在多线程中，争夺公平锁的等待队列，就是按照访问顺序来决定线程在队列中的次序的。</p>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>散列表也叫<strong>哈希表(hash table)</strong>，散列表在本质上也是一个数组。这种数据结构提供了键值对的映射关系。只要给出Key，就可以查找出它所匹配的Value，时间复杂度接近O(1)。</p>
+<h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>在不同的编程语言中，哈希函数的实现也不一样，这里以Java为例，在Java及大多数面向对象编程语言中，每个对象都有自己的hashcode，hashcode是区分不同对象的重要标识，无论对象的自身类型是什么，它们的hashcode都是一个整型变量。最简单的转化方式是按照数组长度进行取模运算。</p>
+<p><strong>index = HashCode(Key)%Array.length</strong></p>
+<p>通过哈希函数，可以把字符串或其他类型的Key转化为数组的下标index。</p>
+<h4 id="散列表的读写操作"><a href="#散列表的读写操作" class="headerlink" title="散列表的读写操作"></a>散列表的读写操作</h4><ul>
+<li><p>写操作（put）</p>
+<p>写操作就是在散列表中插入新的键值对，通过哈希函数，把Key转化为数组下标，如果数组下标没有对应的元素，就把这个Entry填充到数组下标的相应位置。由于数组的长度有限，当插入的Entry越来越多时，不同的Key通过哈希函数获得的下标也有可能相同，所以这就造成了哈希冲突。哈希冲突是无法避免的。解决哈希冲突的方法有两中；一种是开放寻址法，一种是链表法。在Java中开放寻址法用于ThreadLocal。HashMap使用的是链表法解决哈希冲突问题。HashMap数组的每个元素不仅是一个Entry对象，还是一个链表的头节点，每个Entry对象通过next指针指向它的下一个Entry节点。当新来的Entry映射到与之冲突的数组位置时，只需要插入到对应的链表中即可。</p>
+</li>
+<li><p>读操作（get）</p>
+<p>读操作就是通过给定的Key，在散列表中查找对应的Value。通过哈希函数，把Key转化为数组的下标。找到数组下标对应的元素，如果找到了这个元素就返回对应数组的值；如果找不到就顺着这个数组的元素的链表往下找，是否能够找到与之对匹配的节点。</p>
+</li>
+<li><p>扩容（resize）</p>
+<p>当经过多次元素插入，散列表达到一定的饱和时，key映射的位置发生冲突的几率会增加。大量的元素拥挤在相同的数组下标位置下，会形成很长的链表。对于后续的插入操作和查询操作的性能都有很大的影响，这时就需要扩容了。</p>
+<p>散列表的扩容操作</p>
+<ul>
+<li>扩容，创建一个新的Entry空数组，长度为元素的两倍。</li>
+<li>重新hash，遍历原Entry数组，把所有的Entry重新Hash到新数组中，因为长度扩容后，Hash的规则也随之变化。</li>
+</ul>
+<p>用Java中的散列表实现类HashMap为例，影响扩容的因素有两个：</p>
+<p>Capacity：散列表的当前长度</p>
+<p>LoadFactor：散列表的负载因子，默认值为0.75f</p>
+<p>衡量HashMap需要扩容的条件如下：</p>
+<p>HashMap.size &gt;= Capacity*LoadFactor</p>
+</li>
+</ul>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树（tree）是n（n&gt;=0）个节点的有限集。当n=0时，称为空树。在任意一个非空树中，有下面两个特点。</p>
+<ul>
+<li>有且仅有一个特定的称为根的节点。</li>
+<li>当n&gt;1时，其余的节点可分为m（m&gt;0）个互不相交的有限集，每个集合本身又是一个树，并称为根的子树。</li>
+</ul>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是树的一种特殊形式。这种树结构的每个节点最多有2个子节点，也可能只有1个，或者没有孩子节点。二叉树的两个孩子节点，一个称为左孩子节点(left child)，一个称为右孩子节点（right child）,这两个孩子节点的顺序是固定的，不能够颠倒。</p>
+<p>二叉树还有两种特殊的形式，一个叫作满二叉树，一个叫完全二叉树。</p>
+<h4 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a>满二叉树</h4><p><strong>是一个二叉树的所有非叶子节点都存在左右节点，并且所有叶子节点都在同一层级上，那么这个树就是满二叉树。</strong>也就是说满二叉树的每个分支都是满的。</p>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p><strong>对一个有n个节点的二叉树，按层级顺序编号，则所有节点的编号为从1到n。如果这个树所有节点和同样深度的满二叉树的编号为从1到n的节点位置相同，则这个二叉树为完全二叉树。</strong></p>
+<h4 id="二叉树的物理存储结构"><a href="#二叉树的物理存储结构" class="headerlink" title="二叉树的物理存储结构"></a>二叉树的物理存储结构</h4><ul>
+<li><p>链式存储结构</p>
+<p>链式存储结构的二叉树每个节点包含3部分：存储数据的data变量、指向左孩子的left指针、指向右孩子的right指针。</p>
+</li>
+<li><p>数组</p>
+<p>使用数组存储，会按照层级顺序把二叉树的节点放到数组中对应的位置上。如果某个节点的左孩子或右孩子，则数组的相应位置也空出来。这样就可以更方便地在数组中定位二叉树的孩子节点和父节点。</p>
+<p>假设一个父节点的下标是parent，那么它的左孩子的节点下标就是：<strong>leftchild=2*parent+1</strong>；右孩子节点下标就是：<strong>rightchild=2*parent+2</strong>。</p>
+</li>
+</ul>
+]]></content>
       <categories>
-        <category>数据结构</category>
+        <category>数据结构与算法</category>
       </categories>
       <tags>
         <tag>数据结构</tag>
@@ -2406,6 +2547,11 @@
       </tags>
   </entry>
   <entry>
+    <title>Categories</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>小杨的简介</title>
     <url>/about/index.html</url>
     <content><![CDATA[<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a><strong>个人信息</strong></h1><ul>
@@ -2480,18 +2626,13 @@
 <h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"><a href="#目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作" class="headerlink" title="  目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作"></a>  <strong>目前处于待就业实习阶段。2019年8月在吉林市创慧科技有限公司做图片处理工作</strong></h2>]]></content>
   </entry>
   <entry>
-    <title>Categories</title>
-    <url>/categories/index.html</url>
+    <title>Tags</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>guestbook</title>
     <url>/guestbook/index.html</url>
     <content><![CDATA[<div class="ds-recent-visitors" data-num-items="28" data-avatar-size="42" id="ds-recent-visitors"></div>]]></content>
-  </entry>
-  <entry>
-    <title>Tags</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
