@@ -81,21 +81,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/03/15/Linux/Linux基础/" title="初识Linux" itemprop="url">
+    <a href="/2019/04/30/java/并发编程/Java并发基础Java/" title="Java并发基础" itemprop="url">
   
-    <h1 itemprop="name">初识Linux</h1>
+    <h1 itemprop="name">Java并发基础</h1>
     
      
-           <p itemprop="description" >什么是Linux?Linux就是一个操作系统(手动狗头)
-Linux几个常用的命令
-cd dir：跳转到指定文件夹
-123456跳转到root目录$ cd ~跳转到之前目录$ cd -跳转到上级目录$ cd ..
-
-cd 后面还可以文件夹绝对路径或相对路径跳转到指定目录
-例如跳转</p>
+           <p itemprop="description" >参考资料</p>
         
     
-    <time datetime="2019-03-15T14:20:39.000Z" itemprop="datePublished">2019-03-15</time>
+    <time datetime="2019-04-30T10:39:37.000Z" itemprop="datePublished">2019-04-30</time>
   </a>
 </section>
 
@@ -107,23 +101,18 @@ cd 后面还可以文件夹绝对路径或相对路径跳转到指定目录
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/07/22/java/并发编程/volitile关键字/" title="Java并发基础volatile关键字" itemprop="url">
+    <a href="/2019/04/25/java/并发编程/Java并发容器和框架/" title="Java并发容器和框架" itemprop="url">
   
-    <h1 itemprop="name">Java并发基础volatile关键字</h1>
+    <h1 itemprop="name">Java并发容器和框架</h1>
     
      
-           <p itemprop="description" >并发编程的三个重要特性
-原子性
-原子性指在一次的操作或多次的操作中，要么所有操作全部执行且不会受到任何因素的干扰而中断，要么所有操作全部不执行
+           <p itemprop="description" >ConcurrentHashMap
 
-可见性
-当一个线程对共享变量进行修改，另外的线程可以立刻看到修改后的新值。
-
-有序性
-有序性是指程序代码在被执行过程中的先后顺序。Ja</p>
+​    在多线程环境中，使用HashMap可能会导致程序死循环，使用线程安全的HashTable效率低效，所以便有了                ConcurrentHashMap。
+ConcurrentHashMap利用锁的分断技术可有</p>
         
     
-    <time datetime="2018-07-22T11:16:24.000Z" itemprop="datePublished">2018-07-22</time>
+    <time datetime="2019-04-25T08:07:02.000Z" itemprop="datePublished">2019-04-25</time>
   </a>
 </section>
 
@@ -135,25 +124,201 @@ cd 后面还可以文件夹绝对路径或相对路径跳转到指定目录
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/04/06/java/并发编程/Java并发基础1/" title="Java并发编程" itemprop="url">
+    <a href="/2019/04/05/数据库/mysql/SQL基础2/" title="SQL基础（二）" itemprop="url">
   
-    <h1 itemprop="name">Java并发编程</h1>
+    <h1 itemprop="name">SQL基础（二）</h1>
     
      
-           <p itemprop="description" >线程生命周期
+           <p itemprop="description" >过滤数据百分号（%）通配符%表示任何字符出现任意次数。
+123SELECT prod_id,prod_nameFROM productsWHERE prod_name LIKE &#39;jet%&#39;;
 
-NEW – 新建
-RUNABLE – 可运行
-RUNING – 运行
-BLOCKED – 阻塞
-TERMINATED – 死亡
-
-上面所列的是线程的生命周期
-何为上下文切换
-CPU通过时间片分配算法来循环执行任务，当前任务执行一个任务时间片后会切换到下一个任务，但</p>
+上面的SQL检索任意以jet为开头的词，%告诉MYSQL接受jet之后的任意字符，不</p>
         
     
-    <time datetime="2018-04-06T10:39:51.000Z" itemprop="datePublished">2018-04-06</time>
+    <time datetime="2019-04-05T09:57:27.000Z" itemprop="datePublished">2019-04-05</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/04/04/其他/vim基本命令/" title="vim基本命令" itemprop="url">
+  
+    <h1 itemprop="name">vim基本命令</h1>
+    
+     
+           <p itemprop="description" >h或者向左箭头
+光标向左移动一个字符
+
+
+
+j或者向下箭头
+光标向下移动一个字符
+
+
+k或者向上箭头
+光标向上移动一个字符
+
+
+l或者向右箭头
+光标向右移动一个字符
+
+
+Page Down
+屏幕向下移动一页
+
+
+Page Up
+屏幕向上移动一页
+
+
+n
+n表示数字，按下数字再按空</p>
+        
+    
+    <time datetime="2019-04-04T13:22:53.000Z" itemprop="datePublished">2019-04-04</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/27/Linux/Linux进程管理/" title="Linux进程管理" itemprop="url">
+  
+    <h1 itemprop="name">Linux进程管理</h1>
+    
+     
+           <p itemprop="description" >什么是进程如何产生一个进程？程序一般是放置在物理磁盘中，然后通过用户的执行来触发，触发后会加载内存中成为一个个体，这就是进程，为了让系统可以管理这个进程，进程会给予执行者权限/属性等参数，以及进程所需的脚本或数据，最后在给予一个PID。操作系统通过这个PID来判断该进程是否具有执</p>
+        
+    
+    <time datetime="2019-03-27T09:09:42.000Z" itemprop="datePublished">2019-03-27</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/27/数据库/mysql/SQL基础/" title="SQL基础（一）" itemprop="url">
+  
+    <h1 itemprop="name">SQL基础（一）</h1>
+    
+     
+           <p itemprop="description" >这篇文章主要以MySQL数据库进行讲解
+在阅读本文之前假设已经安装MySQL数据库。请先构建好数据源，如果没有安装MYSQL数据库可以通过下面的在线网站构建数据源并练习SQL语句
+SQL在线练习网站：http://sqlfiddle.com/
+源数据下载：https://fort</p>
+        
+    
+    <time datetime="2019-03-27T05:04:38.000Z" itemprop="datePublished">2019-03-27</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/21/Linux/Linux账号管理与权限设置/" title="Linux账号管理与权限设置" itemprop="url">
+  
+    <h1 itemprop="name">Linux账号管理与权限设置</h1>
+    
+     
+           <p itemprop="description" >参考资料</p>
+        
+    
+    <time datetime="2019-03-21T09:47:17.000Z" itemprop="datePublished">2019-03-21</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/20/Linux/文件与文件系统压缩/" title="文件与文件系统压缩" itemprop="url">
+  
+    <h1 itemprop="name">文件与文件系统压缩</h1>
+    
+     
+           <p itemprop="description" >Linux系统常见的压缩命令123456789*.z compress程序压缩的文件；*.zip zip程序压缩的文件；*.gz gzip程序压缩的文件；*.bz2 bzip2程序压缩的文件；*.xz xz程序压缩的文件；*.tar tar程序打包的文件，并没有压缩过；*.tar</p>
+        
+    
+    <time datetime="2019-03-20T06:42:11.000Z" itemprop="datePublished">2019-03-20</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/18/Linux/Linux的文件与目录管理/" title="Linux的文件与目录管理" itemprop="url">
+  
+    <h1 itemprop="name">Linux的文件与目录管理</h1>
+    
+     
+           <p itemprop="description" >目录相关操作对于目录相关的命名首先要介绍的一个命令是目录切换命令：cd
+还有一些比较特殊的目录：
+
+.：代表此层目录；
+..：代表上一层目录；
+-：代表前一个工作目录；
+~：代表目前使用者身份所在的家目录
+~account：代表account这个使用者的家目录
+
+处理目录的命令：</p>
+        
+    
+    <time datetime="2019-03-18T13:40:17.000Z" itemprop="datePublished">2019-03-18</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/03/16/Linux/Linux文件权限与目录简介/" title="Linux文件权限与目录简介" itemprop="url">
+  
+    <h1 itemprop="name">Linux文件权限与目录简介</h1>
+    
+     
+           <p itemprop="description" >Linux文件权限与文件属性Linux文件属性先来看下面的Linux文件属性信息:
+12-rw-r--r--. 1 root root 29 Nov 18 00:00 test.txtdrwxr-xr-x. 4 root root 39 Oct  8 14:39 opt
+
+
+
+第</p>
+        
+    
+    <time datetime="2019-03-16T09:52:07.000Z" itemprop="datePublished">2019-03-16</time>
   </a>
 </section>
 
@@ -164,7 +329,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/4/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
   </nav>
 
 </div>
@@ -180,7 +345,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>20</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>23</sup></a></li>
 		  
 		
 		  
@@ -188,7 +353,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 		  
 		
 		  
-			<li><a href="/categories/Scala/" title="Scala">Scala<sup>1</sup></a></li>
+			<li><a href="/categories/Scala/" title="Scala">Scala<sup>8</sup></a></li>
 		  
 		
 		  
@@ -233,11 +398,15 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>12</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>9</sup></a></li>
+				<li><a href="/tags/Scala基础编程/" title="Scala基础编程">Scala基础编程<sup>8</sup></a></li>
 			
 		
 			
@@ -249,7 +418,11 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 			
 		
 			
-				<li><a href="/tags/java中级编程/" title="java中级编程">java中级编程<sup>2</sup></a></li>
+				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
@@ -257,7 +430,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
+				<li><a href="/tags/java中级编程/" title="java中级编程">java中级编程<sup>2</sup></a></li>
 			
 		
 			
@@ -269,15 +442,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 			
 		
 			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Scala基础编程/" title="Scala基础编程">Scala基础编程<sup>1</sup></a></li>
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
 			
 		
 			
@@ -285,7 +450,7 @@ CPU通过时间片分配算法来循环执行任务，当前任务执行一个�
 			
 		
 			
-				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
 			

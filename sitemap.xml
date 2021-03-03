@@ -2,9 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/01/07/scala/ScalaImpatient/Scala_Set/</loc>
+    
+    <lastmod>2021-03-02T05:29:57.451Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/06/scala/ScalaImpatient/Scala_Function/</loc>
+    
+    <lastmod>2021-03-01T10:09:28.565Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/05/scala/ScalaImpatient/Scala_Trait/</loc>
+    
+    <lastmod>2021-02-28T10:19:18.637Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/05/scala/ScalaImpatient/Scala_FileRead/</loc>
+    
+    <lastmod>2021-02-27T09:00:06.122Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/04/scala/ScalaImpatient/Scala_Extends/</loc>
+    
+    <lastmod>2021-02-27T06:11:24.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/03/scala/ScalaImpatient/Scala_Classs/</loc>
+    
+    <lastmod>2021-02-26T07:54:43.808Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/02/scala/ScalaImpatient/Scala_Array/</loc>
+    
+    <lastmod>2021-02-24T08:04:50.295Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/01/scala/ScalaImpatient/Basic_Scala/</loc>
+    
+    <lastmod>2021-02-24T01:38:16.207Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/29/java/java%E5%9F%BA%E7%A1%80/%E3%80%9011%E3%80%91Java%E5%B9%B6%E5%8F%91/</loc>
+    
+    <lastmod>2021-02-17T13:09:16.623Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/29/java/java%E5%9F%BA%E7%A1%80/%E3%80%9010%E3%80%91Java%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    
+    <lastmod>2021-02-01T12:45:48.721Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/27/java/java%E5%9F%BA%E7%A1%80/%E3%80%909%E3%80%91Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
+    
+    <lastmod>2021-01-23T13:47:59.564Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/12/25/java/java%E5%9F%BA%E7%A1%80/%E3%80%908%E3%80%91Java%E5%86%85%E9%83%A8%E7%B1%BB/</loc>
     
-    <lastmod>2021-01-18T03:52:34.939Z</lastmod>
+    <lastmod>2021-01-19T02:21:22.216Z</lastmod>
     
   </url>
   
@@ -68,13 +145,6 @@
     <loc>http://yoursite.com/2019/12/15/java/java%E5%9F%BA%E7%A1%80/%E3%80%903%E3%80%91Java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
     
     <lastmod>2021-01-08T12:41:09.166Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/11/scala/Atomic_Scala/%E3%80%901%E3%80%91Atomic_Scala_Values/</loc>
-    
-    <lastmod>2021-01-07T09:38:29.443Z</lastmod>
     
   </url>
   

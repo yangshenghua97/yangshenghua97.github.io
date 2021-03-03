@@ -81,18 +81,18 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/23/java/java基础/【7】Java接口/" title="Java抽象类和接口" itemprop="url">
+    <a href="/2020/01/06/scala/ScalaImpatient/Scala_Function/" title="Scala高阶函数" itemprop="url">
   
-    <h1 itemprop="name">Java抽象类和接口</h1>
+    <h1 itemprop="name">Scala高阶函数</h1>
     
      
-           <p itemprop="description" >抽象类和抽象方法使用abstract关键字来创建抽象类和抽象方法，其语法如下：
-123abstract class Test&amp;#123;    abstract void f();&amp;#125;
+           <p itemprop="description" >作为值的函数在Scala中，函数是“头等公民”，和数字一样。可以在变量中存放函数：
+1234import scala.math._val num = 3.14val fun = ceil _fun(num)
 
-通过创建抽象类是希望通过这个通用接口操纵一系列类，不同的子类可以用不同的方式表示此抽</p>
+ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil方法</p>
         
     
-    <time datetime="2019-12-23T14:12:02.000Z" itemprop="datePublished">2019-12-23</time>
+    <time datetime="2020-01-06T14:12:02.000Z" itemprop="datePublished">2020-01-06</time>
   </a>
 </section>
 
@@ -104,16 +104,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/21/java/java基础/【6】Java类的复用/" title="Java类的复用" itemprop="url">
+    <a href="/2020/01/05/scala/ScalaImpatient/Scala_Trait/" title="Scala特质" itemprop="url">
   
-    <h1 itemprop="name">Java类的复用</h1>
+    <h1 itemprop="name">Scala特质</h1>
     
      
-           <p itemprop="description" >继承语法继承可以说是所有面向对象编程语言中不可缺少的部分。在Java中，当创建一个类时，总是在继承，除非已明确的指出要从其他类中继承，否则就是在隐式地从Java的标准根类Object进行继承。使用继承时，在类名后面使用extends关键字来实现继承。
-12345678910111</p>
+           <p itemprop="description" >当作接口使用的特质Scala特质完全可以像Java接口那样工作。例如：
+12345678trait Logger&amp;#123;    def log(msg:String)//抽象方法&amp;#125;class ConsoleLogger extends Logger&amp;#123;   </p>
         
     
-    <time datetime="2019-12-21T04:32:12.000Z" itemprop="datePublished">2019-12-21</time>
+    <time datetime="2020-01-05T14:12:02.000Z" itemprop="datePublished">2020-01-05</time>
   </a>
 </section>
 
@@ -125,16 +125,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/19/java/java基础/【5】Java访问权限控制/" title="Java访问权限控制" itemprop="url">
+    <a href="/2020/01/05/scala/ScalaImpatient/Scala_FileRead/" title="Scala文件操作" itemprop="url">
   
-    <h1 itemprop="name">Java访问权限控制</h1>
+    <h1 itemprop="name">Scala文件操作</h1>
     
      
-           <p itemprop="description" >Java提供了访问权限修饰词，访问权限控制的等级，从最大到最小依次为：public、protected、包访问权限、private。Java使用关键字package来影响访问权限修饰词的使用。
-在Java中提供了大量的标准类库，如果想要在自己定义的类文件中使用这些标准的类库，可以</p>
+           <p itemprop="description" >文件读取行要读取文件中的所有行，可以调用scala.io.Source对象的getLines方法：
+1234567import scala.io.Sourceval source = Source.fromFile(&#34;./myFile.txt&#34;,&#34;utf-8&#34;);val line</p>
         
     
-    <time datetime="2019-12-19T04:32:12.000Z" itemprop="datePublished">2019-12-19</time>
+    <time datetime="2020-01-05T14:12:02.000Z" itemprop="datePublished">2020-01-05</time>
   </a>
 </section>
 
@@ -146,16 +146,19 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/17/java/java基础/【4】Java类的初始化与清理/" title="Java类的初始化与清理" itemprop="url">
+    <a href="/2020/01/04/scala/ScalaImpatient/Scala_Extends/" title="Scala继承" itemprop="url">
   
-    <h1 itemprop="name">Java类的初始化与清理</h1>
+    <h1 itemprop="name">Scala继承</h1>
     
      
-           <p itemprop="description" >在Java中，通过提供构造器，类的设计者可确保每个对象都会得到初始化。创建对象时，如果器类具有构造器，Java就会在用户操作对象之前自动调用相应的构造器，从而确保初始化化的进行。在Java中采取了构造器与类名相同的方案。
-1234567891011121314151617pack</p>
+           <p itemprop="description" >扩展类Scala扩展类的方式和Java一样，使用extends关键字：
+123class Employee extends Person&amp;#123;    var salary = 0.0&amp;#125;
+
+在定义中给出子类需要而超类没有的字段和方法，或者重写超类的方法。
+重写方法在</p>
         
     
-    <time datetime="2019-12-17T04:32:12.000Z" itemprop="datePublished">2019-12-17</time>
+    <time datetime="2020-01-04T14:12:02.000Z" itemprop="datePublished">2020-01-04</time>
   </a>
 </section>
 
@@ -167,16 +170,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/15/java/java基础/【3】Java流程控制/" title="Java流程控制" itemprop="url">
+    <a href="/2020/01/03/scala/ScalaImpatient/Scala_Classs/" title="Scala的类与对象" itemprop="url">
   
-    <h1 itemprop="name">Java流程控制</h1>
+    <h1 itemprop="name">Scala的类与对象</h1>
     
      
-           <p itemprop="description" >if-elseif-else语句是控制程序流程的基本形式。其中的else是可选的。
-12345678if(boolean-exp)&amp;#123;    statement&amp;#125;if(boolean-exp)&amp;#123;    statement&amp;#125;else&amp;#123;</p>
+           <p itemprop="description" >类简单类和无参方法1234567891011121314151617class Counter&amp;#123;    private var value = 0    def increment():Unit=&amp;#123;        value+=1    &amp;#125;    d</p>
         
     
-    <time datetime="2019-12-15T04:32:12.000Z" itemprop="datePublished">2019-12-15</time>
+    <time datetime="2020-01-03T14:12:02.000Z" itemprop="datePublished">2020-01-03</time>
   </a>
 </section>
 
@@ -188,19 +190,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/11/scala/Atomic_Scala/【1】Atomic_Scala_Values/" title="Scala基础知识" itemprop="url">
+    <a href="/2020/01/02/scala/ScalaImpatient/Scala_Array/" title="Scala数组和集合" itemprop="url">
   
-    <h1 itemprop="name">Scala基础知识</h1>
+    <h1 itemprop="name">Scala数组和集合</h1>
     
      
-           <p itemprop="description" >值scala的值保存的是特定类型的信息，可以像下面这样定义一个值：
-1val name = initialization
-
-val关键字后跟着变量的名字（Scala区分大小写字母）、等号和初始值。
-1234567val whole = 11;val fr = 1.4;val wo</p>
+           <p itemprop="description" >数组相关操作定长数组如果需要一个长度不变的数组，可以用Scala中Array。
+12345val num = new Array[Int](10)//10元素的Int数组，所有元素初始化为0val string = new Array[String](10)//10元素的字符串数</p>
         
     
-    <time datetime="2019-12-11T04:32:12.000Z" itemprop="datePublished">2019-12-11</time>
+    <time datetime="2020-01-02T14:12:02.000Z" itemprop="datePublished">2020-01-02</time>
   </a>
 </section>
 
@@ -212,15 +211,16 @@ val关键字后跟着变量的名字（Scala区分大小写字母）、等号和
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/11/java/java基础/【2】Java操作符/" title="Java操作符" itemprop="url">
+    <a href="/2020/01/01/scala/ScalaImpatient/Basic_Scala/" title="Scala基础" itemprop="url">
   
-    <h1 itemprop="name">Java操作符</h1>
+    <h1 itemprop="name">Scala基础</h1>
     
      
-           <p itemprop="description" >使用Java操作符操作符接受一个或多个参数，并生成一个新值。参数的形式与普通的方法调用不同，但是效果是一样的。操作数作用于操作数，并生成一个新值，有些操作数可能会改变操作数自身的值，称之为“副作用”。几乎所有的操作符都只能操作“基本类型”。列外的操作符是“=”、“==”、“!=”</p>
+           <p itemprop="description" >基础首先呢，在写代码之前呢，先确保电脑上已经安装了scala。然后在命令行界面上输入：scala命令，这样就进入了“REPL”界面。文章不打算使用这样的形式来编写代码。以后的代码段一律都是以.scala为后缀的代码源文件，对其进行编译并执行。
+声明值和变量在“REPL”界面中，S</p>
         
     
-    <time datetime="2019-12-11T04:32:12.000Z" itemprop="datePublished">2019-12-11</time>
+    <time datetime="2020-01-01T14:12:02.000Z" itemprop="datePublished">2020-01-01</time>
   </a>
 </section>
 
@@ -232,16 +232,15 @@ val关键字后跟着变量的名字（Scala区分大小写字母）、等号和
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/09/java/java基础/【1】万物皆对象/" title="一切皆对象" itemprop="url">
+    <a href="/2019/12/29/java/java基础/【11】Java并发/" title="Java并发" itemprop="url">
   
-    <h1 itemprop="name">一切皆对象</h1>
+    <h1 itemprop="name">Java并发</h1>
     
      
-           <p itemprop="description" >引用操作对象每种编程语言都有自己的操作内存中元素的方式。需要注意到将要处理的数据是什么类型。是直接操作元素，还是基于某种特殊的语法间接表示来操作对象呢？
-在Java里将这些做了简化。将一切都视为对象，可采取单一固定的语法。操作的标识符实际上是对象的一个“引用”。拥有一个引用，并不</p>
+           <p itemprop="description" >基本的线程机制定义任务线程可以驱动任务，因此需要一种描述任务的方式，这可以有Runnable接口来提供。要想定义任务，只需实现Runnable接口并编写run()方法，使得该任务执行。当从Runnable导出一个类时，必须具有run()方法，但是这个方法并没有什么特别的，run(</p>
         
     
-    <time datetime="2019-12-09T04:32:12.000Z" itemprop="datePublished">2019-12-09</time>
+    <time datetime="2019-12-29T14:12:02.000Z" itemprop="datePublished">2019-12-29</time>
   </a>
 </section>
 
@@ -253,15 +252,16 @@ val关键字后跟着变量的名字（Scala区分大小写字母）、等号和
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/12/07/java/java基础/【19】Java枚举类型/" title="Java枚举类型" itemprop="url">
+    <a href="/2019/12/29/java/java基础/【10】Java字符串/" title="Java字符串" itemprop="url">
   
-    <h1 itemprop="name">Java枚举类型</h1>
+    <h1 itemprop="name">Java字符串</h1>
     
      
-           <p itemprop="description" >Enum关键字enum关键字，在需要群组并使用枚举类型集合时，可以很方便的处理。由于枚举类型的实例是常量，因此命名时大都使用大写。在创建enum时，编译器会自动添加一些有用的特性，,比如会创建toString()方法，便于显示某个enum实例的名字。编译器还会创建ordinal(</p>
+           <p itemprop="description" >String是不可变的String类中每一个看起来会修改String值的方法，实际上都是创建了一个全新的String对象，以包含修改后的字符串内容。而最初的String对象丝毫未动。
+每当把String对象作为方法的参数时，都会复制一份引用，而该引用所指的对象其实一直在单一的物理</p>
         
     
-    <time datetime="2019-12-07T14:12:02.000Z" itemprop="datePublished">2019-12-07</time>
+    <time datetime="2019-12-29T14:12:02.000Z" itemprop="datePublished">2019-12-29</time>
   </a>
 </section>
 
@@ -273,16 +273,17 @@ val关键字后跟着变量的名字（Scala区分大小写字母）、等号和
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2019/04/30/java/并发编程/Java并发基础Java中的锁/" title="Java并发基础Java中的锁" itemprop="url">
+    <a href="/2019/12/27/java/java基础/【9】Java集合框架/" title="Java集合框架" itemprop="url">
   
-    <h1 itemprop="name">Java并发基础Java中的锁</h1>
+    <h1 itemprop="name">Java集合框架</h1>
     
      
-           <p itemprop="description" >锁是用来控制多个线程访问共享资源的方式，一个锁能够防止多个线程同时访问共享资源。
-Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能，JDK 1.5之后，在并发包中新增了Lock接口来实现锁功能，有与synchronized关键字类似功能，只是在</p>
+           <p itemprop="description" >基本概念Java集合框架的用途就是保存对象，并将其划分为两个不同的概念：
+（1）Collection：一个独立元素的序列，这些元素都服从一条或多条规则。List必须按照插入的顺序保存元素，而Set不能有重复元素。Queue按照排队规则来确定对象的产生顺序。
+（2）Map，一组成对</p>
         
     
-    <time datetime="2019-04-30T10:40:11.000Z" itemprop="datePublished">2019-04-30</time>
+    <time datetime="2019-12-27T14:12:02.000Z" itemprop="datePublished">2019-12-27</time>
   </a>
 </section>
 
@@ -293,7 +294,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;span&gt;&lt;&#x2F;span&gt;Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next&lt;span&gt;&lt;&#x2F;span&gt;</a>
   </nav>
 
 </div>
@@ -309,7 +310,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 		<ul>
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>20</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>23</sup></a></li>
 		  
 		
 		  
@@ -317,7 +318,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 		  
 		
 		  
-			<li><a href="/categories/Scala/" title="Scala">Scala<sup>1</sup></a></li>
+			<li><a href="/categories/Scala/" title="Scala">Scala<sup>8</sup></a></li>
 		  
 		
 		  
@@ -362,11 +363,15 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>12</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>9</sup></a></li>
+				<li><a href="/tags/Scala基础编程/" title="Scala基础编程">Scala基础编程<sup>8</sup></a></li>
 			
 		
 			
@@ -378,7 +383,11 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 			
 		
 			
-				<li><a href="/tags/java中级编程/" title="java中级编程">java中级编程<sup>2</sup></a></li>
+				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
 			
 		
 			
@@ -386,7 +395,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
+				<li><a href="/tags/java中级编程/" title="java中级编程">java中级编程<sup>2</sup></a></li>
 			
 		
 			
@@ -398,15 +407,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 			
 		
 			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Scala基础编程/" title="Scala基础编程">Scala基础编程<sup>1</sup></a></li>
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
 			
 		
 			
@@ -414,7 +415,7 @@ Lock在Lock接口出现之前，Java通过synchronized关键字实现锁功能�
 			
 		
 			
-				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
 			
 		
 			

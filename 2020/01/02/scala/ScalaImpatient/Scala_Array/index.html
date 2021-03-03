@@ -1,0 +1,593 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Scala数组和集合 | 楊さんノート</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="杨生华">
+    
+
+    
+    <meta name="description" content="数组相关操作定长数组如果需要一个长度不变的数组，可以用Scala中Array。 12345val num &#x3D; new Array[Int](10)&#x2F;&#x2F;10元素的Int数组，所有元素初始化为0val string &#x3D; new Array[String](10)&#x2F;&#x2F;10元素的字符串数组，所有元素初始化为nullval s &#x3D; Array(&quot;Hello&quot;,&quot;World&quot;)s(0) &#x3D; &quot;Yang&quot;&#x2F;&#x2F;使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala数组和集合">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/scala/ScalaImpatient/Scala_Array/index.html">
+<meta property="og:site_name" content="楊さんノート">
+<meta property="og:description" content="数组相关操作定长数组如果需要一个长度不变的数组，可以用Scala中Array。 12345val num &#x3D; new Array[Int](10)&#x2F;&#x2F;10元素的Int数组，所有元素初始化为0val string &#x3D; new Array[String](10)&#x2F;&#x2F;10元素的字符串数组，所有元素初始化为nullval s &#x3D; Array(&quot;Hello&quot;,&quot;World&quot;)s(0) &#x3D; &quot;Yang&quot;&#x2F;&#x2F;使">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-02T14:12:02.000Z">
+<meta property="article:modified_time" content="2021-02-24T08:04:50.295Z">
+<meta property="article:author" content="杨生华">
+<meta property="article:tag" content="Scala基础编程">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="楊さんノート" type="application/atom+xml">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/59303310.png" alt="楊さんノート" title="楊さんノート"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="楊さんノート">楊さんノート</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/tags">tags</a></li>
+					
+						<li><a href="/categories">categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/01/02/scala/ScalaImpatient/Scala_Array/" title="Scala数组和集合" itemprop="url">Scala数组和集合</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="杨生华" target="_blank" itemprop="author">杨生华</a>
+		
+  <p class="article-time">
+    <time datetime="2020-01-02T14:12:02.000Z" itemprop="datePublished"> 发表于 2020-01-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h2 id="数组相关操作"><a href="#数组相关操作" class="headerlink" title="数组相关操作"></a>数组相关操作</h2><h3 id="定长数组"><a href="#定长数组" class="headerlink" title="定长数组"></a>定长数组</h3><p>如果需要一个长度不变的数组，可以用Scala中Array。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> num = <span class="keyword">new</span> <span class="type">Array</span>[<span class="type">Int</span>](<span class="number">10</span>)<span class="comment">//10元素的Int数组，所有元素初始化为0</span></span><br><span class="line"><span class="keyword">val</span> string = <span class="keyword">new</span> <span class="type">Array</span>[<span class="type">String</span>](<span class="number">10</span>)<span class="comment">//10元素的字符串数组，所有元素初始化为null</span></span><br><span class="line"><span class="keyword">val</span> s = <span class="type">Array</span>(<span class="string">"Hello"</span>,<span class="string">"World"</span>)</span><br><span class="line">s(<span class="number">0</span>) = <span class="string">"Yang"</span><span class="comment">//使用()来访问数组的元素</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+
+<h3 id="变长数组"><a href="#变长数组" class="headerlink" title="变长数组"></a>变长数组</h3><p>用于那种长度按需要变化的数组，Scala中的变长数组为<strong>ArrayBuffer</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collection.mutable.<span class="type">ArrayBuffer</span></span><br><span class="line"><span class="keyword">val</span> b = <span class="type">ArrayBuffer</span>[<span class="type">Int</span>]()</span><br><span class="line"><span class="comment">// 一个空的数组缓冲，准备存放整数</span></span><br><span class="line">b+=<span class="number">1</span><span class="comment">//用+=在尾端添加元素</span></span><br><span class="line"><span class="comment">// ArrayBuffer(1)</span></span><br><span class="line">b+=(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//在尾端添加多个元素，以括号包起来</span></span><br><span class="line">b++=<span class="type">Array</span>(<span class="number">8</span>,<span class="number">13</span>,<span class="number">21</span>)<span class="comment">//使用++=操作符追加任何集合</span></span><br><span class="line">b.trimEnd(<span class="number">5</span>)<span class="comment">//移除最后5个元素</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">ArrayBuffer</span>[<span class="type">Int</span>]()</span><br><span class="line">a+=(<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">4</span>)</span><br><span class="line">a.insert(<span class="number">2</span>,<span class="number">6</span>)<span class="comment">//在下标2之前插入</span></span><br><span class="line">a.insert(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>)<span class="comment">//可以插入任意多的元素</span></span><br><span class="line">a.remove(<span class="number">2</span>)<span class="comment">//移除</span></span><br><span class="line">a.remove(<span class="number">2</span>,<span class="number">3</span>)<span class="comment">//第二个参数的含义是要移除多少个元素</span></span><br><span class="line">a</span><br><span class="line"><span class="comment">// 将ArrayBuffer构建成Array,反过来toBuffer将Array转换为ArrayBuffer</span></span><br><span class="line"><span class="keyword">val</span> c = a.toArray</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历数组和数组缓冲"><a href="#遍历数组和数组缓冲" class="headerlink" title="遍历数组和数组缓冲"></a>遍历数组和数组缓冲</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i &lt;- <span class="number">0</span> until a.length)&#123;</span><br><span class="line">    println(i+<span class="string">":"</span>+a(i))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在循环体中不需要用到数组下标，可以直接访问数组的元素</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(elem &lt;- a)&#123;</span><br><span class="line">    println(elem)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组转换"><a href="#数组转换" class="headerlink" title="数组转换"></a>数组转换</h3><p>从一个数组出发，以某种方式对它进行转换是很简单的，这些转换动作不会修改原始数组，而是产生一个全新数组。</p>
+<p>像这样用for推导式：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">Array</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>)</span><br><span class="line"><span class="keyword">val</span> result = <span class="keyword">for</span>(elem &lt;- a) <span class="keyword">yield</span> <span class="number">2</span>*elem</span><br><span class="line">result</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array(4, 6, 10, 14, 18)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="映射和元组"><a href="#映射和元组" class="headerlink" title="映射和元组"></a>映射和元组</h2><p>可以这样来构建一个映射</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> scores = <span class="type">Map</span>(<span class="string">"Alice"</span>-&gt;<span class="number">10</span>,<span class="string">"Bob"</span>-&gt;<span class="number">3</span>,<span class="string">"Cindy"</span>-&gt;<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上述的代码构造出一个不可变的Map[String,Int]，其值不能被改变。如果想构造一个可变的Map，则用</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> scores1 = collection.mutable.<span class="type">Map</span>(<span class="string">"Li"</span>-&gt;<span class="number">10</span>,<span class="string">"Yang"</span>-&gt;<span class="number">20</span>,<span class="string">"Cindy"</span>-&gt;<span class="number">18</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果想要从一个空映射开始，则需要选定一个映射实现并给出类型参数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> scores2 = <span class="keyword">new</span> collection.mutable.<span class="type">HashMap</span>[<span class="type">String</span>,<span class="type">Int</span>]()</span><br></pre></td></tr></table></figure>
+
+<p>和Java的Map一样，Scala中，映射是键值对的集合。使用<strong><code>-&gt;</code></strong>操作符来创建键值对。例如：”A”-&gt;10</p>
+<h3 id="获取映射中的值"><a href="#获取映射中的值" class="headerlink" title="获取映射中的值"></a>获取映射中的值</h3><p>在Scala中，函数和映射之间的相似性尤为明显，因为可以使用()表示法来查找某个键对应的值</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> bobsScore = scores1(<span class="string">"Li"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果映射并不包含请求中使用的键，则会抛出异常。要检查映射中是否有某个指定的键，可以使用contains方法</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> bobsScore1 = <span class="keyword">if</span>(scores0.contains(<span class="string">"Bob"</span>))&#123;</span><br><span class="line">    scores0(<span class="string">"Bob"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">val</span> bobsScore1 =</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新映射中的值"><a href="#更新映射中的值" class="headerlink" title="更新映射中的值"></a>更新映射中的值</h3><p>在可变的映射中，可以更新某个映射的值，或者添加一个新的映射关系，做法是在<strong>=</strong>号的左侧使用<strong>()</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scores1(<span class="string">"Yang"</span>) = <span class="number">10</span><span class="comment">//更新键"Yang"对应的值</span></span><br><span class="line">scores1(<span class="string">"Fred"</span>) = <span class="number">7</span><span class="comment">//增加新的键/值对到映射中</span></span><br><span class="line">scores1+=(<span class="string">"Bob"</span>-&gt;<span class="number">20</span>,<span class="string">"Li"</span>-&gt;<span class="number">50</span>,<span class="string">"Cindy"</span>-&gt;<span class="number">18</span>)<span class="comment">//使用+=操作来添加多个关系</span></span><br><span class="line">scores1-=<span class="string">"Bob"</span><span class="comment">//要移除某个键和对应的值，使用-=操作符</span></span><br></pre></td></tr></table></figure>
+
+<p>要从不可变映射中移除某个键，可以用<strong><code>-</code></strong>操作符来获取一个新的去该键的映射</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores0-<span class="string">"Alice"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代映射"><a href="#迭代映射" class="headerlink" title="迭代映射"></a>迭代映射</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>((k,v)&lt;-scores0)&#123;</span><br><span class="line">    print(k+<span class="string">"-&gt;"</span>+v+<span class="string">" "</span>)</span><br><span class="line">&#125;</span><br><span class="line">scores0.keySet</span><br></pre></td></tr></table></figure>
+
+<h3 id="已排序的映射"><a href="#已排序的映射" class="headerlink" title="已排序的映射"></a>已排序的映射</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sortMap = scala.collection.mutable.<span class="type">SortedMap</span>(<span class="string">"A"</span>-&gt;<span class="number">1</span>,<span class="string">"F"</span>-&gt;<span class="number">7</span>,<span class="string">"B"</span>-&gt;<span class="number">3</span>,<span class="string">"C"</span>-&gt;<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>键值对是元组（tuple）的最简形态——元组是不同类型的值聚集。元组的值是通过将单个的值包含在圆括号中构成。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> t = (<span class="number">1</span>,<span class="number">3.14</span>,<span class="string">"Tuple"</span>)</span><br><span class="line"><span class="comment">//t: (Int, Double, String) = (1,3.14,Tuple)</span></span><br></pre></td></tr></table></figure>
+
+<p>如果有一个元组：<strong><code>val t = (1,3.14,&quot;Tuple&quot;)</code></strong>。你就可以用方法<code>_1,_2,_3</code>访问其组元。例如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t._1</span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拉链操作"><a href="#拉链操作" class="headerlink" title="拉链操作"></a>拉链操作</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sy = <span class="type">Array</span>(<span class="string">"&lt;"</span>,<span class="string">"-"</span>,<span class="string">"&gt;"</span>)</span><br><span class="line"><span class="keyword">val</span> counter = <span class="type">Array</span>(<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="keyword">val</span> pairs = sy.zip(counter)</span><br><span class="line"><span class="comment">//pairs: Array[(String, Int)] = Array((&lt;,2), (-,1), (&gt;,3))</span></span><br></pre></td></tr></table></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Scala/">Scala</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Scala基础编程/">Scala基础编程</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/01/03/scala/ScalaImpatient/Scala_Classs/" title="Scala的类与对象">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Scala的类与对象</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/01/01/scala/ScalaImpatient/Basic_Scala/"  title="Scala基础">
+ <strong>下一篇：</strong><br/> 
+ <span>Scala基础
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组相关操作"><span class="toc-number">1.</span> <span class="toc-text">数组相关操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定长数组"><span class="toc-number">1.1.</span> <span class="toc-text">定长数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变长数组"><span class="toc-number">1.2.</span> <span class="toc-text">变长数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历数组和数组缓冲"><span class="toc-number">1.3.</span> <span class="toc-text">遍历数组和数组缓冲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组转换"><span class="toc-number">1.4.</span> <span class="toc-text">数组转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#映射和元组"><span class="toc-number">2.</span> <span class="toc-text">映射和元组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取映射中的值"><span class="toc-number">2.1.</span> <span class="toc-text">获取映射中的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新映射中的值"><span class="toc-number">2.2.</span> <span class="toc-text">更新映射中的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代映射"><span class="toc-number">2.3.</span> <span class="toc-text">迭代映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已排序的映射"><span class="toc-number">2.4.</span> <span class="toc-text">已排序的映射</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元组"><span class="toc-number">3.</span> <span class="toc-text">元组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拉链操作"><span class="toc-number">3.1.</span> <span class="toc-text">拉链操作</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Scala/" title="Scala">Scala<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本控制管理/" title="版本控制管理">版本控制管理<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/计算机基础/" title="计算机基础">计算机基础<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java基础编程/" title="java基础编程">java基础编程<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java并发编程/" title="java并发编程">java并发编程<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Scala基础编程/" title="Scala基础编程">Scala基础编程<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java中级编程/" title="java中级编程">java中级编程<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机基础/" title="计算机基础">计算机基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi 这是杨阿阳的博客 <br/>
+			This is my blog,yangayang（^A^）</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com//yangshenghua97" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="杨生华">杨生华</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
