@@ -104,13 +104,13 @@ ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/01/05/scala/ScalaImpatient/Scala_Trait/" title="Scala特质" itemprop="url">
+    <a href="/2020/01/05/scala/ScalaImpatient/Scala_FileRead/" title="Scala文件操作" itemprop="url">
   
-    <h1 itemprop="name">Scala特质</h1>
+    <h1 itemprop="name">Scala文件操作</h1>
     
      
-           <p itemprop="description" >当作接口使用的特质Scala特质完全可以像Java接口那样工作。例如：
-12345678trait Logger&amp;#123;    def log(msg:String)//抽象方法&amp;#125;class ConsoleLogger extends Logger&amp;#123;   </p>
+           <p itemprop="description" >文件读取行要读取文件中的所有行，可以调用scala.io.Source对象的getLines方法：
+1234567import scala.io.Sourceval source = Source.fromFile(&#34;./myFile.txt&#34;,&#34;utf-8&#34;);val line</p>
         
     
     <time datetime="2020-01-05T14:12:02.000Z" itemprop="datePublished">2020-01-05</time>
@@ -125,13 +125,13 @@ ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2020/01/05/scala/ScalaImpatient/Scala_FileRead/" title="Scala文件操作" itemprop="url">
+    <a href="/2020/01/05/scala/ScalaImpatient/Scala_Trait/" title="Scala特质" itemprop="url">
   
-    <h1 itemprop="name">Scala文件操作</h1>
+    <h1 itemprop="name">Scala特质</h1>
     
      
-           <p itemprop="description" >文件读取行要读取文件中的所有行，可以调用scala.io.Source对象的getLines方法：
-1234567import scala.io.Sourceval source = Source.fromFile(&#34;./myFile.txt&#34;,&#34;utf-8&#34;);val line</p>
+           <p itemprop="description" >当作接口使用的特质Scala特质完全可以像Java接口那样工作。例如：
+12345678trait Logger&amp;#123;    def log(msg:String)//抽象方法&amp;#125;class ConsoleLogger extends Logger&amp;#123;   </p>
         
     
     <time datetime="2020-01-05T14:12:02.000Z" itemprop="datePublished">2020-01-05</time>
@@ -383,14 +383,6 @@ ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil�
 			
 		
 			
-				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
 			
 		
@@ -403,11 +395,15 @@ ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil�
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+				<li><a href="/tags/spark/" title="spark">spark<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 			
 		
 			
@@ -420,6 +416,10 @@ ceil函数后面的_意味着确实指的是这个函数，也就是讲_将ceil�
 		
 			
 				<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
 			
 		
 		</ul>
